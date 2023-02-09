@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.swervedrivespecialties.swervelib.Mk3SwerveModuleHelper;
-import com.swervedrivespecialties.swervelib.SdsModuleConfigurations;
 import com.swervedrivespecialties.swervelib.SwerveModule;
 
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -18,10 +17,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
 public class subDriveTrain extends SubsystemBase {
-
-  public static final double MAX_VOLTAGE = 12.0;
-  public static final double MAX_VELOCITY_METERS_PER_SECOND = 5676.0 / 60.0 * SdsModuleConfigurations.MK3_STANDARD.getDriveReduction() * SdsModuleConfigurations.MK3_STANDARD.getWheelDiameter() * Math.PI;
-  public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = MAX_VELOCITY_METERS_PER_SECOND / Math.hypot(DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0);
   private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
       new Translation2d(-DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0), // Front left
       new Translation2d(-DriveConstants.TrackWidth / 2.0, -DriveConstants.WheelBase / 2.0), // Front right
@@ -102,11 +97,11 @@ public class subDriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     SwerveModuleState[] states = m_kinematics.toSwerveModuleStates(m_chassisSpeeds);
-    SwerveDriveKinematics.desaturateWheelSpeeds(states, MAX_VELOCITY_METERS_PER_SECOND);
+    SwerveDriveKinematics.desaturateWheelSpeeds(states, DriveConstants.MaxVelocityMetersPerSecond);
 
-    frontLeftModule.set(states[0].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[0].angle.getRadians());
-    frontRightModule.set(states[1].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[1].angle.getRadians());
-    backLeftModule.set(states[2].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[2].angle.getRadians());
-    backRightModule.set(states[3].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[3].angle.getRadians());
+    frontLeftModule.set(states[0].speedMetersPerSecond / DriveConstants.MaxVelocityMetersPerSecond * DriveConstants.MaxVoltage, states[0].angle.getRadians());
+    frontRightModule.set(states[1].speedMetersPerSecond / DriveConstants.MaxVelocityMetersPerSecond * DriveConstants.MaxVoltage, states[1].angle.getRadians());
+    backLeftModule.set(states[2].speedMetersPerSecond / DriveConstants.MaxVelocityMetersPerSecond * DriveConstants.MaxVoltage, states[2].angle.getRadians());
+    backRightModule.set(states[3].speedMetersPerSecond / DriveConstants.MaxVelocityMetersPerSecond * DriveConstants.MaxVoltage, states[3].angle.getRadians());
   }
 }

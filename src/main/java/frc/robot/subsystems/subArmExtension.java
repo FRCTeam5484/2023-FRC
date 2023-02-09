@@ -19,10 +19,29 @@ public class subArmExtension extends SubsystemBase {
     extensionMotor.setIdleMode(ArmExtensionConstants.Mode);
     extensionMotor.setSmartCurrentLimit(ArmExtensionConstants.PowerLimit);
     extensionMotor.burnFlash();
+
+    extensionPID.setP(0.1);
+    extensionPID.setI(1e-4);
+    extensionPID.setD(1);
+    extensionPID.setIZone(0);
+    extensionPID.setFF(0);
+    extensionPID.setOutputRange(-1, 1);
   }
 
   @Override
   public void periodic() {
   
+  }
+
+  public void moveToSetPoint(double setPoint){
+    extensionPID.setReference(setPoint, CANSparkMax.ControlType.kPosition);
+  }
+
+  public void teleOp(double value){
+    extensionMotor.set(value);
+  }
+
+  public void stop(){
+    extensionMotor.stopMotor();
   }
 }

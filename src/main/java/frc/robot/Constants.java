@@ -1,6 +1,8 @@
 package frc.robot;
 
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.swervedrivespecialties.swervelib.SdsModuleConfigurations;
+
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
@@ -17,6 +19,10 @@ public final class Constants {
     //        new Translation2d(DriveConstants.Base.WheelBase / 2, DriveConstants.Base.TrackWidth / 2), //back left
     //        new Translation2d(DriveConstants.Base.WheelBase / 2, -DriveConstants.Base.TrackWidth / 2)); //backright
 
+    public static final double MaxVoltage = 12.0;
+    public static final double MaxVelocityMetersPerSecond = 5676.0 / 60.0 * SdsModuleConfigurations.MK3_STANDARD.getDriveReduction() * SdsModuleConfigurations.MK3_STANDARD.getWheelDiameter() * Math.PI;
+    public static final double MaxAngularVelocityRadiansPerSecond = MaxVelocityMetersPerSecond / Math.hypot(DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0);
+    
     public static final class FrontLeft{
       public static final int DriveMotorPort = 4;
       public static final int TurningMotorPort = 3;
@@ -80,6 +86,8 @@ public final class Constants {
     public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 35;
     
+    public static final int limitPositionHigh = 0;
+    public static final int limitPositionLow = 0;
     public static final int GroundPosition = 0;
     public static final int HumanFeedPosition = 0;
     public static final int MidPosition = 0;
@@ -92,6 +100,8 @@ public final class Constants {
     public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 35;
 
+    public static final int limitOpen = 0;
+    public static final int limitClosed = 0;
     public static final int GroundPosition = 0;
     public static final int HumanFeedPosition = 0;
     public static final int MidPosition = 0;
@@ -104,6 +114,8 @@ public final class Constants {
     public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 35;
 
+    public static final int limitOpen = 0;
+    public static final int limitClosed = 0;
     public static final int OpenLimit = 0;
     public static final int CloseLimit = 10;
     public static final int Cube = 8;

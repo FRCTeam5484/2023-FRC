@@ -19,10 +19,29 @@ public class subClaw extends SubsystemBase {
     clawMotor.setIdleMode(ClawConstants.Mode);
     clawMotor.setSmartCurrentLimit(ClawConstants.PowerLimit);
     clawMotor.burnFlash();
+
+    clawPID.setP(0.1);
+    clawPID.setI(1e-4);
+    clawPID.setD(1);
+    clawPID.setIZone(0);
+    clawPID.setFF(0);
+    clawPID.setOutputRange(-1, 1);
   }
 
   @Override
   public void periodic() {
   
+  }
+
+  public void moveToSetPoint(double setPoint){
+    clawPID.setReference(setPoint, CANSparkMax.ControlType.kPosition);
+  }
+
+  public void teleOp(double value){
+    clawMotor.set(value);
+  }
+
+  public void stop(){
+    clawMotor.stopMotor();
   }
 }

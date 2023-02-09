@@ -20,9 +20,29 @@ public class subArmAngle extends SubsystemBase {
     angleMotor.setIdleMode(ArmAngleConstants.Mode);
     angleMotor.setSmartCurrentLimit(ArmAngleConstants.PowerLimit);
     angleMotor.burnFlash();
+
+    anglePID.setFeedbackDevice(angleEncoder);
+    anglePID.setP(0.1);
+    anglePID.setI(1e-4);
+    anglePID.setD(1);
+    anglePID.setIZone(0);
+    anglePID.setFF(0);
+    anglePID.setOutputRange(-1, 1);
   }
 
   @Override
   public void periodic() {
+  }
+
+  public void moveToSetPoint(double setPoint){
+    anglePID.setReference(setPoint, CANSparkMax.ControlType.kPosition);
+  }
+
+  public void teleOp(double value){
+    angleMotor.set(value);
+  }
+
+  public void stop(){
+    angleMotor.stopMotor();
   }
 }
