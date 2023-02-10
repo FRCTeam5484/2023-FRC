@@ -37,8 +37,23 @@ public class subClaw extends SubsystemBase {
     clawPID.setReference(setPoint, CANSparkMax.ControlType.kPosition);
   }
 
-  public void teleOp(double value){
-    clawMotor.set(value);
+  public void openClaw(){
+    if(clawEncoder.getPosition() >= ClawConstants.limitOpen)
+    {
+      stop();
+    }
+    else{
+      clawMotor.set(1);
+    }
+  }
+  public void closeClaw(){
+    if(clawEncoder.getPosition() <= ClawConstants.limitClosed)
+    {
+      stop();
+    }
+    else{
+      clawMotor.set(-1);
+    }
   }
 
   public void stop(){

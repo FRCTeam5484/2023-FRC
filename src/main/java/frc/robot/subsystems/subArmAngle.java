@@ -39,7 +39,13 @@ public class subArmAngle extends SubsystemBase {
   }
 
   public void teleOp(double value){
-    angleMotor.set(value);
+    if(value >= 0 && angleEncoder.getPosition() >= ArmAngleConstants.limitPositionHigh || value <= 0 && angleEncoder.getPosition() <= ArmAngleConstants.limitPositionLow)
+    {
+      stop();
+    }
+    else{
+      angleMotor.set(value);
+    }
   }
 
   public void stop(){
