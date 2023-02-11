@@ -35,6 +35,7 @@ public class subArmAngle extends SubsystemBase {
 
   @Override
   public void periodic() {
+    
     SmartDashboard.putNumber("Arm Angle Encoder", getEncoderPosition());
   }
 
@@ -44,7 +45,8 @@ public class subArmAngle extends SubsystemBase {
 
   public void teleOp(double value){
     double adjustedPower = value * ArmAngleConstants.PowerFactor;
-    if(value <= 0.05 && angleEncoder.getPosition() <= ArmAngleConstants.limitPositionHigh || value >= 0.05 && angleEncoder.getPosition() >= ArmAngleConstants.limitPositionLow)
+    //System.out.println("Encoder: " + getEncoderPosition() + "  Drive: " + value);
+    if(value >= 0.05 && angleEncoder.getPosition() >= ArmAngleConstants.limitPositionHigh || value <= -0.05 && angleEncoder.getPosition() <= ArmAngleConstants.limitPositionLow)
     {
       angleMotor.set(adjustedPower);
     }

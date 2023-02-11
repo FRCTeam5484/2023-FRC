@@ -78,11 +78,11 @@ public final class Constants {
     public static final int Port = 9;
     public static final boolean Reversed = false;
     public static final IdleMode Mode = IdleMode.kBrake;
-    public static final double PowerFactor = 0.25;
+    public static final double PowerFactor = 0.8;
     public static final int PowerLimit = 35;
     
-    public static final int limitPositionHigh = 80;
-    public static final int limitPositionLow = 20;
+    public static final int limitPositionHigh = 13;
+    public static final int limitPositionLow = 82;
     public static final int GroundPosition = 0;
     public static final int HumanFeedPosition = 0;
     public static final int MidPosition = 0;
@@ -95,8 +95,8 @@ public final class Constants {
     public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 35;
 
-    public static final int limitOpen = 0;
-    public static final int limitClosed = 0;
+    public static final int limitOpen = 165;
+    public static final int limitClosed = 2;
     public static final int GroundPosition = 0;
     public static final int HumanFeedPosition = 0;
     public static final int MidPosition = 0;

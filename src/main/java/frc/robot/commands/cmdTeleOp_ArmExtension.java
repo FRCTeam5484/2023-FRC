@@ -19,7 +19,7 @@ public class cmdTeleOp_ArmExtension extends CommandBase {
 
   @Override
   public void execute() {
-    extension.teleOp(driver.getLeftY());
+    extension.teleOp(-driver.getLeftY());
   }
 
   @Override

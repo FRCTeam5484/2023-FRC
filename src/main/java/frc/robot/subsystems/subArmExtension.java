@@ -31,7 +31,7 @@ public class subArmExtension extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber(getName(), getEncoderPosition());
+    SmartDashboard.putNumber("Arm Extension", getEncoderPosition());
   }
 
   public void moveToSetPoint(double setPoint){
@@ -39,14 +39,15 @@ public class subArmExtension extends SubsystemBase {
   }
 
   public void teleOp(double value){
-    extensionMotor.set(value);
-    /* if(value > 0 && extensionEncoder.getPosition() >= ArmExtensionConstants.limitOpen || value < 0 && extensionEncoder.getPosition() <= ArmExtensionConstants.limitClosed)
+    System.out.println("Encoder: " + getEncoderPosition() + "  Drive: " + value);
+    double adjustedPower = value * ArmExtensionConstants.PowerFactor;
+    if(value > 0.05 && extensionEncoder.getPosition() <= ArmExtensionConstants.limitOpen || value < -0.05 && extensionEncoder.getPosition() >= ArmExtensionConstants.limitClosed)
     {
-      stop();
+      extensionMotor.set(value);
     }
     else{
-      extensionMotor.set(value);
-    } */
+      stop();
+    }
   }
 
   public void stop(){
@@ -55,5 +56,9 @@ public class subArmExtension extends SubsystemBase {
 
   public double getEncoderPosition(){
     return extensionEncoder.getPosition();
+  }
+
+  public void resetEncoder(){
+    extensionEncoder.setPosition(0);
   }
 }

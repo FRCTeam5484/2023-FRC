@@ -18,7 +18,7 @@ public class cmdTeleOp_ArmAngle extends CommandBase {
   
   @Override
   public void execute() {
-    angle.teleOp(driver.getRightY());
+    angle.teleOp(-driver.getRightY());
   }
   
   @Override
