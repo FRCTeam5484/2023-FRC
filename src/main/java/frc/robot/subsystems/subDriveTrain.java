@@ -18,12 +18,13 @@ import frc.robot.Constants.DriveConstants;
 
 public class subDriveTrain extends SubsystemBase {
   private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
-      new Translation2d(-DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0), // Front left
-      new Translation2d(-DriveConstants.TrackWidth / 2.0, -DriveConstants.WheelBase / 2.0), // Front right
-      new Translation2d(DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0), // Back left
-      new Translation2d(DriveConstants.TrackWidth / 2.0, -DriveConstants.WheelBase / 2.0)); // Back right
+      new Translation2d(DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0), // Front left
+      new Translation2d(DriveConstants.TrackWidth / 2.0, -DriveConstants.WheelBase / 2.0), // Front right
+      new Translation2d(-DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0), // Back left
+      new Translation2d(-DriveConstants.TrackWidth / 2.0, -DriveConstants.WheelBase / 2.0)); // Back right
   
   private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte)200);
+
 
   private final SwerveModule frontLeftModule;
   private final SwerveModule frontRightModule;
@@ -35,6 +36,7 @@ public class subDriveTrain extends SubsystemBase {
 
   public subDriveTrain() {
     ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
+    m_navx.zeroYaw();
 
     frontLeftModule = Mk3SwerveModuleHelper.createNeo(
       tab.getLayout("Front Left Module", BuiltInLayouts.kList)

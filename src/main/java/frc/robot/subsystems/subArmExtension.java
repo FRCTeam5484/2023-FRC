@@ -5,6 +5,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmExtensionConstants;
 
@@ -30,7 +31,7 @@ public class subArmExtension extends SubsystemBase {
 
   @Override
   public void periodic() {
-  
+    SmartDashboard.putNumber(getName(), getEncoderPosition());
   }
 
   public void moveToSetPoint(double setPoint){
@@ -38,16 +39,21 @@ public class subArmExtension extends SubsystemBase {
   }
 
   public void teleOp(double value){
-    if(value > 0 && extensionEncoder.getPosition() >= ArmExtensionConstants.limitOpen || value < 0 && extensionEncoder.getPosition() <= ArmExtensionConstants.limitClosed)
+    extensionMotor.set(value);
+    /* if(value > 0 && extensionEncoder.getPosition() >= ArmExtensionConstants.limitOpen || value < 0 && extensionEncoder.getPosition() <= ArmExtensionConstants.limitClosed)
     {
       stop();
     }
     else{
       extensionMotor.set(value);
-    }
+    } */
   }
 
   public void stop(){
     extensionMotor.stopMotor();
+  }
+
+  public double getEncoderPosition(){
+    return extensionEncoder.getPosition();
   }
 }

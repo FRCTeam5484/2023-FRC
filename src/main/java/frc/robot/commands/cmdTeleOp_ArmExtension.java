@@ -1,15 +1,16 @@
 package frc.robot.commands;
 
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.subArmExtension;
 
 public class cmdTeleOp_ArmExtension extends CommandBase {
   subArmExtension extension;
-  double extensionCommand;
-  public cmdTeleOp_ArmExtension(subArmExtension extension, double extensionCommand) {
+  XboxController driver;
+  public cmdTeleOp_ArmExtension(subArmExtension extension, XboxController driver) {
     this.extension = extension;
-    this.extensionCommand = extensionCommand;
+    this.driver = driver;
     addRequirements(extension);
   }
 
@@ -18,7 +19,7 @@ public class cmdTeleOp_ArmExtension extends CommandBase {
 
   @Override
   public void execute() {
-    extension.teleOp(extensionCommand);
+    extension.teleOp(driver.getLeftY());
   }
 
   @Override

@@ -6,6 +6,7 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmAngleConstants;
 
@@ -21,6 +22,8 @@ public class subArmAngle extends SubsystemBase {
     angleMotor.setSmartCurrentLimit(ArmAngleConstants.PowerLimit);
     angleMotor.burnFlash();
 
+    angleEncoder.setPositionConversionFactor(100);
+
     anglePID.setFeedbackDevice(angleEncoder);
     anglePID.setP(0.1);
     anglePID.setI(1e-4);
@@ -32,6 +35,7 @@ public class subArmAngle extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Arm Angle Encoder", getEncoderPosition());
   }
 
   public void moveToSetPoint(double setPoint){
@@ -39,16 +43,21 @@ public class subArmAngle extends SubsystemBase {
   }
 
   public void teleOp(double value){
-    if(value >= 0 && angleEncoder.getPosition() >= ArmAngleConstants.limitPositionHigh || value <= 0 && angleEncoder.getPosition() <= ArmAngleConstants.limitPositionLow)
+    double adjustedPower = value * ArmAngleConstants.PowerFactor;
+    if(value <= 0.05 && angleEncoder.getPosition() <= ArmAngleConstants.limitPositionHigh || value >= 0.05 && angleEncoder.getPosition() >= ArmAngleConstants.limitPositionLow)
     {
-      stop();
+      angleMotor.set(adjustedPower);
     }
     else{
-      angleMotor.set(value);
+      stop();
     }
   }
 
   public void stop(){
     angleMotor.stopMotor();
+  }
+
+  public double getEncoderPosition(){
+    return angleEncoder.getPosition();
   }
 }
