@@ -81,12 +81,12 @@ public final class Constants {
     public static final double PowerFactor = 0.8;
     public static final int PowerLimit = 35;
     
-    public static final int limitPositionHigh = 13;
-    public static final int limitPositionLow = 82;
-    public static final int GroundPosition = 0;
-    public static final int HumanFeedPosition = 0;
-    public static final int MidPosition = 0;
-    public static final int HighPosition = 0;
+    public static final double limitPositionHigh = 13;
+    public static final double limitPositionLow = 82;
+    public static final double HumanFeedPosition = 0;
+    public static final double GroundPosition = 0;
+    public static final double MidPosition = 0;
+    public static final double HighPosition = 0;
   }
   public static final class ArmExtensionConstants {
     public static final int Port = 10;
@@ -95,12 +95,12 @@ public final class Constants {
     public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 35;
 
-    public static final int limitOpen = 165;
-    public static final int limitClosed = 2;
-    public static final int GroundPosition = 0;
-    public static final int HumanFeedPosition = 0;
-    public static final int MidPosition = 0;
-    public static final int HighPosition = 0;
+    public static final double limitOpen = 165;
+    public static final double limitClosed = 2;
+    public static final double HumanFeedPosition = 0;
+    public static final double GroundPosition = 0;
+    public static final double MidPosition = 0;
+    public static final double HighPosition = 0;
   }
   public static final class ClawConstants {
     public static final int Port = 11;
@@ -109,10 +109,8 @@ public final class Constants {
     public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 35;
 
-    public static final int limitOpen = 0;
-    public static final int limitClosed = 0;
-    public static final int OpenLimit = 0;
-    public static final int CloseLimit = 10;
+    public static final double openLimit = 0;
+    public static final double closeLimit = 10;
     public static final int Cube = 8;
     public static final int Cone = 2;
   }

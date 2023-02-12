@@ -1,15 +1,16 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.subArmAngle;
 
 public class cmdTeleOp_ArmAngle extends CommandBase {
   subArmAngle angle;
-  XboxController driver;
-  public cmdTeleOp_ArmAngle(subArmAngle angle, XboxController driver) {
+  DoubleSupplier anglePower;
+  public cmdTeleOp_ArmAngle(subArmAngle angle, DoubleSupplier anglePower) {
     this.angle = angle;
-    this.driver = driver;
+    this.anglePower = anglePower;
     addRequirements(angle);
   }
   
@@ -18,7 +19,7 @@ public class cmdTeleOp_ArmAngle extends CommandBase {
   
   @Override
   public void execute() {
-    angle.teleOp(-driver.getRightY());
+    angle.teleOp(anglePower.getAsDouble());
   }
   
   @Override

@@ -44,11 +44,9 @@ public class subArmAngle extends SubsystemBase {
   }
 
   public void teleOp(double value){
-    double adjustedPower = value * ArmAngleConstants.PowerFactor;
-    //System.out.println("Encoder: " + getEncoderPosition() + "  Drive: " + value);
     if(value >= 0.05 && angleEncoder.getPosition() >= ArmAngleConstants.limitPositionHigh || value <= -0.05 && angleEncoder.getPosition() <= ArmAngleConstants.limitPositionLow)
     {
-      angleMotor.set(adjustedPower);
+      angleMotor.set(value);
     }
     else{
       stop();
@@ -61,5 +59,9 @@ public class subArmAngle extends SubsystemBase {
 
   public double getEncoderPosition(){
     return angleEncoder.getPosition();
+  }
+
+  public void enablePID(double setPoint){
+    anglePID.setReference(setPoint, CANSparkMax.ControlType.kPosition);
   }
 }

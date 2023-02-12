@@ -22,21 +22,18 @@ public class subDriveTrain extends SubsystemBase {
       new Translation2d(DriveConstants.TrackWidth / 2.0, -DriveConstants.WheelBase / 2.0), // Front right
       new Translation2d(-DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0), // Back left
       new Translation2d(-DriveConstants.TrackWidth / 2.0, -DriveConstants.WheelBase / 2.0)); // Back right
-  
+  private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
+  //private final SwerveDriveOdometry odometer;
   private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte)200);
 
 
   private final SwerveModule frontLeftModule;
   private final SwerveModule frontRightModule;
   private final SwerveModule backLeftModule;
-  private final SwerveModule backRightModule;
-
-  private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
-  
+  private final SwerveModule backRightModule;  
 
   public subDriveTrain() {
     ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
-    m_navx.zeroYaw();
 
     frontLeftModule = Mk3SwerveModuleHelper.createNeo(
       tab.getLayout("Front Left Module", BuiltInLayouts.kList)
@@ -78,7 +75,16 @@ public class subDriveTrain extends SubsystemBase {
       DriveConstants.BackRight.TurnAbsoluteEncoderPort,
       DriveConstants.BackRight.TurnAbsoluteEncoderOffsetRad);
 
+    //odometer = new SwerveDriveOdometry(m_kinematics, getGyroscopeRotation(), new SwerveModulePosition[] {frontLeftModule.getPosition(), frontRightModule.getPosition(), backLeftModule.getPosition(), backRightModule.getPosition()});
 
+    new Thread(() -> {
+      try {
+          Thread.sleep(1000);
+          zeroGyroscope();
+      } 
+      catch (Exception e) {
+      }
+    }).start();
   }
 
   public void zeroGyroscope() {

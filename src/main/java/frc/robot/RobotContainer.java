@@ -1,7 +1,11 @@
 package frc.robot;
 
+import frc.robot.Constants.ArmAngleConstants;
+import frc.robot.Constants.ArmExtensionConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.cmdAuto_SetGoal;
+import frc.robot.commands.cmdClaw_Actuate;
 import frc.robot.commands.cmdTeleOp_ArmAngle;
 import frc.robot.commands.cmdTeleOp_ArmExtension;
 import frc.robot.commands.cmdTeleOp_Drive;
@@ -9,18 +13,12 @@ import frc.robot.subsystems.subArmAngle;
 import frc.robot.subsystems.subArmExtension;
 import frc.robot.subsystems.subClaw;
 import frc.robot.subsystems.subDriveTrain;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class RobotContainer {
-  private final XboxController driverOne = new XboxController(OperatorConstants.DriverOne);
-  private final XboxController driverTwo = new XboxController(OperatorConstants.DriverTwo);
+  private final CommandXboxController driverOne = new CommandXboxController(OperatorConstants.DriverOne);
+  private final CommandXboxController driverTwo = new CommandXboxController(OperatorConstants.DriverTwo);
   private final subDriveTrain driveTrain = new subDriveTrain();
   private final subArmAngle armAngle = new subArmAngle();
   private final subArmExtension armExtension = new subArmExtension();
@@ -38,20 +36,20 @@ public class RobotContainer {
       () -> modifyAxis(driverOne.getLeftX())*DriveConstants.MaxVelocityMetersPerSecond, 
       () -> modifyAxis(driverOne.getRightX())*DriveConstants.MaxAngularVelocityRadiansPerSecond
     ));
-    
-
-    //driverOne.x().onTrue(Commands.run(()-> {claw.openClaw();}, claw));
-    //driverOne.x().onFalse(Commands.run(()-> {claw.stop();}, claw));
-    //driverOne.b().onTrue(Commands.run(()-> {claw.closeClaw();}, claw));
-    //driverOne.b().onFalse(Commands.run(()-> {claw.stop();}, claw));
-
+    claw.setDefaultCommand(new cmdClaw_Actuate(
+      claw, 
+      () -> modifyAxis(driverOne.getLeftTriggerAxis()) , 
+      () -> -modifyAxis(driverOne.getRightTriggerAxis())
+    ));
   }
 
   private void configureDriverTwo() {
-    armExtension.setDefaultCommand(new cmdTeleOp_ArmExtension(armExtension, driverTwo));
-    armAngle.setDefaultCommand(new cmdTeleOp_ArmAngle(armAngle,driverTwo));
-    JoystickButton driverTwo_A = new JoystickButton(driverTwo, Button.kA.value);
-    driverTwo_A.whileTrue(new InstantCommand(() -> armExtension.resetEncoder(), armExtension));
+    armAngle.setDefaultCommand(new cmdTeleOp_ArmAngle(armAngle, () -> -modifyAxis(driverTwo.getLeftY())*ArmAngleConstants.PowerFactor));
+    armExtension.setDefaultCommand(new cmdTeleOp_ArmExtension(armExtension, () -> -modifyAxis(driverTwo.getRightY())*ArmExtensionConstants.PowerFactor));
+
+    driverTwo.y().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition));
+    driverTwo.b().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition));
+    driverTwo.a().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.GroundPosition, ArmExtensionConstants.GroundPosition));
   }
 
   public Command getAutonomousCommand() {

@@ -39,8 +39,6 @@ public class subArmExtension extends SubsystemBase {
   }
 
   public void teleOp(double value){
-    System.out.println("Encoder: " + getEncoderPosition() + "  Drive: " + value);
-    double adjustedPower = value * ArmExtensionConstants.PowerFactor;
     if(value > 0.05 && extensionEncoder.getPosition() <= ArmExtensionConstants.limitOpen || value < -0.05 && extensionEncoder.getPosition() >= ArmExtensionConstants.limitClosed)
     {
       extensionMotor.set(value);
@@ -60,5 +58,8 @@ public class subArmExtension extends SubsystemBase {
 
   public void resetEncoder(){
     extensionEncoder.setPosition(0);
+  }
+  public void enablePID(double setPoint){
+    extensionPID.setReference(setPoint, CANSparkMax.ControlType.kPosition);
   }
 }

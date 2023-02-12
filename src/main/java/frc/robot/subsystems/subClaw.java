@@ -38,7 +38,7 @@ public class subClaw extends SubsystemBase {
   }
 
   public void openClaw(){
-    if(clawEncoder.getPosition() >= ClawConstants.limitOpen)
+    if(clawEncoder.getPosition() >= ClawConstants.openLimit)
     {
       stop();
     }
@@ -47,7 +47,7 @@ public class subClaw extends SubsystemBase {
     }
   }
   public void closeClaw(){
-    if(clawEncoder.getPosition() <= ClawConstants.limitClosed)
+    if(clawEncoder.getPosition() <= ClawConstants.closeLimit)
     {
       stop();
     }
