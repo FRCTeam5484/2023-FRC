@@ -17,6 +17,10 @@ public final class Constants {
     public static final double MaxVoltage = 12.0;
     public static final double MaxVelocityMetersPerSecond = 5676.0 / 60.0 * SdsModuleConfigurations.MK3_STANDARD.getDriveReduction() * SdsModuleConfigurations.MK3_STANDARD.getWheelDiameter() * Math.PI;
     public static final double MaxAngularVelocityRadiansPerSecond = MaxVelocityMetersPerSecond / Math.hypot(DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0);
+
+    public static final double MinAangularVelocity = 0.5;
+    public static final double SlewRateLimitTranslation = MaxVelocityMetersPerSecond * 2;
+    public static final double SlewRateLimitRotation = MaxAngularVelocityRadiansPerSecond * 10;
     
     public static final class FrontLeft{
       public static final int DriveMotorPort = 4;

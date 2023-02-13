@@ -40,7 +40,7 @@ public class cmdTeleOp_Drive extends CommandBase {
   
   @Override
   public void end(boolean interrupted) {
-    driveTrain.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
+    driveTrain.stop();
   }
 
   
