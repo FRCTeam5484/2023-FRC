@@ -114,4 +114,12 @@ public final class Constants {
     public static final int Cube = 8;
     public static final int Cone = 2;
   }
+  public static final class ServoConstants{
+    public static final int servoPort = 0;
+    
+    public static final int coneUp = 0;
+    public static final int coneDown = 90;
+    public static final int cubeUp = -90;
+    public static final int cubeDown = 179;
+  }
 }

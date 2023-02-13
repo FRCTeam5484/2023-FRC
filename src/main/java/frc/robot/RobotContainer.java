@@ -4,15 +4,18 @@ import frc.robot.Constants.ArmAngleConstants;
 import frc.robot.Constants.ArmExtensionConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.ServoConstants;
 import frc.robot.commands.cmdAuto_SetGoal;
 import frc.robot.commands.cmdClaw_Actuate;
 import frc.robot.commands.cmdTeleOp_ArmAngle;
 import frc.robot.commands.cmdTeleOp_ArmExtension;
 import frc.robot.commands.cmdTeleOp_Drive;
+import frc.robot.commands.cmdTeleOp_ItemNeeded;
 import frc.robot.subsystems.subArmAngle;
 import frc.robot.subsystems.subArmExtension;
 import frc.robot.subsystems.subClaw;
 import frc.robot.subsystems.subDriveTrain;
+import frc.robot.subsystems.subItemNeeded;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
@@ -23,6 +26,7 @@ public class RobotContainer {
   private final subArmAngle armAngle = new subArmAngle();
   private final subArmExtension armExtension = new subArmExtension();
   private final subClaw claw = new subClaw();
+  private final subItemNeeded item = new subItemNeeded();
 
   public RobotContainer() {
     configureDriverOne();
@@ -41,6 +45,10 @@ public class RobotContainer {
       () -> modifyAxis(driverOne.getLeftTriggerAxis()) , 
       () -> -modifyAxis(driverOne.getRightTriggerAxis())
     ));
+    driverOne.a().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeDown));
+    driverOne.b().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeUp));
+    driverOne.x().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneDown));
+    driverOne.x().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneUp));
   }
 
   private void configureDriverTwo() {
