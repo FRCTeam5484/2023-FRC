@@ -16,7 +16,22 @@ import frc.robot.subsystems.subArmExtension;
 import frc.robot.subsystems.subClaw;
 import frc.robot.subsystems.subDriveTrain;
 import frc.robot.subsystems.subItemNeeded;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
+import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
@@ -27,10 +42,18 @@ public class RobotContainer {
   private final subArmExtension armExtension = new subArmExtension();
   private final subClaw claw = new subClaw();
   private final subItemNeeded item = new subItemNeeded();
+  SendableChooser<Command> chooser = new SendableChooser<>();
 
   public RobotContainer() {
     configureDriverOne();
     configureDriverTwo();
+    addAutoOptions();
+  }
+
+  private void addAutoOptions(){
+    chooser.addOption("Cross Line", loadPathPlannerTrajectoryToRamseteCommand("/Users/roger.johnson/Documents/GitHub/2023-FRC/src/main/deploy/deploy/pathplanner/CrossLine.path"));
+    chooser.addOption("Cross and Dock", loadPathPlannerTrajectoryToRamseteCommand("/Users/roger.johnson/Documents/GitHub/2023-FRC/src/main/deploy/deploy/pathplanner/CrossLineLevel.path"));
+    Shuffleboard.getTab("Autonomous").add(chooser);
   }
 
   private void configureDriverOne() {
@@ -61,7 +84,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return null;
+    return chooser.getSelected();
   }
 
   private static double modifyAxis(double value) {
@@ -84,5 +107,25 @@ public class RobotContainer {
     } else {
       return 0.0;
     }
+  }
+
+  public Command loadPathPlannerTrajectoryToRamseteCommand(String fileName){
+    /* Trajectory trajectory;
+    try{
+      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(fileName);
+      trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+    }catch(IOException exception){
+      DriverStation.reportError("Unable to open trajectory " + fileName, exception.getStackTrace());
+      System.out.println("Unable to open trajectory " + fileName);
+      return new InstantCommand();
+    }
+
+    RamseteCommand ramseteCommand = new RamseteCommand(
+      trajectory, 
+      driveTrain::getPosition, 
+      new RamseteController(DriveConstants.kRamseteB, DriveConstants.kRamseteZeta), 
+      new SimpleMotorFeedforward(DriveConstants.ksVolts, DriveConstants.kvVoltSecondsPerMeter, DriveConstants.kaVoltSecondsSquaredPerMeter), 
+      driveTrain.m_kinematics, null, null, null, null, null) */
+      return new InstantCommand();
   }
 }

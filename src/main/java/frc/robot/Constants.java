@@ -21,6 +21,15 @@ public final class Constants {
     public static final double MinAangularVelocity = 0.5;
     public static final double SlewRateLimitTranslation = MaxVelocityMetersPerSecond * 2;
     public static final double SlewRateLimitRotation = MaxAngularVelocityRadiansPerSecond * 10;
+
+    public static final double kRamseteB = 0;
+    public static final double kRamseteZeta = 0;
+    public static final double ksVolts = 0;
+    public static final double kvVoltSecondsPerMeter = 0 ;
+    public static final double kaVoltSecondsSquaredPerMeter = 0;
+    
+
+
     
     public static final class FrontLeft{
       public static final int DriveMotorPort = 4;

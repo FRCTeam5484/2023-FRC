@@ -14,6 +14,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.SPI;
@@ -25,13 +26,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
 public class subDriveTrain extends SubsystemBase {
-  private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
+  public final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
       new Translation2d(DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0), // Front left
       new Translation2d(DriveConstants.TrackWidth / 2.0, -DriveConstants.WheelBase / 2.0), // Front right
       new Translation2d(-DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0), // Back left
       new Translation2d(-DriveConstants.TrackWidth / 2.0, -DriveConstants.WheelBase / 2.0)); // Back right
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
-  
+  private final SwerveDriveOdometry m_odometry;
   private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte)200);
 
   private final SlewRateLimiter filter_vx;
@@ -100,20 +101,22 @@ public class subDriveTrain extends SubsystemBase {
     filter_vy = new SlewRateLimiter(DriveConstants.SlewRateLimitTranslation);
     filter_or = new SlewRateLimiter(DriveConstants.SlewRateLimitRotation);
 
-    m_poseEstimator = new SwerveDrivePoseEstimator(m_kinematics, getGyroscopeRotation(), getPositions(), new Pose2d());
-
-    new Thread(() -> {
+    /* new Thread(() -> {
       try {
-          Thread.sleep(1000);
+          Thread.sleep(2000);
           zeroGyroscope();
       } 
       catch (Exception e) {
       }
-    }).start();
+    }).start(); */
+    zeroGyroscope();
+    m_odometry = new SwerveDriveOdometry(m_kinematics, getGyroscopeRotation(), getPositions(), new Pose2d());
+    m_poseEstimator = new SwerveDrivePoseEstimator(m_kinematics, getGyroscopeRotation(), getPositions(), new Pose2d());
   }
 
   public void zeroGyroscope() {
-    m_navx.zeroYaw();
+    m_navx.reset();
+    m_navx.calibrate();
   }
 
   public void resetGyroAt(double yaw){
@@ -172,6 +175,7 @@ public class subDriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
         m_poseEstimator.update(getGyroscopeRotation(), getPositions());
+        m_odometry.update(getGyroscopeRotation(), getPositions());
         
         final double zeroDeadzone = 0.001;
 
