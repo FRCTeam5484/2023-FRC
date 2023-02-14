@@ -37,6 +37,7 @@ public class subArmAngle extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Arm Ang Encoder", getEncoderPosition());
     SmartDashboard.putNumber("Arm Ang Power", angleMotor.get());
+    SmartDashboard.putNumber("Arm Ang Output", angleMotor.getAppliedOutput());
   }
 
   public void moveToSetPoint(double setPoint){

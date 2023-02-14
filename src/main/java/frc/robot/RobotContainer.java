@@ -2,7 +2,6 @@ package frc.robot;
 
 import frc.robot.Constants.ArmAngleConstants;
 import frc.robot.Constants.ArmExtensionConstants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.ServoConstants;
 import frc.robot.commands.cmdAuto_HoldAngle;
@@ -53,28 +52,37 @@ public class RobotContainer {
   }
 
   private void addAutoOptions(){
-    chooser.addOption("Cross Line", loadPathPlannerTrajectoryToRamseteCommand("/Users/roger.johnson/Documents/GitHub/2023-FRC/src/main/deploy/deploy/pathplanner/CrossLine.path"));
-    chooser.addOption("Cross and Dock", loadPathPlannerTrajectoryToRamseteCommand("/Users/roger.johnson/Documents/GitHub/2023-FRC/src/main/deploy/deploy/pathplanner/CrossLineLevel.path"));
-    Shuffleboard.getTab("Autonomous").add(chooser);
+    try{
+      chooser.setDefaultOption("Cross Line", driveTrain.followPathCmd("CrossLine"));
+      chooser.addOption("Cross and Dock", driveTrain.followPathCmd("CrossLineLevel"));
+      Shuffleboard.getTab("Autonomous").add(chooser);
+    }
+    catch(NullPointerException ex){
+      chooser.setDefaultOption("NULL Nothing", new InstantCommand());
+      DriverStation.reportError("Auto Chooser NULL - Fix It", null);
+    }
   }
 
   private void configureDriverOne() {
-    driveTrain.setDefaultCommand(new cmdTeleOp_Drive(
-      driveTrain, 
-      () -> -modifyAxis(driverOne.getLeftY())*DriveConstants.MaxVelocityMetersPerSecond, 
-      () -> modifyAxis(driverOne.getLeftX())*DriveConstants.MaxVelocityMetersPerSecond, 
-      () -> modifyAxis(driverOne.getRightX())*DriveConstants.MaxAngularVelocityRadiansPerSecond
-    ));
+    driveTrain.setDefaultCommand(
+      new cmdTeleOp_Drive(
+          driveTrain,
+          () -> -driverOne.getLeftY(),
+          () -> driverOne.getLeftX(),
+          () -> -driverOne.getRightY(),
+          () -> !driverOne.rightBumper().getAsBoolean()));
     claw.setDefaultCommand(new cmdClaw_Actuate(
       claw, 
       () -> modifyAxis(driverOne.getLeftTriggerAxis()) , 
       () -> modifyAxis(driverOne.getRightTriggerAxis())
     ));
     driverOne.a().onTrue(new InstantCommand(() -> armExtension.resetPosition(), armExtension));
-    /* driverOne.a().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeDown));
+    /* 
+    driverOne.a().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeDown));
     driverOne.b().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeUp));
     driverOne.x().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneDown));
-    driverOne.x().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneUp)); */
+    driverOne.x().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneUp)); 
+    */
   }
 
   private void configureDriverTwo() {
@@ -88,16 +96,16 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return chooser.getSelected();
+    try { return chooser.getSelected(); } 
+    catch (NullPointerException ex) { 
+      DriverStation.reportError("auto choose NULL somewhere in getAutonomousCommand in RobotContainer.java", null);
+      return new InstantCommand();
+    }
   }
 
   private static double modifyAxis(double value) {
-    // Deadband
     value = deadband(value, 0.05);
-
-    // Square the axis
     value = Math.copySign(value * value, value);
-
     return value;
   }
 
@@ -111,25 +119,5 @@ public class RobotContainer {
     } else {
       return 0.0;
     }
-  }
-
-  public Command loadPathPlannerTrajectoryToRamseteCommand(String fileName){
-    /* Trajectory trajectory;
-    try{
-      Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(fileName);
-      trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-    }catch(IOException exception){
-      DriverStation.reportError("Unable to open trajectory " + fileName, exception.getStackTrace());
-      System.out.println("Unable to open trajectory " + fileName);
-      return new InstantCommand();
-    }
-
-    RamseteCommand ramseteCommand = new RamseteCommand(
-      trajectory, 
-      driveTrain::getPosition, 
-      new RamseteController(DriveConstants.kRamseteB, DriveConstants.kRamseteZeta), 
-      new SimpleMotorFeedforward(DriveConstants.ksVolts, DriveConstants.kvVoltSecondsPerMeter, DriveConstants.kaVoltSecondsSquaredPerMeter), 
-      driveTrain.m_kinematics, null, null, null, null, null) */
-      return new InstantCommand();
   }
 }

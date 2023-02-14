@@ -21,9 +21,9 @@ public class subArmExtension extends SubsystemBase {
     extensionMotor.setSmartCurrentLimit(ArmExtensionConstants.PowerLimit);
     extensionMotor.burnFlash();
 
-    extensionPID.setP(0.1);
-    extensionPID.setI(1e-4);
-    extensionPID.setD(1);
+    extensionPID.setP(0.1);//0.1
+    extensionPID.setI(0);//1e-4
+    extensionPID.setD(0);//1
     extensionPID.setIZone(0);
     extensionPID.setFF(0);
     extensionPID.setOutputRange(-1, 1);
@@ -33,6 +33,7 @@ public class subArmExtension extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Arm Ext Encoder", getEncoderPosition());
     SmartDashboard.putNumber("Arm Ext Power", extensionMotor.get());
+    SmartDashboard.putNumber("Arm Ext Output", extensionMotor.getAppliedOutput());
   }
 
   public void moveToSetPoint(double setPoint){

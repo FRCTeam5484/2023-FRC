@@ -2,7 +2,9 @@ package frc.robot;
 
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.swervedrivespecialties.swervelib.SdsModuleConfigurations;
-
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
@@ -10,39 +12,41 @@ public final class Constants {
     public static final int DriverOne = 0;
     public static final int DriverTwo = 1;
   }
-  public static final class DriveConstants {
+  public static final class SwerveConstants {
     public static final double TrackWidth = Units.inchesToMeters(17.5);
     public static final double WheelBase = Units.inchesToMeters(29);
 
-    public static final double MaxVoltage = 8.0;
-    public static final double MaxVelocityMetersPerSecond = 5676.0 / 60.0 * SdsModuleConfigurations.MK3_STANDARD.getDriveReduction() * SdsModuleConfigurations.MK3_STANDARD.getWheelDiameter() * Math.PI;
-    public static final double MaxAngularVelocityRadiansPerSecond = MaxVelocityMetersPerSecond / Math.hypot(DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0);
+    public static final SwerveDriveKinematics Kinematics = new SwerveDriveKinematics(
+        new Translation2d(TrackWidth / 2.0, WheelBase / 2.0), // front left
+        new Translation2d(TrackWidth / 2.0, -WheelBase / 2.0), // front right
+        new Translation2d(-TrackWidth / 2.0, WheelBase / 2.0), // back left
+        new Translation2d(-TrackWidth / 2.0, -WheelBase / 2.0) // back right
+    );
 
-    public static final double MinAangularVelocity = 0.5;
-    public static final double SlewRateLimitTranslation = MaxVelocityMetersPerSecond * 2;
-    public static final double SlewRateLimitRotation = MaxAngularVelocityRadiansPerSecond * 10;
+    public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.1, 0.15, 0.01);
 
-    public static final double kRamseteB = 0;
-    public static final double kRamseteZeta = 0;
-    public static final double ksVolts = 0;
-    public static final double kvVoltSecondsPerMeter = 0 ;
-    public static final double kaVoltSecondsSquaredPerMeter = 0;
-    
+    public static final double MaxSpeed = 4.5; // meters per second
+    public static final double MaxAngularVelocity = 11.5;
 
-
-    
+    public static final class TeleOp{
+      public static final double MaxSpeedMetersPerSecond = 5676.0 / 60.0 * SdsModuleConfigurations.MK3_STANDARD.getDriveReduction() * SdsModuleConfigurations.MK3_STANDARD.getWheelDiameter() * Math.PI;
+      public static final double MaxAngularSpeedRadiansPerSecond = MaxSpeedMetersPerSecond / Math.hypot(SwerveConstants.TrackWidth / 2.0, SwerveConstants.WheelBase / 2.0);
+      public static final double MaxAccelerationUnitsPerSecond = 3;
+      public static final double MaxAngularAccelerationUnitsPerSecond = 3;
+    }
+       
     public static final class FrontLeft{
       public static final int DriveMotorPort = 4;
       public static final int TurningMotorPort = 3;
       public static final IdleMode DriveIdleMode = IdleMode.kBrake;
       public static final IdleMode TurnIdleMode = IdleMode.kBrake;
-      public static final int DriveCurrentLimit = 35;
-      public static final int TurnCurrentLimit = 35;
+      public static final int DriveCurrentLimit = 60;
+      public static final int TurnCurrentLimit = 60;
       public static final boolean DriveMotorReversed = false;
       public static final boolean TurningMotorReversed = false;
       public static final int TurnAbsoluteEncoderPort = 1;
       public static final boolean TurnAbsoluteEncoderReversed = true;
-      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(177);
+      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(0);
     }
 
     public static final class FrontRight{
@@ -50,13 +54,13 @@ public final class Constants {
       public static final int TurningMotorPort = 1;
       public static final IdleMode DriveIdleMode = IdleMode.kBrake;
       public static final IdleMode TurnIdleMode = IdleMode.kBrake;
-      public static final int DriveCurrentLimit = 35;
-      public static final int TurnCurrentLimit = 35;
+      public static final int DriveCurrentLimit = 60;
+      public static final int TurnCurrentLimit = 60;
       public static final boolean DriveMotorReversed = false;
       public static final boolean TurningMotorReversed = false;
       public static final int TurnAbsoluteEncoderPort = 5;
       public static final boolean TurnAbsoluteEncoderReversed = true;
-      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(186);
+      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(0);
     }
 
     public static final class BackLeft{
@@ -64,13 +68,13 @@ public final class Constants {
       public static final int TurningMotorPort = 7;
       public static final IdleMode DriveIdleMode = IdleMode.kBrake;
       public static final IdleMode TurnIdleMode = IdleMode.kBrake;
-      public static final int DriveCurrentLimit = 35;
-      public static final int TurnCurrentLimit = 35;
+      public static final int DriveCurrentLimit = 60;
+      public static final int TurnCurrentLimit = 60;
       public static final boolean DriveMotorReversed = false;
       public static final boolean TurningMotorReversed = false;
       public static final int TurnAbsoluteEncoderPort = 3;
       public static final boolean TurnAbsoluteEncoderReversed = true;
-      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(176);
+      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(0);
     }
 
     public static final class BackRight{
@@ -78,13 +82,13 @@ public final class Constants {
       public static final int TurningMotorPort = 5;
       public static final IdleMode DriveIdleMode = IdleMode.kBrake;
       public static final IdleMode TurnIdleMode = IdleMode.kBrake;
-      public static final int DriveCurrentLimit = 35;
-      public static final int TurnCurrentLimit = 35;
+      public static final int DriveCurrentLimit = 60;
+      public static final int TurnCurrentLimit = 60;
       public static final boolean DriveMotorReversed = false;
       public static final boolean TurningMotorReversed = false;
       public static final int TurnAbsoluteEncoderPort = 7;
       public static final boolean TurnAbsoluteEncoderReversed = true;
-      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(356);
+      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(0);
     }
   }
   public static final class ArmAngleConstants {
@@ -92,7 +96,7 @@ public final class Constants {
     public static final boolean Reversed = false;
     public static final IdleMode Mode = IdleMode.kBrake;
     public static final double PowerFactor = 0.8;
-    public static final int PowerLimit = 35;
+    public static final int PowerLimit = 60;
     
     public static final double limitPositionHigh = 13;
     public static final double limitPositionLow = 81;
@@ -106,7 +110,7 @@ public final class Constants {
     public static final boolean Reversed = false;
     public static final IdleMode Mode = IdleMode.kBrake;
     public static final double PowerFactor = 0.5;
-    public static final int PowerLimit = 35;
+    public static final int PowerLimit = 60;
 
     public static final double limitOpen = 165;
     public static final double limitClosed = 2;
@@ -120,7 +124,7 @@ public final class Constants {
     public static final boolean Reversed = false;
     public static final IdleMode Mode = IdleMode.kBrake;
     public static final double PowerFactor = 0.2;
-    public static final int PowerLimit = 35;
+    public static final int PowerLimit = 40;
 
     public static final double openLimit = 0;
     public static final double closeLimit = 10;
