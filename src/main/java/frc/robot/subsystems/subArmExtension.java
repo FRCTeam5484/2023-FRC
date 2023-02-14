@@ -31,7 +31,8 @@ public class subArmExtension extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Arm Extension", getEncoderPosition());
+    SmartDashboard.putNumber("Arm Ext Encoder", getEncoderPosition());
+    SmartDashboard.putNumber("Arm Ext Power", extensionMotor.get());
   }
 
   public void moveToSetPoint(double setPoint){
@@ -56,7 +57,7 @@ public class subArmExtension extends SubsystemBase {
     return extensionEncoder.getPosition();
   }
 
-  public void resetEncoder(){
+  public void resetPosition(){
     extensionEncoder.setPosition(0);
   }
   public void enablePID(double setPoint){

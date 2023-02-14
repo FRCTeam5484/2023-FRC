@@ -14,7 +14,7 @@ public final class Constants {
     public static final double TrackWidth = Units.inchesToMeters(17.5);
     public static final double WheelBase = Units.inchesToMeters(29);
 
-    public static final double MaxVoltage = 12.0;
+    public static final double MaxVoltage = 8.0;
     public static final double MaxVelocityMetersPerSecond = 5676.0 / 60.0 * SdsModuleConfigurations.MK3_STANDARD.getDriveReduction() * SdsModuleConfigurations.MK3_STANDARD.getWheelDiameter() * Math.PI;
     public static final double MaxAngularVelocityRadiansPerSecond = MaxVelocityMetersPerSecond / Math.hypot(DriveConstants.TrackWidth / 2.0, DriveConstants.WheelBase / 2.0);
 
@@ -42,7 +42,7 @@ public final class Constants {
       public static final boolean TurningMotorReversed = false;
       public static final int TurnAbsoluteEncoderPort = 1;
       public static final boolean TurnAbsoluteEncoderReversed = true;
-      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(218);
+      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(177);
     }
 
     public static final class FrontRight{
@@ -56,7 +56,7 @@ public final class Constants {
       public static final boolean TurningMotorReversed = false;
       public static final int TurnAbsoluteEncoderPort = 5;
       public static final boolean TurnAbsoluteEncoderReversed = true;
-      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(336);
+      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(186);
     }
 
     public static final class BackLeft{
@@ -70,7 +70,7 @@ public final class Constants {
       public static final boolean TurningMotorReversed = false;
       public static final int TurnAbsoluteEncoderPort = 3;
       public static final boolean TurnAbsoluteEncoderReversed = true;
-      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(199);
+      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(176);
     }
 
     public static final class BackRight{
@@ -84,7 +84,7 @@ public final class Constants {
       public static final boolean TurningMotorReversed = false;
       public static final int TurnAbsoluteEncoderPort = 7;
       public static final boolean TurnAbsoluteEncoderReversed = true;
-      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(272);
+      public static final double TurnAbsoluteEncoderOffsetRad = -Math.toRadians(356);
     }
   }
   public static final class ArmAngleConstants {
@@ -95,7 +95,7 @@ public final class Constants {
     public static final int PowerLimit = 35;
     
     public static final double limitPositionHigh = 13;
-    public static final double limitPositionLow = 82;
+    public static final double limitPositionLow = 81;
     public static final double HumanFeedPosition = 0;
     public static final double GroundPosition = 0;
     public static final double MidPosition = 0;
@@ -119,7 +119,7 @@ public final class Constants {
     public static final int Port = 11;
     public static final boolean Reversed = false;
     public static final IdleMode Mode = IdleMode.kBrake;
-    public static final double PowerFactor = 0.5;
+    public static final double PowerFactor = 0.2;
     public static final int PowerLimit = 35;
 
     public static final double openLimit = 0;

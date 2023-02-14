@@ -25,9 +25,9 @@ public class subArmAngle extends SubsystemBase {
     angleEncoder.setPositionConversionFactor(100);
 
     anglePID.setFeedbackDevice(angleEncoder);
-    anglePID.setP(0.1);
-    anglePID.setI(1e-4);
-    anglePID.setD(1);
+    anglePID.setP(1);//0.1
+    anglePID.setI(0);//1e-4
+    anglePID.setD(0);//1
     anglePID.setIZone(0);
     anglePID.setFF(0);
     anglePID.setOutputRange(-1, 1);
@@ -35,8 +35,8 @@ public class subArmAngle extends SubsystemBase {
 
   @Override
   public void periodic() {
-    
-    SmartDashboard.putNumber("Arm Angle Encoder", getEncoderPosition());
+    SmartDashboard.putNumber("Arm Ang Encoder", getEncoderPosition());
+    SmartDashboard.putNumber("Arm Ang Power", angleMotor.get());
   }
 
   public void moveToSetPoint(double setPoint){

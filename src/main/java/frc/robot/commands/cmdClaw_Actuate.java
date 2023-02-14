@@ -22,11 +22,11 @@ public class cmdClaw_Actuate extends CommandBase {
   
   @Override
   public void execute() {
-    if(clawOpenCommand.getAsDouble() > 0.05)
+    if(clawOpenCommand.getAsDouble() > 0.8)
     {
       claw.openClaw();
     }
-    else if(clawCloseCommand.getAsDouble() < -0.05)
+    else if(clawCloseCommand.getAsDouble() > 0.8)
     {
       claw.closeClaw();
     }

@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.CANSparkMax;
 import com.swervedrivespecialties.swervelib.MkModuleConfiguration;
 import com.swervedrivespecialties.swervelib.MkSwerveModuleBuilder;
 import com.swervedrivespecialties.swervelib.MotorType;
@@ -42,7 +44,7 @@ public class subDriveTrain extends SubsystemBase {
   private final SwerveModule frontLeftModule;
   private final SwerveModule frontRightModule;
   private final SwerveModule backLeftModule;
-  private final SwerveModule backRightModule;  
+  private final SwerveModule backRightModule;
 
   public final SwerveDrivePoseEstimator m_poseEstimator;
 
@@ -195,6 +197,11 @@ public class subDriveTrain extends SubsystemBase {
         SmartDashboard.putNumber("DT X spd", m_chassisSpeeds.vxMetersPerSecond);
         SmartDashboard.putNumber("DT Y spd", m_chassisSpeeds.vyMetersPerSecond);
         SmartDashboard.putNumber("DT O rot", m_chassisSpeeds.omegaRadiansPerSecond);
+
+        SmartDashboard.putNumber("Front Left Encoder", frontLeftModule.getSteerEncoder().getAbsoluteAngle());
+        SmartDashboard.putNumber("Front Right Encoder", frontRightModule.getSteerEncoder().getAbsoluteAngle());
+        SmartDashboard.putNumber("Back Left Encoder", backLeftModule.getSteerEncoder().getAbsoluteAngle());
+        SmartDashboard.putNumber("Back Right Encoder", backRightModule.getSteerEncoder().getAbsoluteAngle());
 
         SwerveModuleState[] states = m_kinematics.toSwerveModuleStates(m_chassisSpeeds);
 

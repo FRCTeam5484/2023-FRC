@@ -5,6 +5,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClawConstants;
 
@@ -30,6 +31,8 @@ public class subClaw extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Claw Encoder", getEncoderPosition());
+    SmartDashboard.putNumber("Claw Power", clawMotor.get());
   
   }
 
@@ -37,26 +40,37 @@ public class subClaw extends SubsystemBase {
     clawPID.setReference(setPoint, CANSparkMax.ControlType.kPosition);
   }
 
+
   public void openClaw(){
-    if(clawEncoder.getPosition() >= ClawConstants.openLimit)
+    clawMotor.set(ClawConstants.PowerFactor);
+    /* if(clawEncoder.getPosition() >= ClawConstants.openLimit)
     {
       stop();
     }
     else{
       clawMotor.set(1);
-    }
+    } */
   }
   public void closeClaw(){
-    if(clawEncoder.getPosition() <= ClawConstants.closeLimit)
+    clawMotor.set(-ClawConstants.PowerFactor);
+    /* if(clawEncoder.getPosition() <= ClawConstants.closeLimit)
     {
       stop();
     }
     else{
       clawMotor.set(-1);
-    }
+    } */
   }
 
   public void stop(){
     clawMotor.stopMotor();
+  }
+
+  public void resetPosition(){
+    clawEncoder.setPosition(0);
+  }
+
+  public double getEncoderPosition(){
+    return clawEncoder.getPosition();
   }
 }
