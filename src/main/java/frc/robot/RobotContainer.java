@@ -4,7 +4,6 @@ import frc.robot.Constants.ArmAngleConstants;
 import frc.robot.Constants.ArmExtensionConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.ServoConstants;
-import frc.robot.Constants.SwerveConstants;
 import frc.robot.commands.cmdAuto_HoldAngle;
 import frc.robot.commands.cmdAuto_SetGoal;
 import frc.robot.commands.cmdClaw_Actuate;
@@ -17,23 +16,12 @@ import frc.robot.subsystems.subArmExtension;
 import frc.robot.subsystems.subClaw;
 import frc.robot.subsystems.subItemNeeded;
 import frc.robot.subsystems.subSwerve;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.RamseteController;
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryUtil;
-import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 

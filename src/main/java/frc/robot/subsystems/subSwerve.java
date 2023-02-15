@@ -6,13 +6,11 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.classes.SwerveModule;
-
 import com.kauailabs.navx.frc.AHRS;
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
-
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -120,6 +118,16 @@ public class subSwerve extends SubsystemBase {
       },
       pose);
   }
+  public void updateOdometry(){
+    odometry.update(
+    Rotation2d.fromDegrees(gyro.getAngle()),
+      new SwerveModulePosition[] {
+        frontLeftModule.getPosition(),
+        frontRightModule.getPosition(),
+        backLeftModule.getPosition(),
+        backRightModule.getPosition()
+      });
+  }
 
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
     xSpeed *= SwerveConstants.MaxSpeedMetersPerSecond;
@@ -164,7 +172,7 @@ public class subSwerve extends SubsystemBase {
 
   public void zeroHeading() { gyro.reset(); }
   public double getHeading() { return Rotation2d.fromDegrees(gyro.getAngle()).getDegrees(); }
-  public double getTurnRate() { return gyro.getRate() * (SwerveConstants.GyroReversed ? -1.0 : 1.0); }
+  public double getRotationRate() { return gyro.getRate() * (SwerveConstants.GyroReversed ? -1.0 : 1.0); }
 
   public SequentialCommandGroup followPathCmd(String pathName) {
     PathPlannerTrajectory trajectory = getPathPlannerTrajectory(pathName);
@@ -198,8 +206,35 @@ public class subSwerve extends SubsystemBase {
     return command;
   }
 
+  public ChassisSpeeds getChassisSpeeds(){ return SwerveConstants.SwerveKinematics.toChassisSpeeds(frontLeftModule.getState(), frontRightModule.getState(), backLeftModule.getState(), backRightModule.getState());}
+
   @Override
   public void periodic() {
-  
+    updateOdometry();
+    SmartDashboard.putNumber("Robot Speed X", getChassisSpeeds().vxMetersPerSecond);
+    SmartDashboard.putNumber("Robot Speed Y", getChassisSpeeds().vyMetersPerSecond);
+    SmartDashboard.putNumber("Robot Omega", getChassisSpeeds().omegaRadiansPerSecond);
+    SmartDashboard.putNumber("Front Left Angle Raw", frontLeftModule.getAngleRaw());
+    SmartDashboard.putNumber("Front Left Angle Calculated", frontLeftModule.GetModuleAngle());
+    SmartDashboard.putNumber("Front Left Drive MPS", frontLeftModule.getState().speedMetersPerSecond);
+    SmartDashboard.putNumber("Front Left Drive Power", frontLeftModule.getDrivePower());
+    SmartDashboard.putNumber("Front Left Rotation Power", frontLeftModule.getRotationPower());
+    SmartDashboard.putNumber("Front Right Angle Raw", frontRightModule.getAngleRaw());
+    SmartDashboard.putNumber("Front Right Angle Calculated", frontRightModule.GetModuleAngle());
+    SmartDashboard.putNumber("Front Right Drive MPS", frontRightModule.getState().speedMetersPerSecond);
+    SmartDashboard.putNumber("Front Right Drive Power", frontRightModule.getDrivePower());
+    SmartDashboard.putNumber("Front Right Rotation Power", frontRightModule.getRotationPower());
+    SmartDashboard.putNumber("Back Left Angle Raw", backLeftModule.getAngleRaw());
+    SmartDashboard.putNumber("Back Left Angle Calculated", backLeftModule.GetModuleAngle());
+    SmartDashboard.putNumber("Back Left Drive MPS", backLeftModule.getState().speedMetersPerSecond);
+    SmartDashboard.putNumber("Back Left Drive Power", backLeftModule.getDrivePower());
+    SmartDashboard.putNumber("Back Left Rotation Power", backLeftModule.getRotationPower());
+    SmartDashboard.putNumber("Back Right Angle Raw", backRightModule.getAngleRaw());
+    SmartDashboard.putNumber("Back Right Angle Calculated", backRightModule.GetModuleAngle());
+    SmartDashboard.putNumber("Back Right Drive MPS", backRightModule.getState().speedMetersPerSecond);
+    SmartDashboard.putNumber("Back Right Drive Power", backRightModule.getDrivePower());
+    SmartDashboard.putNumber("Back Right Rotation Power", backRightModule.getRotationPower());
+    SmartDashboard.putNumber("Heading", getHeading());
+    SmartDashboard.putNumber("Rotation Rate", getRotationRate());
   }
 }

@@ -28,11 +28,12 @@ public class SwerveModule {
     driveMotor.setIdleMode(driveIdle);
     driveMotor.setSmartCurrentLimit(driveCurrentLimit);
     driveMotor.setInverted(driveReversed);
+    driveMotor.enableVoltageCompensation(SwerveConstants.VoltCompensation);
     driveEncoder = driveMotor.getEncoder();
-    drivePID = driveMotor.getPIDController();
-    drivePID.setFeedbackDevice(driveEncoder);
     driveEncoder.setPositionConversionFactor(SwerveConstants.DriveEncoderPositionFactor);
     driveEncoder.setVelocityConversionFactor(SwerveConstants.DriveEncoderVelocityFactor);
+    drivePID = driveMotor.getPIDController();
+    drivePID.setFeedbackDevice(driveEncoder);
     drivePID.setP(SwerveConstants.DriveP);
     drivePID.setI(SwerveConstants.DriveI);
     drivePID.setD(SwerveConstants.DriveD);
@@ -45,13 +46,14 @@ public class SwerveModule {
     rotationMotor.setIdleMode(rotationIdle);
     rotationMotor.setSmartCurrentLimit(rotationCurrentLimit);
     rotationMotor.setInverted(rotationReversed);
+    rotationMotor.enableVoltageCompensation(SwerveConstants.VoltCompensation);
     rotationEncoder = rotationMotor.getAbsoluteEncoder(Type.kDutyCycle);
     rotationEncoder.setInverted(SwerveConstants.RotationEncoderReversed);
+    rotationEncoder.setPositionConversionFactor(SwerveConstants.RotationEncoderPositionFactor);
+    rotationEncoder.setVelocityConversionFactor(SwerveConstants.RotationEncoderVelocityFactor);
     rotationPID = rotationMotor.getPIDController();
     rotationPID.setFeedbackDevice(rotationEncoder);
     rotationPID.setPositionPIDWrappingEnabled(true);
-    rotationEncoder.setPositionConversionFactor(SwerveConstants.RotationEncoderPositionFactor);
-    rotationEncoder.setVelocityConversionFactor(SwerveConstants.RotationEncoderVelocityFactor);
     rotationPID.setPositionPIDWrappingMinInput(SwerveConstants.RotationEncoderPositionPIDMinInput);
     rotationPID.setPositionPIDWrappingMaxInput(SwerveConstants.RotationEncoderPositionPIDMaxInput);
     rotationPID.setP(SwerveConstants.RotationP);
@@ -79,4 +81,7 @@ public class SwerveModule {
     this.desiredState = desiredState;
   }
   public void stopModule(){ setDesiredState(new SwerveModuleState(0.0, new Rotation2d(rotationEncoder.getPosition() - rotationOffset))); }
+  public double getAngleRaw(){ return rotationEncoder.getPosition(); }
+  public double getDrivePower(){ return driveMotor.get(); }
+  public double getRotationPower() { return rotationMotor.get(); }
 }

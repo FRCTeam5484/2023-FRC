@@ -32,6 +32,7 @@ public final class Constants {
     public static final double TrackWidth = Units.inchesToMeters(20);
     public static final double WheelBase = Units.inchesToMeters(32);
     public static final double WheelDiameterMeters = 0.0762;
+    public static final double VoltCompensation = 12.6;
     public static final SwerveDriveKinematics SwerveKinematics = new SwerveDriveKinematics(
         new Translation2d(TrackWidth / 2.0, WheelBase / 2.0), // front left
         new Translation2d(TrackWidth / 2.0, -WheelBase / 2.0), // front right
