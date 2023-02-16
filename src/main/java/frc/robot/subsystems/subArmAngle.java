@@ -6,14 +6,16 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
 
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmAngleConstants;
 
 public class subArmAngle extends SubsystemBase {
   private final CANSparkMax angleMotor = new CANSparkMax(ArmAngleConstants.Port, MotorType.kBrushless);
-  private final AbsoluteEncoder angleEncoder = angleMotor.getAbsoluteEncoder(Type.kDutyCycle);
+  //private final AbsoluteEncoder angleEncoder = angleMotor.getAbsoluteEncoder(Type.kDutyCycle);
   private final SparkMaxPIDController anglePID = angleMotor.getPIDController();
+  private final DutyCycleEncoder throughBore = new DutyCycleEncoder(0);
 
   public subArmAngle() {
     angleMotor.restoreFactoryDefaults();
@@ -22,9 +24,9 @@ public class subArmAngle extends SubsystemBase {
     angleMotor.setSmartCurrentLimit(ArmAngleConstants.PowerLimit);
     angleMotor.burnFlash();
 
-    angleEncoder.setPositionConversionFactor(100);
+    //angleEncoder.setPositionConversionFactor(100);
 
-    anglePID.setFeedbackDevice(angleEncoder);
+    //anglePID.setFeedbackDevice(angleEncoder);
     anglePID.setP(1);//0.1
     anglePID.setI(0);//1e-4
     anglePID.setD(0);//1
@@ -35,9 +37,10 @@ public class subArmAngle extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Arm Ang Encoder", getEncoderPosition());
+    //SmartDashboard.putNumber("Arm Ang Encoder", getEncoderPosition());
     SmartDashboard.putNumber("Arm Ang Power", angleMotor.get());
     SmartDashboard.putNumber("Arm Ang Output", angleMotor.getAppliedOutput());
+    SmartDashboard.putNumber("Arm Absolute", throughBore.getAbsolutePosition());
   }
 
   public void moveToSetPoint(double setPoint){
@@ -45,13 +48,14 @@ public class subArmAngle extends SubsystemBase {
   }
 
   public void teleOp(double value){
-    if(value >= 0.05 && angleEncoder.getPosition() >= ArmAngleConstants.limitPositionHigh || value <= -0.05 && angleEncoder.getPosition() <= ArmAngleConstants.limitPositionLow)
+    angleMotor.set(value);
+    /* if(value >= 0.05 && angleEncoder.getPosition() >= ArmAngleConstants.limitPositionHigh || value <= -0.05 && angleEncoder.getPosition() <= ArmAngleConstants.limitPositionLow)
     {
       angleMotor.set(value);
     }
     else{
       stop();
-    }
+    } */
   }
 
   public void stop(){
@@ -59,7 +63,8 @@ public class subArmAngle extends SubsystemBase {
   }
 
   public double getEncoderPosition(){
-    return angleEncoder.getPosition();
+    return throughBore.getAbsolutePosition();
+    //return angleEncoder.getPosition();
   }
 
   public void enablePID(double setPoint){

@@ -15,6 +15,7 @@ import frc.robot.subsystems.subArmAngle;
 import frc.robot.subsystems.subArmExtension;
 import frc.robot.subsystems.subClaw;
 import frc.robot.subsystems.subItemNeeded;
+import frc.robot.subsystems.subPneumaticSystem;
 import frc.robot.subsystems.subSwerve;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -33,6 +34,7 @@ public class RobotContainer {
   private final subArmExtension armExtension = new subArmExtension();
   private final subClaw claw = new subClaw();
   private final subItemNeeded item = new subItemNeeded();
+  private final subPneumaticSystem air = new subPneumaticSystem();
   SendableChooser<Command> chooser = new SendableChooser<>();
 
   public RobotContainer() {

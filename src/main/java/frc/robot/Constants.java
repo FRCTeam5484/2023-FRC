@@ -164,4 +164,11 @@ public final class Constants {
     public static final int cubeUp = -90;
     public static final int cubeDown = 179;
   }
+  public static final class PneumaticConstants{
+    public final static int PneumaticHubId = 1;
+      public final static int IntakeSolenoid = 0;
+      // Pressure
+      public final static double MinimumPressure = 100.0;
+      public final static double MaximumPressure = 120.0;
+  }
 }
