@@ -233,7 +233,7 @@
                 {
                   "_type": "Toggle Button",
                   "_source0": "network_table:///SmartDashboard/Enable Compressor",
-                  "_title": " ",
+                  "_title": "/SmartDashboard/Enable Compressor",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
@@ -247,7 +247,7 @@
                 {
                   "_type": "Toggle Button",
                   "_source0": "network_table:///SmartDashboard/Disable Compressor",
-                  "_title": " ",
+                  "_title": "/SmartDashboard/Disable Compressor",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
