@@ -25,7 +25,7 @@ public class subPneumaticSystem extends SubsystemBase {
 
     if (SmartDashboard.getBoolean("Enable Compressor", false)) {
       SmartDashboard.putBoolean("Enable Compressor", false);
-      ph.enableCompressorAnalog(SmartDashboard.getNumber("Minimum Pressure (PSI)", 0.0),SmartDashboard.getNumber("Maximum Pressure (PSI)", 0.0));
+      ph.enableCompressorAnalog(100,120);
     }
     if (SmartDashboard.getBoolean("Disable Compressor", false)) {
       SmartDashboard.putBoolean("Disable Compressor", false);

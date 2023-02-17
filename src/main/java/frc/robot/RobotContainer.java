@@ -33,10 +33,10 @@ public class RobotContainer {
   private final subSwerve swerve = new subSwerve();
   private final subArmAngle armAngle = new subArmAngle();
   private final subArmExtension armExtension = new subArmExtension();
-  private final subClaw claw = new subClaw();
+  //private final subClaw claw = new subClaw();
   private final subItemNeeded item = new subItemNeeded();
   private final subPneumaticSystem air = new subPneumaticSystem();
-  private final subLimeLight lime = new subLimeLight();
+  //private final subLimeLight lime = new subLimeLight();
   SendableChooser<Command> chooser = new SendableChooser<>();
 
   public RobotContainer() {
