@@ -77,36 +77,24 @@ public class subSwerve extends SubsystemBase {
   
   public subSwerve() {
     gyro = new AHRS(SPI.Port.kMXP);
+    odometry = new SwerveDriveOdometry(
+      SwerveConstants.SwerveKinematics,
+      Rotation2d.fromDegrees(0),
+      new SwerveModulePosition[] {
+        frontLeftModule.getPosition(),
+        frontRightModule.getPosition(),
+        backLeftModule.getPosition(),
+        backRightModule.getPosition()
+      });
     new Thread(() -> {
       try {
         Thread.sleep(1000);
         gyro.reset();
         gyro.calibrate();
-        setupOdometry();
       } catch (Exception e) { }
     }).start();
-
-    odometry.update(
-      Rotation2d.fromDegrees(gyro.getAngle()),
-      new SwerveModulePosition[] {
-        frontLeftModule.getPosition(),
-        frontRightModule.getPosition(),
-        backLeftModule.getPosition(),
-        backRightModule.getPosition()
-      });
   }
   public Pose2d getPose() { return odometry.getPoseMeters(); }
-  public void setupOdometry(){
-    odometry = new SwerveDriveOdometry(
-      SwerveConstants.SwerveKinematics,
-      Rotation2d.fromDegrees(gyro.getAngle()),
-      new SwerveModulePosition[] {
-        frontLeftModule.getPosition(),
-        frontRightModule.getPosition(),
-        backLeftModule.getPosition(),
-        backRightModule.getPosition()
-      });
-  }
   public void resetOdometry(Pose2d pose) {
     odometry.resetPosition(
       Rotation2d.fromDegrees(gyro.getAngle()),

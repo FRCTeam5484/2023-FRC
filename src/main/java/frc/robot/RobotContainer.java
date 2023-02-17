@@ -39,14 +39,14 @@ public class RobotContainer {
 
   public RobotContainer() {
     configureDriverOne();
-    configureDriverTwo();
+    //configureDriverTwo();
     addAutoOptions();
   }
 
   private void addAutoOptions(){
     try{
-      chooser.setDefaultOption("Cross Line", swerve.followPathCmd("CrossLine"));
-      chooser.addOption("Cross and Dock", swerve.followPathCmd("CrossLineLevel"));
+      //chooser.setDefaultOption("Cross Line", swerve.followPathCmd("CrossLine"));
+      //chooser.addOption("Cross and Dock", swerve.followPathCmd("CrossLineLevel"));
       Shuffleboard.getTab("Autonomous").add(chooser);
     }
     catch(NullPointerException ex){
@@ -68,14 +68,13 @@ public class RobotContainer {
       () -> MathUtil.applyDeadband(driverOne.getLeftTriggerAxis(), 0.06) , 
       () -> MathUtil.applyDeadband(driverOne.getRightTriggerAxis(), 0.06)
     ));
-    driverOne.a().onTrue(new InstantCommand(() -> armExtension.resetPosition(), armExtension));
-    driverOne.x().whileTrue(new RunCommand(() -> swerve.setXMode(), swerve));
-    /* 
+
+    //driverOne.a().onTrue(new InstantCommand(() -> armExtension.resetPosition(), armExtension));
+    //driverOne.x().whileTrue(new RunCommand(() -> swerve.setXMode(), swerve)); 
     driverOne.a().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeDown));
     driverOne.b().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeUp));
     driverOne.x().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneDown));
-    driverOne.x().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneUp)); 
-    */
+    driverOne.y().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneUp)); 
   }
 
   private void configureDriverTwo() {

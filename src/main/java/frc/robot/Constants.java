@@ -159,10 +159,10 @@ public final class Constants {
   public static final class ServoConstants{
     public static final int servoPort = 0;
     
-    public static final int coneUp = 0;
-    public static final int coneDown = 90;
-    public static final int cubeUp = -90;
-    public static final int cubeDown = 179;
+    public static final double coneUp = 0;//
+    public static final double coneDown = 60;//
+    public static final double cubeUp = 135;//
+    public static final double cubeDown = 180;//
   }
   public static final class PneumaticConstants{
     public final static int PneumaticHubId = 1;

@@ -40,7 +40,7 @@ public class subArmAngle extends SubsystemBase {
     //SmartDashboard.putNumber("Arm Ang Encoder", getEncoderPosition());
     SmartDashboard.putNumber("Arm Ang Power", angleMotor.get());
     SmartDashboard.putNumber("Arm Ang Output", angleMotor.getAppliedOutput());
-    SmartDashboard.putNumber("Arm Absolute", throughBore.getAbsolutePosition());
+    SmartDashboard.putNumber("Arm Absolute", getEncoderPosition());
   }
 
   public void moveToSetPoint(double setPoint){
@@ -63,7 +63,7 @@ public class subArmAngle extends SubsystemBase {
   }
 
   public double getEncoderPosition(){
-    return throughBore.getAbsolutePosition();
+    return throughBore.getAbsolutePosition() * 360;
     //return angleEncoder.getPosition();
   }
 
