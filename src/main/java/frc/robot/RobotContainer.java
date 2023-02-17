@@ -70,7 +70,6 @@ public class RobotContainer {
       () -> MathUtil.applyDeadband(driverOne.getLeftTriggerAxis(), 0.06) , 
       () -> MathUtil.applyDeadband(driverOne.getRightTriggerAxis(), 0.06)
     )); */
-    driverOne.rightBumper().onTrue(new InstantCommand(() -> air.toggle()));
     driverOne.a().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeDown));
     driverOne.b().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeUp));
     driverOne.x().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneDown));
@@ -82,6 +81,7 @@ public class RobotContainer {
     armExtension.setDefaultCommand(new cmdTeleOp_ArmExtension(armExtension, () -> MathUtil.applyDeadband(driverTwo.getRightY()*ArmExtensionConstants.PowerFactor, 0.06)));
 
     driverTwo.rightBumper().whileTrue(new cmdAuto_HoldAngle(armAngle));
+    driverTwo.rightTrigger().onTrue(new InstantCommand(() -> air.toggle()));
     //driverTwo.y().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition));
     //driverTwo.b().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition));
     //driverTwo.a().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.GroundPosition, ArmExtensionConstants.GroundPosition));
