@@ -70,7 +70,7 @@ public class SwerveModule {
   public void resetEncoders(){ driveEncoder.setPosition(0); }
   public SwerveModuleState getState() { return new SwerveModuleState(driveEncoder.getVelocity(), Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition())); }
   public SwerveModulePosition getPosition() { return new SwerveModulePosition(driveEncoder.getPosition(), Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition())); }  
-  public double GetModuleAngle() { return rotationEncoder.getPosition(); }
+  public double GetModuleAngle() { return rotationEncoder.getAbsolutePosition(); }
   public void setDesiredState(SwerveModuleState desiredState) {
     SwerveModuleState correctedDesiredState = new SwerveModuleState();
     correctedDesiredState.speedMetersPerSecond = desiredState.speedMetersPerSecond;
