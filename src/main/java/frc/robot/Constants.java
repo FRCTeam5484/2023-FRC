@@ -31,7 +31,7 @@ public final class Constants {
     public static final boolean GyroReversed = false;
     public static final double TrackWidth = Units.inchesToMeters(20);
     public static final double WheelBase = Units.inchesToMeters(32);
-    public static final double WheelDiameterMeters = 0.0762;
+    public static final double WheelDiameterMeters = 0.10033;
     public static final double VoltCompensation = 12.6;
     public static final SwerveDriveKinematics SwerveKinematics = new SwerveDriveKinematics(
         new Translation2d(TrackWidth / 2.0, WheelBase / 2.0), // front left
@@ -41,10 +41,9 @@ public final class Constants {
     );
     public static final double MaxSpeedMetersPerSecond = 4.8;
     public static final double MaxAngularSpeed = 2 * Math.PI;
-    public static final int DriveMotorPinionTeeth = 14;
     public static final double DriveMotorFreeSpeedRps = 5676 / 60;
     public static final double WheelCircumferenceMeters = WheelDiameterMeters * Math.PI;
-    public static final double DriveMotorReduction = (45.0 * 22) / (DriveMotorPinionTeeth * 15);
+    public static final double DriveMotorReduction = 1/6.86;
     public static final double DriveWheelFreeSpeedRps = (DriveMotorFreeSpeedRps * WheelCircumferenceMeters) / DriveMotorReduction;
     public static final double DriveEncoderPositionFactor = (WheelDiameterMeters * Math.PI) / DriveMotorReduction;
     public static final double DriveEncoderVelocityFactor = ((WheelDiameterMeters * Math.PI) / DriveMotorReduction) / 60.0;
@@ -77,7 +76,9 @@ public final class Constants {
       public static final IdleMode RotationIdleMode = IdleMode.kBrake;
       public static final int RotationCurrentLimit = 20;
       public static final boolean RotationMotorReversed = false;
-      public static final double RotationAbsoluteEncoderOffset = 5.658;
+      public static final int RotationEncoderPort = 3;
+      public static final double RotationAbsoluteEncoderOffset = 0;
+      public static final boolean RotationEncoderReversed = false;
     }
 
     public static final class FrontRight{
@@ -89,7 +90,9 @@ public final class Constants {
       public static final IdleMode RotationIdleMode = IdleMode.kBrake;
       public static final int RotationCurrentLimit = 20;
       public static final boolean RotationMotorReversed = false;
-      public static final double RotationAbsoluteEncoderOffset = 3.592;
+      public static final int RotationEncoderPort = 1;
+      public static final double RotationAbsoluteEncoderOffset = 0;
+      public static final boolean RotationEncoderReversed = false;
     }
 
     public static final class BackLeft{
@@ -101,7 +104,9 @@ public final class Constants {
       public static final IdleMode RotationIdleMode = IdleMode.kBrake;
       public static final int RotationCurrentLimit = 20;
       public static final boolean RotationMotorReversed = false;
-      public static final double RotationAbsoluteEncoderOffset = 3.623;
+      public static final int RotationEncoderPort = 7;
+      public static final double RotationAbsoluteEncoderOffset = 0;
+      public static final boolean RotationEncoderReversed = false;
     }
 
     public static final class BackRight{
@@ -113,7 +118,9 @@ public final class Constants {
       public static final IdleMode RotationIdleMode = IdleMode.kBrake;      
       public static final int RotationCurrentLimit = 20;      
       public static final boolean RotationMotorReversed = false;
-      public static final double RotationAbsoluteEncoderOffset = 2.666;
+      public static final int RotationEncoderPort = 5;
+      public static final double RotationAbsoluteEncoderOffset = 0;
+      public static final boolean RotationEncoderReversed = false;
     }
   }
   public static final class ArmAngleConstants {

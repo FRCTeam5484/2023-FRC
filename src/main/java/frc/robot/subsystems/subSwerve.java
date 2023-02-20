@@ -34,7 +34,9 @@ public class subSwerve extends SubsystemBase {
     SwerveConstants.FrontLeft.RotationIdleMode, 
     SwerveConstants.FrontLeft.RotationCurrentLimit, 
     SwerveConstants.FrontLeft.RotationMotorReversed,
-    SwerveConstants.FrontLeft.RotationAbsoluteEncoderOffset);
+    SwerveConstants.FrontLeft.RotationEncoderPort,
+    SwerveConstants.FrontLeft.RotationAbsoluteEncoderOffset,
+    SwerveConstants.FrontLeft.RotationEncoderReversed);
 
   private final SwerveModule frontRightModule = new SwerveModule(
     "Front Right", 
@@ -46,31 +48,37 @@ public class subSwerve extends SubsystemBase {
     SwerveConstants.FrontRight.RotationIdleMode, 
     SwerveConstants.FrontRight.RotationCurrentLimit, 
     SwerveConstants.FrontRight.RotationMotorReversed,
-    SwerveConstants.FrontRight.RotationAbsoluteEncoderOffset);
+    SwerveConstants.FrontRight.RotationEncoderPort,
+    SwerveConstants.FrontRight.RotationAbsoluteEncoderOffset,
+    SwerveConstants.FrontRight.RotationEncoderReversed);
 
   private final SwerveModule backLeftModule = new SwerveModule(
-      "Back Left", 
-      SwerveConstants.BackLeft.DriveMotorPort, 
-      SwerveConstants.BackLeft.DriveIdleMode, 
-      SwerveConstants.BackLeft.DriveCurrentLimit, 
-      SwerveConstants.BackLeft.DriveMotorReversed, 
-      SwerveConstants.BackLeft.RotationMotorPort, 
-      SwerveConstants.BackLeft.RotationIdleMode, 
-      SwerveConstants.BackLeft.RotationCurrentLimit, 
-      SwerveConstants.BackLeft.RotationMotorReversed,
-      SwerveConstants.BackLeft.RotationAbsoluteEncoderOffset);
+    "Back Left", 
+    SwerveConstants.BackLeft.DriveMotorPort, 
+    SwerveConstants.BackLeft.DriveIdleMode, 
+    SwerveConstants.BackLeft.DriveCurrentLimit, 
+    SwerveConstants.BackLeft.DriveMotorReversed, 
+    SwerveConstants.BackLeft.RotationMotorPort, 
+    SwerveConstants.BackLeft.RotationIdleMode, 
+    SwerveConstants.BackLeft.RotationCurrentLimit, 
+    SwerveConstants.BackLeft.RotationMotorReversed,
+    SwerveConstants.BackLeft.RotationEncoderPort,
+    SwerveConstants.BackLeft.RotationAbsoluteEncoderOffset,
+    SwerveConstants.BackLeft.RotationEncoderReversed);
 
   private final SwerveModule backRightModule = new SwerveModule(
-      "Back Right", 
-      SwerveConstants.BackRight.DriveMotorPort, 
-      SwerveConstants.BackRight.DriveIdleMode, 
-      SwerveConstants.BackRight.DriveCurrentLimit, 
-      SwerveConstants.BackRight.DriveMotorReversed, 
-      SwerveConstants.BackRight.RotationMotorPort, 
-      SwerveConstants.BackRight.RotationIdleMode, 
-      SwerveConstants.BackRight.RotationCurrentLimit, 
-      SwerveConstants.BackRight.RotationMotorReversed,
-      SwerveConstants.BackRight.RotationAbsoluteEncoderOffset);
+    "Back Right", 
+    SwerveConstants.BackRight.DriveMotorPort, 
+    SwerveConstants.BackRight.DriveIdleMode, 
+    SwerveConstants.BackRight.DriveCurrentLimit, 
+    SwerveConstants.BackRight.DriveMotorReversed, 
+    SwerveConstants.BackRight.RotationMotorPort, 
+    SwerveConstants.BackRight.RotationIdleMode, 
+    SwerveConstants.BackRight.RotationCurrentLimit, 
+    SwerveConstants.BackRight.RotationMotorReversed,
+    SwerveConstants.BackRight.RotationEncoderPort,
+    SwerveConstants.BackRight.RotationAbsoluteEncoderOffset,
+    SwerveConstants.BackRight.RotationEncoderReversed);
   
   private final AHRS gyro;
   public SwerveDriveOdometry odometry;
