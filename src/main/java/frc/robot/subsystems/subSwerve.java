@@ -126,9 +126,6 @@ public class subSwerve extends SubsystemBase {
   }
 
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
-    xSpeed *= SwerveConstants.MaxSpeedMetersPerSecond;
-    ySpeed *= SwerveConstants.MaxSpeedMetersPerSecond;
-    rot *= SwerveConstants.MaxAngularSpeed;
     var swerveModuleStates = SwerveConstants.SwerveKinematics.toSwerveModuleStates(fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, gyro.getRotation2d()) : new ChassisSpeeds(xSpeed, ySpeed, rot));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, SwerveConstants.MaxSpeedMetersPerSecond);
     frontLeftModule.setDesiredState(swerveModuleStates[0]);

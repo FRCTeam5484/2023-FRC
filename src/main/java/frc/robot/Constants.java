@@ -13,8 +13,8 @@ public final class Constants {
   }
   public static final class SwerveConstants {
     public static final class TeleOp{
-      public static final double MaxAccelerationUnitsPerSecond = 3;
-      public static final double MaxAngularAccelerationUnitsPerSecond = 3;
+      public static final double DriveSpeedFactor = 0.4;
+      public static final double RotationSpeedFactor = 0.8;
     }
     public static final class Auto{
       public static final double MaxSpeedMetersPerSecond = 3;
@@ -141,7 +141,7 @@ public final class Constants {
     public static final int Port = 10;
     public static final boolean Reversed = false;
     public static final IdleMode Mode = IdleMode.kBrake;
-    public static final double PowerFactor = 0.5;
+    public static final double PowerFactor = 1;
     public static final int PowerLimit = 60;
 
     public static final double limitOpen = 165;

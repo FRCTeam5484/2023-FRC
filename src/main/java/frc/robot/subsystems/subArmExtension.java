@@ -41,13 +41,14 @@ public class subArmExtension extends SubsystemBase {
   }
 
   public void teleOp(double value){
-    if(value > 0.05 && extensionEncoder.getPosition() <= ArmExtensionConstants.limitOpen || value < -0.05 && extensionEncoder.getPosition() >= ArmExtensionConstants.limitClosed)
+    extensionMotor.set(value);
+    /* if(value > 0.05 && extensionEncoder.getPosition() <= ArmExtensionConstants.limitOpen || value < -0.05 && extensionEncoder.getPosition() >= ArmExtensionConstants.limitClosed)
     {
       extensionMotor.set(value);
     }
     else{
       stop();
-    }
+    } */
   }
 
   public void stop(){

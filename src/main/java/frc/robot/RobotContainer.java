@@ -62,7 +62,7 @@ public class RobotContainer {
       new cmdTeleOp_Drive(
           swerve,
           () -> MathUtil.applyDeadband(-driverOne.getLeftY(), 0.06),
-          () -> MathUtil.applyDeadband(-driverOne.getLeftX(), 0.06),
+          () -> MathUtil.applyDeadband(driverOne.getLeftX(), 0.06),
           () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.06),
           () -> true));
     /* claw.setDefaultCommand(new cmdClaw_Actuate(

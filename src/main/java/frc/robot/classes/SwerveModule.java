@@ -75,7 +75,7 @@ public class SwerveModule {
   public double GetModuleAngle() { return rotationEncoder.getAbsolutePosition(); }
   public void setDesiredState(SwerveModuleState desiredState) {
     SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()));
-    driveMotor.set(optimizedDesiredState.speedMetersPerSecond/4.8);
+    driveMotor.set(optimizedDesiredState.speedMetersPerSecond);
     rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
     this.desiredState = desiredState;
   }
