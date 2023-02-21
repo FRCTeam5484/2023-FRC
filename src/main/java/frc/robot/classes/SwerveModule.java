@@ -15,6 +15,7 @@ import com.revrobotics.RelativeEncoder;
 import frc.robot.Constants.SwerveConstants;
 
 public class SwerveModule {
+  private final String moduleName;
   private final CANSparkMax driveMotor;
   private final CANSparkMax rotationMotor;
   private final RelativeEncoder driveEncoder;
@@ -26,6 +27,7 @@ public class SwerveModule {
   private SwerveModuleState desiredState = new SwerveModuleState(0.0, new Rotation2d());
 
   public SwerveModule(String moduleName, int drivePort, IdleMode driveIdle, int driveCurrentLimit, boolean driveReversed, int rotationPort, IdleMode rotationIdle, int rotationCurrentLimit, boolean rotationReversed, int rotationEncoderPort, double rotationEncoderOffset, boolean rotationEncoderReversed) {
+    this.moduleName = moduleName;
     rotationEncoder = new CANCoder(rotationEncoderPort);
         CANCoderConfiguration canCoderConfiguration = new CANCoderConfiguration();
         canCoderConfiguration.magnetOffsetDegrees = rotationEncoderOffset;
@@ -61,7 +63,7 @@ public class SwerveModule {
     rotationMotor.enableVoltageCompensation(SwerveConstants.VoltCompensation);
     rotationMotor.burnFlash();
 
-    rotationPID = new PIDController(0.1, 0, 0);
+    rotationPID = new PIDController(0.01, 0, 0);
     rotationPID.enableContinuousInput(0, 360);
     
     this.desiredState.angle = new Rotation2d(rotationEncoder.getPosition());
@@ -72,11 +74,8 @@ public class SwerveModule {
   public SwerveModulePosition getPosition() { return new SwerveModulePosition(driveEncoder.getPosition(), Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition())); }  
   public double GetModuleAngle() { return rotationEncoder.getAbsolutePosition(); }
   public void setDesiredState(SwerveModuleState desiredState) {
-    SwerveModuleState correctedDesiredState = new SwerveModuleState();
-    correctedDesiredState.speedMetersPerSecond = desiredState.speedMetersPerSecond;
-    SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(correctedDesiredState, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()));
-    if(Math.abs(optimizedDesiredState.speedMetersPerSecond) < 0.001) { stopModule(); return; }
-    drivePID.setReference(optimizedDesiredState.speedMetersPerSecond, CANSparkMax.ControlType.kVelocity);
+    SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()));
+    driveMotor.set(optimizedDesiredState.speedMetersPerSecond/4.8);
     rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
     this.desiredState = desiredState;
   }

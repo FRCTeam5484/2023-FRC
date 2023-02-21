@@ -32,9 +32,9 @@ public class cmdTeleOp_Drive extends CommandBase {
   
   @Override
   public void execute() {
-    double X = xLimiter.calculate(XSupplier.getAsDouble()) * SwerveConstants.MaxSpeedMetersPerSecond;
-    double Y = yLimiter.calculate(YSupplier.getAsDouble()) * SwerveConstants.MaxSpeedMetersPerSecond;
-    double R = turningLimiter.calculate(rotationSupplier.getAsDouble()) * SwerveConstants.MaxAngularSpeed;
+    double X = xLimiter.calculate(XSupplier.getAsDouble());// * SwerveConstants.MaxSpeedMetersPerSecond;
+    double Y = yLimiter.calculate(YSupplier.getAsDouble());// * SwerveConstants.MaxSpeedMetersPerSecond;
+    double R = turningLimiter.calculate(rotationSupplier.getAsDouble());// * SwerveConstants.MaxAngularSpeed;
     swerve.drive(X, Y, R, fieldOrientedFunction.get());
   }
   
