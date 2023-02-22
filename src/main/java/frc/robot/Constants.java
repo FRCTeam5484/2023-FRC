@@ -17,8 +17,6 @@ public final class Constants {
       public static final double RotationSpeedFactor = 0.8;
     }
     public static final class Auto{
-      public static final double MaxSpeedMetersPerSecond = 3;
-      public static final double MaxAccelerationMetersPerSecondSquared = 3;
       public static final double MaxAngularSpeedRadiansPerSecond = Math.PI;
       public static final double MaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
@@ -40,7 +38,6 @@ public final class Constants {
         new Translation2d(TrackWidth / 2.0, -WheelBase / 2.0) // back right
     );
     public static final double MaxSpeedMetersPerSecond = 4.8;
-    public static final double MaxAngularSpeed = 2 * Math.PI;
     public static final double DriveMotorFreeSpeedRps = 5676 / 60;
     public static final double WheelCircumferenceMeters = WheelDiameterMeters * Math.PI;
     public static final double DriveMotorReduction = 1/6.86;
