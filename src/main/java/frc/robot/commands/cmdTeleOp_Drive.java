@@ -13,6 +13,7 @@ public class cmdTeleOp_Drive extends CommandBase {
   private final DoubleSupplier YSupplier;
   private final DoubleSupplier rotationSupplier;
   private final Supplier<Boolean> fieldOrientedFunction;
+  private final SlewRateLimiter xLimiter, yLimiter, rotationLimiter;
   
   public cmdTeleOp_Drive(subSwerve swerve, DoubleSupplier XSupplier, DoubleSupplier YSupplier, DoubleSupplier rotationSupplier, Supplier<Boolean> fieldOrientedFunction) {
     this.swerve = swerve;
@@ -20,6 +21,9 @@ public class cmdTeleOp_Drive extends CommandBase {
     this.YSupplier = YSupplier;
     this.rotationSupplier = rotationSupplier;
     this.fieldOrientedFunction = fieldOrientedFunction;
+    this.xLimiter = new SlewRateLimiter(0.5);
+    this.yLimiter = new SlewRateLimiter(0.5);
+    this.rotationLimiter = new SlewRateLimiter(0.5);
     addRequirements(swerve);
   }
   
@@ -28,7 +32,15 @@ public class cmdTeleOp_Drive extends CommandBase {
   
   @Override
   public void execute() {
-    swerve.drive(XSupplier.getAsDouble()*SwerveConstants.TeleOp.DriveSpeedFactor, YSupplier.getAsDouble()*SwerveConstants.TeleOp.DriveSpeedFactor, rotationSupplier.getAsDouble()*SwerveConstants.TeleOp.RotationSpeedFactor, fieldOrientedFunction.get());
+    double xSpeed = XSupplier.getAsDouble();
+    double ySpeed = YSupplier.getAsDouble();
+    double rotationSpeed = rotationSupplier.getAsDouble();
+
+    xSpeed = xLimiter.calculate(xSpeed)*SwerveConstants.TeleOp.DriveSpeedFactor;
+    ySpeed = yLimiter.calculate(ySpeed)*SwerveConstants.TeleOp.DriveSpeedFactor;
+    rotationSpeed = rotationLimiter.calculate(rotationSpeed)*SwerveConstants.TeleOp.RotationSpeedFactor;
+    
+    swerve.drive(xSpeed, ySpeed, rotationSpeed, fieldOrientedFunction.get());
   }
   
   @Override
