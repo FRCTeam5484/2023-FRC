@@ -26,7 +26,10 @@ public class cmdAuto_SetGoal extends CommandBase {
   }
   
   @Override
-  public void initialize() {}
+  public void initialize() {
+    anglePID.reset();
+    extensionPID.reset();
+  }
 
   @Override
   public void execute() {
