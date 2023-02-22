@@ -367,6 +367,32 @@
                 }
               ]
             }
+          },
+          "10,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Claw Encoder",
+              "_title": "Claw Encoder",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "11,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Claw Power",
+              "_title": "Claw Power",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
       }
