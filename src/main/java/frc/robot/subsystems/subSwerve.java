@@ -99,13 +99,14 @@ public class subSwerve extends SubsystemBase {
         Thread.sleep(1000);
         gyro.reset();
         gyro.calibrate();
+        gyro.zeroYaw();
       } catch (Exception e) { }
     }).start();
   }
   public Pose2d getPose() { return odometry.getPoseMeters(); }
   public void resetOdometry(Pose2d pose) {
     odometry.resetPosition(
-      Rotation2d.fromDegrees(gyro.getAngle()),
+      getRotation2d(),
       new SwerveModulePosition[] {
         frontLeftModule.getPosition(),
         frontRightModule.getPosition(),
@@ -116,7 +117,7 @@ public class subSwerve extends SubsystemBase {
   }
   public void updateOdometry(){
     odometry.update(
-    Rotation2d.fromDegrees(gyro.getAngle()),
+    getRotation2d(),
       new SwerveModulePosition[] {
         frontLeftModule.getPosition(),
         frontRightModule.getPosition(),
@@ -126,7 +127,7 @@ public class subSwerve extends SubsystemBase {
   }
 
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
-    var swerveModuleStates = SwerveConstants.SwerveKinematics.toSwerveModuleStates(fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, gyro.getRotation2d()) : new ChassisSpeeds(xSpeed, ySpeed, rot));
+    var swerveModuleStates = SwerveConstants.SwerveKinematics.toSwerveModuleStates(fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, getRotation2d()) : new ChassisSpeeds(xSpeed, ySpeed, rot));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, SwerveConstants.MaxSpeedMetersPerSecond);
     frontLeftModule.setDesiredState(swerveModuleStates[0]);
     frontRightModule.setDesiredState(swerveModuleStates[1]);
@@ -135,10 +136,10 @@ public class subSwerve extends SubsystemBase {
   }
 
   public void setXMode() {
-    frontLeftModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-    frontRightModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-    backLeftModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-    backRightModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+    frontLeftModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+    frontRightModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+    backLeftModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+    backRightModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
   }
 
   public void setModuleStates(SwerveModuleState[] desiredStates) {
@@ -164,8 +165,8 @@ public class subSwerve extends SubsystemBase {
   }
 
   public void zeroHeading() { gyro.reset(); }
-  public double getHeading() { return Rotation2d.fromDegrees(gyro.getAngle()).getDegrees(); }
-  public double getRotationRate() { return gyro.getRate() * (SwerveConstants.GyroReversed ? -1.0 : 1.0); }
+  public double getHeading() { return Math.IEEEremainder(gyro.getAngle(), 360); }
+  public Rotation2d getRotation2d() { return Rotation2d.fromDegrees(getHeading()); }
 
   public SequentialCommandGroup followPathCmd(String pathName) {
     PathPlannerTrajectory trajectory = getPathPlannerTrajectory(pathName);
@@ -228,6 +229,5 @@ public class subSwerve extends SubsystemBase {
     SmartDashboard.putNumber("Back Right Drive Power", backRightModule.getDrivePower());
     SmartDashboard.putNumber("Back Right Rotation Power", backRightModule.getRotationPower());
     SmartDashboard.putNumber("Heading", getHeading());
-    SmartDashboard.putNumber("Rotation Rate", getRotationRate());
   }
 }

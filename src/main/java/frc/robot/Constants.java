@@ -127,7 +127,7 @@ public final class Constants {
     public static final int Port = 9;
     public static final boolean Reversed = false;
     public static final IdleMode Mode = IdleMode.kBrake;
-    public static final double PowerFactor = 0.8;
+    public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 60;
     
     public static final double limitPositionHigh = 13;
@@ -155,7 +155,7 @@ public final class Constants {
     public static final int Port = 11;
     public static final boolean Reversed = false;
     public static final IdleMode Mode = IdleMode.kBrake;
-    public static final double PowerFactor = 0.2;
+    public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 40;
 
     public static final double openLimit = 0;
