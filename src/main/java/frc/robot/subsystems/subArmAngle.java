@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmAngleConstants;
 
 public class subArmAngle extends SubsystemBase {
-  private final CANSparkMax angleMotor = new CANSparkMax(ArmAngleConstants.Port, MotorType.kBrushless);
+  public final CANSparkMax angleMotor = new CANSparkMax(ArmAngleConstants.Port, MotorType.kBrushless);
   //private final AbsoluteEncoder angleEncoder = angleMotor.getAbsoluteEncoder(Type.kDutyCycle);
   private final SparkMaxPIDController anglePID = angleMotor.getPIDController();
   private final DutyCycleEncoder throughBore = new DutyCycleEncoder(0);
