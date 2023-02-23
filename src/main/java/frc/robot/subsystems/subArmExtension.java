@@ -19,6 +19,7 @@ public class subArmExtension extends SubsystemBase {
     extensionMotor.setIdleMode(ArmExtensionConstants.Mode);
     extensionMotor.setSmartCurrentLimit(ArmExtensionConstants.PowerLimit);
     extensionMotor.burnFlash();
+    //extensionEncoder.setInverted(true);
   }
 
   @Override

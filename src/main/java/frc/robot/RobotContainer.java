@@ -32,7 +32,7 @@ public class RobotContainer {
   private final subSwerve swerve = new subSwerve();
   private final subArmAngle armAngle = new subArmAngle();
   private final subArmExtension armExtension = new subArmExtension();
-  private final subClaw claw = new subClaw();
+  //private final subClaw claw = new subClaw();
   private final subItemNeeded item = new subItemNeeded();
   //private final subPneumaticSystem air = new subPneumaticSystem();
   private final subLimeLight lime = new subLimeLight();
@@ -73,14 +73,15 @@ public class RobotContainer {
 
   private void configureDriverTwo() {
     armAngle.setDefaultCommand(new cmdTeleOp_ArmAngle(armAngle, () -> MathUtil.applyDeadband(driverTwo.getLeftY()*ArmAngleConstants.PowerFactor, 0.01)));
-    armExtension.setDefaultCommand(new cmdTeleOp_ArmExtension(armExtension, () -> MathUtil.applyDeadband(driverTwo.getRightY()*ArmExtensionConstants.PowerFactor, 0.01)));
-    claw.setDefaultCommand(new cmdClaw_Actuate(
+    armExtension.setDefaultCommand(new cmdTeleOp_ArmExtension(armExtension, () -> MathUtil.applyDeadband(-driverTwo.getRightY()*ArmExtensionConstants.PowerFactor, 0.01)));
+    /* claw.setDefaultCommand(new cmdClaw_Actuate(
       claw, 
       () -> MathUtil.applyDeadband(driverTwo.getLeftTriggerAxis(), 0.1), 
       () -> MathUtil.applyDeadband(driverTwo.getRightTriggerAxis(), 0.1)
-    ));
+    )); */
     //driverTwo.rightBumper().whileTrue(new cmdAuto_HoldAngle(armAngle));
     //driverTwo.rightTrigger().onTrue(new InstantCommand(() -> air.toggle()));
+    driverTwo.leftBumper().onTrue(new InstantCommand(() -> armExtension.resetPosition()));
     driverTwo.x().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanFeedPosition, ArmExtensionConstants.HumanFeedPosition));
     driverTwo.y().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition));
     driverTwo.b().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition));

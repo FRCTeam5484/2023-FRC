@@ -368,30 +368,111 @@
               ]
             }
           },
-          "10,0": {
+          "12,0": {
             "size": [
-              1,
-              1
+              2,
+              3
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Claw Encoder",
-              "_title": "Claw Encoder",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_type": "List Layout",
+              "_title": "LimeLight",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "LEFT",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vision bot pose TX",
+                  "_title": "Vision bot pose TX",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vision bot pose TY",
+                  "_title": "Vision bot pose TY",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vision bot pose RZ",
+                  "_title": "Vision bot pose RZ",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vision bot pose Blue TX",
+                  "_title": "Vision bot pose Blue TX",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vision bot pose Blue TY",
+                  "_title": "Vision bot pose Blue TY",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vision bot pose Blue RZ",
+                  "_title": "Vision bot pose Blue RZ",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vision bot pose Red TX",
+                  "_title": "Vision bot pose Red TX",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vision bot pose Red RZ",
+                  "_title": "Vision bot pose Red RZ",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vision bot pose Red TY",
+                  "_title": "Vision bot pose Red TY",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              ]
             }
           },
-          "11,0": {
+          "10,0": {
             "size": [
-              1,
-              1
+              2,
+              2
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Claw Power",
-              "_title": "Claw Power",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_type": "List Layout",
+              "_title": "Claw",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "LEFT",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Claw Encoder",
+                  "_title": "Encoder",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Claw Power",
+                  "_title": "Power",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              ]
             }
           }
         }
