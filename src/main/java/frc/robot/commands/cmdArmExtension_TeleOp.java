@@ -20,7 +20,7 @@ public class cmdArmExtension_TeleOp extends CommandBase {
 
   @Override
   public void execute() {
-    extension.teleOp(extensionPower.getAsDouble());
+    extension.teleOp(extensionPower.getAsDouble(), overrideSafety.getAsBoolean());
   }
 
   @Override

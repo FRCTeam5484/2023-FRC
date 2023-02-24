@@ -1,10 +1,5 @@
 package frc.robot.commands;
-
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkMaxPIDController;
-
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.subArmAngle;
 import frc.robot.subsystems.subArmExtension;

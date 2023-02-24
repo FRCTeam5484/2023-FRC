@@ -1,16 +1,17 @@
 package frc.robot.commands;
-
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.subArmAngle;
 
-public class cmdArmAngle_TeleOpSafe extends CommandBase {
+public class cmdArmAngle_TeleOp extends CommandBase {
   subArmAngle angle;
   DoubleSupplier anglePower;
-  public cmdArmAngle_TeleOpSafe(subArmAngle angle, DoubleSupplier anglePower) {
+  BooleanSupplier overrideSafety;
+  public cmdArmAngle_TeleOp(subArmAngle angle, DoubleSupplier anglePower, BooleanSupplier overrideSafety) {
     this.angle = angle;
     this.anglePower = anglePower;
+    this.overrideSafety = overrideSafety;
     addRequirements(angle);
   }
   
@@ -19,7 +20,7 @@ public class cmdArmAngle_TeleOpSafe extends CommandBase {
   
   @Override
   public void execute() {
-    angle.teleOp(anglePower.getAsDouble());
+    angle.teleOp(anglePower.getAsDouble(), overrideSafety.getAsBoolean());
   }
   
   @Override

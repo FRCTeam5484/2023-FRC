@@ -24,10 +24,14 @@ public class subClaw extends SubsystemBase {
     SmartDashboard.putNumber("Claw Power", clawMotor.get());  
   }
 
-  public void openClaw(){ clawMotor.set(clawEncoder.getPosition() <= ClawConstants.openLimit ? -ClawConstants.PowerFactor : 0); }
-  public void closeClaw(){ clawMotor.set(clawEncoder.getPosition() >= ClawConstants.closeLimit ? ClawConstants.PowerFactor : 0); }
-  public void openClawOverride(){ clawMotor.set(-ClawConstants.PowerFactor); } 
-  public void closeClawOverride(){ clawMotor.set(ClawConstants.PowerFactor); }
+  public void openClaw(boolean override){ 
+    if(override){ clawMotor.set(-ClawConstants.PowerFactor); }
+    else{ clawMotor.set(clawEncoder.getPosition() <= ClawConstants.openLimit ? -ClawConstants.PowerFactor : 0); }
+  }
+  public void closeClaw(boolean override){ 
+    if(override){ clawMotor.set(ClawConstants.PowerFactor); }
+    else{ clawMotor.set(clawEncoder.getPosition() >= ClawConstants.closeLimit ? ClawConstants.PowerFactor : 0); } 
+  }
   public void stop(){ clawMotor.stopMotor(); }
   public void resetPosition(){ clawEncoder.setPosition(0); }
   public double getEncoderPosition(){ return clawEncoder.getPosition(); }
