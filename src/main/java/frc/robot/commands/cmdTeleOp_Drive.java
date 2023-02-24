@@ -21,9 +21,9 @@ public class cmdTeleOp_Drive extends CommandBase {
     this.YSupplier = YSupplier;
     this.rotationSupplier = rotationSupplier;
     this.fieldOrientedFunction = fieldOrientedFunction;
-    this.xLimiter = new SlewRateLimiter(0.5);
-    this.yLimiter = new SlewRateLimiter(0.5);
-    this.rotationLimiter = new SlewRateLimiter(0.5);
+    this.xLimiter = new SlewRateLimiter(2);
+    this.yLimiter = new SlewRateLimiter(2);
+    this.rotationLimiter = new SlewRateLimiter(3);
     addRequirements(swerve);
   }
   

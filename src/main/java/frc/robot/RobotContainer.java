@@ -72,7 +72,7 @@ public class RobotContainer {
   }
 
   private void configureDriverTwo() {
-    armAngle.setDefaultCommand(new cmdTeleOp_ArmAngle(armAngle, () -> MathUtil.applyDeadband(driverTwo.getLeftY()*ArmAngleConstants.PowerFactor, 0.01)));
+    armAngle.setDefaultCommand(new cmdTeleOp_ArmAngle(armAngle, () -> MathUtil.applyDeadband(-driverTwo.getLeftY()*ArmAngleConstants.PowerFactor, 0.01)));
     armExtension.setDefaultCommand(new cmdTeleOp_ArmExtension(armExtension, () -> MathUtil.applyDeadband(-driverTwo.getRightY()*ArmExtensionConstants.PowerFactor, 0.01)));
     claw.setDefaultCommand(new cmdClaw_Actuate(
       claw, 
@@ -81,6 +81,9 @@ public class RobotContainer {
     ));
     //driverTwo.rightBumper().whileTrue(new cmdAuto_HoldAngle(armAngle));
     //driverTwo.rightTrigger().onTrue(new InstantCommand(() -> air.toggle()));
+    driverTwo.back().onTrue(new RunCommand(() -> armExtension.teleOpOverride(-ArmExtensionConstants.PowerFactor), armExtension));
+    driverTwo.back().onFalse(new RunCommand(() -> armExtension.stop(), armExtension));
+    driverTwo.rightBumper().onTrue(new InstantCommand(() -> claw.resetPosition()));
     driverTwo.leftBumper().onTrue(new InstantCommand(() -> armExtension.resetPosition()));
     driverTwo.x().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanFeedPosition, ArmExtensionConstants.HumanFeedPosition));
     driverTwo.y().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition));

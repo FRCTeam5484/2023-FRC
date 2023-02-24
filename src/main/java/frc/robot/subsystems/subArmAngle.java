@@ -13,7 +13,6 @@ import frc.robot.Constants.ArmAngleConstants;
 
 public class subArmAngle extends SubsystemBase {
   public final CANSparkMax angleMotor = new CANSparkMax(ArmAngleConstants.Port, MotorType.kBrushless);
-  //private final AbsoluteEncoder angleEncoder = angleMotor.getAbsoluteEncoder(Type.kDutyCycle);
   private final SparkMaxPIDController anglePID = angleMotor.getPIDController();
   private final DutyCycleEncoder throughBore = new DutyCycleEncoder(0);
 
@@ -48,14 +47,13 @@ public class subArmAngle extends SubsystemBase {
   }
 
   public void teleOp(double value){
-    angleMotor.set(value);
-    /* if(value >= 0.05 && angleEncoder.getPosition() >= ArmAngleConstants.limitPositionHigh || value <= -0.05 && angleEncoder.getPosition() <= ArmAngleConstants.limitPositionLow)
+    if(value <= 0 && getEncoderPosition() >= ArmAngleConstants.limitPositionLow || value >= 0 && getEncoderPosition() <= ArmAngleConstants.limitPositionHigh)
     {
       angleMotor.set(value);
     }
     else{
       stop();
-    } */
+    }
   }
 
   public void stop(){
@@ -63,7 +61,7 @@ public class subArmAngle extends SubsystemBase {
   }
 
   public double getEncoderPosition(){
-    return throughBore.getAbsolutePosition() * 360;
+    return Math.abs(throughBore.getAbsolutePosition() -1)*360;
     //return angleEncoder.getPosition();
   }
 

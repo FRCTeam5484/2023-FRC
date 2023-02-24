@@ -14,8 +14,8 @@ public class cmdAuto_SetGoal extends CommandBase {
   subArmExtension extension;
   double angleGoal;
   double extensionGoal;
-  PIDController anglePID = new PIDController(0.1, 1e-4, 1);
-  PIDController extensionPID = new PIDController(0.1, 1e-4, 1);
+  PIDController anglePID = new PIDController(0.01, 0, 0);
+  PIDController extensionPID = new PIDController(0.01, 0, 0);
 
   public cmdAuto_SetGoal(subArmAngle angle, subArmExtension extension, double angleGoal, double extensionGoal) {
     this.angle = angle;
@@ -33,9 +33,9 @@ public class cmdAuto_SetGoal extends CommandBase {
 
   @Override
   public void execute() {
-    System.out.println("Angle Command: " + anglePID.calculate(angle.getEncoderPosition(), angleGoal) + "  Extension Command: " + extensionPID.calculate(extension.getEncoderPosition(), extensionGoal));
-    //angle.angleMotor.set(anglePID.calculate(angle.getEncoderPosition(), angleGoal));
-    //extension.extensionMotor.set(extensionPID.calculate(extension.getEncoderPosition(), extensionGoal));
+    //System.out.println("Angle Command: " + anglePID.calculate(angle.getEncoderPosition(), angleGoal) + "  Extension Command: " + extensionPID.calculate(extension.getEncoderPosition(), extensionGoal));
+    angle.angleMotor.set(anglePID.calculate(angle.getEncoderPosition(), angleGoal));
+    extension.extensionMotor.set(extensionPID.calculate(extension.getEncoderPosition(), extensionGoal));
   }
 
   @Override

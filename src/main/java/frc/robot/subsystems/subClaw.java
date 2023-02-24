@@ -42,24 +42,22 @@ public class subClaw extends SubsystemBase {
 
 
   public void openClaw(){
-    clawMotor.set(ClawConstants.PowerFactor);
-    /* if(clawEncoder.getPosition() >= ClawConstants.openLimit)
+    if(clawEncoder.getPosition() <= ClawConstants.openLimit)
     {
       stop();
     }
     else{
-      clawMotor.set(1);
-    } */
+      clawMotor.set(-ClawConstants.PowerFactor);
+    }
   }
   public void closeClaw(){
-    clawMotor.set(-ClawConstants.PowerFactor);
-    /* if(clawEncoder.getPosition() <= ClawConstants.closeLimit)
+    if(clawEncoder.getPosition() >= ClawConstants.closeLimit)
     {
       stop();
     }
     else{
-      clawMotor.set(-1);
-    } */
+      clawMotor.set(ClawConstants.PowerFactor);
+    }
   }
 
   public void stop(){
