@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.subsystems.subSwerve;
 
-public class cmdTeleOp_Drive extends CommandBase {
+public class cmdSwerve_TeleOp extends CommandBase {
   private final subSwerve swerve;
   private final DoubleSupplier XSupplier;
   private final DoubleSupplier YSupplier;
@@ -15,7 +15,7 @@ public class cmdTeleOp_Drive extends CommandBase {
   private final Supplier<Boolean> fieldOrientedFunction;
   private final SlewRateLimiter xLimiter, yLimiter, rotationLimiter;
   
-  public cmdTeleOp_Drive(subSwerve swerve, DoubleSupplier XSupplier, DoubleSupplier YSupplier, DoubleSupplier rotationSupplier, Supplier<Boolean> fieldOrientedFunction) {
+  public cmdSwerve_TeleOp(subSwerve swerve, DoubleSupplier XSupplier, DoubleSupplier YSupplier, DoubleSupplier rotationSupplier, Supplier<Boolean> fieldOrientedFunction) {
     this.swerve = swerve;
     this.XSupplier = XSupplier;
     this.YSupplier = YSupplier;

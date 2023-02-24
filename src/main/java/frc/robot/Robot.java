@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -17,6 +18,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+    SmartDashboard.putString("Arm Angle Command", m_robotContainer.armAngle.getCurrentCommand().getName());
+    SmartDashboard.putString("Arm Extension Command", m_robotContainer.armExtension.getCurrentCommand().getName());
+    SmartDashboard.putString("Claw Command", m_robotContainer.claw.getCurrentCommand().getName());
+    SmartDashboard.putString("Swerve Command", m_robotContainer.swerve.getCurrentCommand().getName());
   }
 
   @Override
@@ -46,6 +51,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    
   }
 
   @Override

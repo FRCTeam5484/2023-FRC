@@ -5,10 +5,10 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.subArmAngle;
 
-public class cmdTeleOp_ArmAngle extends CommandBase {
+public class cmdArmAngle_TeleOpSafe extends CommandBase {
   subArmAngle angle;
   DoubleSupplier anglePower;
-  public cmdTeleOp_ArmAngle(subArmAngle angle, DoubleSupplier anglePower) {
+  public cmdArmAngle_TeleOpSafe(subArmAngle angle, DoubleSupplier anglePower) {
     this.angle = angle;
     this.anglePower = anglePower;
     addRequirements(angle);

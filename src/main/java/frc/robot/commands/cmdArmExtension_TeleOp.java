@@ -1,17 +1,17 @@
 package frc.robot.commands;
-
-
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.subArmExtension;
 
-public class cmdTeleOp_ArmExtension extends CommandBase {
+public class cmdArmExtension_TeleOp extends CommandBase {
   subArmExtension extension;
   DoubleSupplier extensionPower;
-  public cmdTeleOp_ArmExtension(subArmExtension extension, DoubleSupplier extensionPower) {
+  BooleanSupplier overrideSafety;
+  public cmdArmExtension_TeleOp(subArmExtension extension, DoubleSupplier extensionPower, BooleanSupplier overrideSafety) {
     this.extension = extension;
     this.extensionPower = extensionPower;
+    this.overrideSafety = overrideSafety;
     addRequirements(extension);
   }
 

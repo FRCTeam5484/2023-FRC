@@ -133,6 +133,7 @@ public final class Constants {
     public static final double GroundPosition = 52;
     public static final double MidPosition = 243;
     public static final double HighPosition = 243;
+    public static final double DefaultPosition = 175;
   }
   public static final class ArmExtensionConstants {
     public static final int Port = 10;
@@ -147,13 +148,14 @@ public final class Constants {
     public static final double GroundPosition = 58;
     public static final double MidPosition = 80;
     public static final double HighPosition = 154;
+    public static final double DefaultPosition = 0;
   }
   public static final class ClawConstants {
     public static final int Port = 11;
     public static final boolean Reversed = true;
     public static final IdleMode Mode = IdleMode.kBrake;
     public static final double PowerFactor = 0.3;
-    public static final int PowerLimit = 40;
+    public static final int PowerLimit = 30;
 
     public static final double openLimit = 0;
     public static final double closeLimit = 34;

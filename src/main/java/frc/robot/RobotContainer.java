@@ -6,10 +6,10 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.ServoConstants;
 import frc.robot.commands.cmdAuto_SetGoal;
 import frc.robot.commands.cmdClaw_Actuate;
-import frc.robot.commands.cmdTeleOp_ArmAngle;
-import frc.robot.commands.cmdTeleOp_ArmExtension;
-import frc.robot.commands.cmdTeleOp_Drive;
-import frc.robot.commands.cmdTeleOp_ItemNeeded;
+import frc.robot.commands.cmdItemNeeded_TeleOp;
+import frc.robot.commands.cmdArmAngle_TeleOpSafe;
+import frc.robot.commands.cmdArmExtension_TeleOpSafe;
+import frc.robot.commands.cmdSwerve_TeleOp;
 import frc.robot.subsystems.subArmAngle;
 import frc.robot.subsystems.subArmExtension;
 import frc.robot.subsystems.subClaw;
@@ -29,11 +29,11 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 public class RobotContainer {
   private final CommandXboxController driverOne = new CommandXboxController(OperatorConstants.DriverOne);
   private final CommandXboxController driverTwo = new CommandXboxController(OperatorConstants.DriverTwo);
-  private final subSwerve swerve = new subSwerve();
-  private final subArmAngle armAngle = new subArmAngle();
-  private final subArmExtension armExtension = new subArmExtension();
-  private final subClaw claw = new subClaw();
-  private final subItemNeeded item = new subItemNeeded();
+  public final subSwerve swerve = new subSwerve();
+  public final subArmAngle armAngle = new subArmAngle();
+  public final subArmExtension armExtension = new subArmExtension();
+  public final subClaw claw = new subClaw();
+  public final subItemNeeded item = new subItemNeeded();
   //private final subPneumaticSystem air = new subPneumaticSystem();
   private final subLimeLight lime = new subLimeLight();
   SendableChooser<Command> chooser = new SendableChooser<>();
@@ -58,22 +58,22 @@ public class RobotContainer {
 
   private void configureDriverOne() {
     swerve.setDefaultCommand(
-      new cmdTeleOp_Drive(
+      new cmdSwerve_TeleOp(
           swerve,
           () -> MathUtil.applyDeadband(-driverOne.getLeftY(), 0.01),
           () -> MathUtil.applyDeadband(driverOne.getLeftX(), 0.01),
           () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01),
           () -> true));
-    driverOne.a().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeDown));
-    driverOne.b().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.cubeUp));
-    driverOne.x().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneDown));
-    driverOne.y().onTrue(new cmdTeleOp_ItemNeeded(item, ServoConstants.coneUp)); 
+    driverOne.a().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.cubeDown));
+    driverOne.b().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.cubeUp));
+    driverOne.x().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.coneDown));
+    driverOne.y().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.coneUp)); 
     driverOne.leftBumper().whileTrue(new RunCommand(() -> swerve.setXMode()));
   }
 
   private void configureDriverTwo() {
-    armAngle.setDefaultCommand(new cmdTeleOp_ArmAngle(armAngle, () -> MathUtil.applyDeadband(-driverTwo.getLeftY()*ArmAngleConstants.PowerFactor, 0.01)));
-    armExtension.setDefaultCommand(new cmdTeleOp_ArmExtension(armExtension, () -> MathUtil.applyDeadband(-driverTwo.getRightY()*ArmExtensionConstants.PowerFactor, 0.01)));
+    armAngle.setDefaultCommand(new cmdArmAngle_TeleOpSafe(armAngle, () -> MathUtil.applyDeadband(-driverTwo.getLeftY()*ArmAngleConstants.PowerFactor, 0.01)));
+    armExtension.setDefaultCommand(new cmdArmExtension_TeleOpSafe(armExtension, () -> MathUtil.applyDeadband(-driverTwo.getRightY()*ArmExtensionConstants.PowerFactor, 0.01)));
     claw.setDefaultCommand(new cmdClaw_Actuate(
       claw, 
       () -> MathUtil.applyDeadband(driverTwo.getLeftTriggerAxis(), 0.1), 
@@ -81,14 +81,24 @@ public class RobotContainer {
     ));
     //driverTwo.rightBumper().whileTrue(new cmdAuto_HoldAngle(armAngle));
     //driverTwo.rightTrigger().onTrue(new InstantCommand(() -> air.toggle()));
-    driverTwo.back().onTrue(new RunCommand(() -> armExtension.teleOpOverride(-ArmExtensionConstants.PowerFactor), armExtension));
-    driverTwo.back().onFalse(new RunCommand(() -> armExtension.stop(), armExtension));
-    driverTwo.rightBumper().onTrue(new InstantCommand(() -> claw.resetPosition()));
-    driverTwo.leftBumper().onTrue(new InstantCommand(() -> armExtension.resetPosition()));
+    driverTwo.povUp().onTrue(new RunCommand(() -> armExtension.teleOpOverride(ArmExtensionConstants.PowerFactor), armExtension));
+    driverTwo.povUp().onFalse(new RunCommand(() -> armExtension.stop(), armExtension));
+    driverTwo.povDown().onTrue(new RunCommand(() -> armExtension.teleOpOverride(-ArmExtensionConstants.PowerFactor), armExtension));
+    driverTwo.povDown().onFalse(new RunCommand(() -> armExtension.stop(), armExtension));
+    driverTwo.povLeft().onTrue(new RunCommand(() -> armAngle.teleOpOverride(ArmAngleConstants.PowerFactor), armAngle));
+    driverTwo.povLeft().onFalse(new RunCommand(() -> armAngle.stop(), armAngle));
+    driverTwo.povRight().onTrue(new RunCommand(() -> armAngle.teleOpOverride(-ArmAngleConstants.PowerFactor), armAngle));
+    driverTwo.povRight().onFalse(new RunCommand(() -> armAngle.stop(), armAngle));
+    driverTwo.back().onTrue(new InstantCommand(() -> claw.resetPosition()));
+    driverTwo.start().onTrue(new InstantCommand(() -> armExtension.resetPosition()));
     driverTwo.x().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanFeedPosition, ArmExtensionConstants.HumanFeedPosition));
+    driverTwo.x().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.DefaultPosition, ArmExtensionConstants.DefaultPosition));
     driverTwo.y().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition));
+    driverTwo.y().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.DefaultPosition, ArmExtensionConstants.DefaultPosition));
     driverTwo.b().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition));
+    driverTwo.b().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.DefaultPosition, ArmExtensionConstants.DefaultPosition));
     driverTwo.a().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.GroundPosition, ArmExtensionConstants.GroundPosition));
+    driverTwo.a().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.DefaultPosition, ArmExtensionConstants.DefaultPosition));
   }
 
   public Command getAutonomousCommand() {

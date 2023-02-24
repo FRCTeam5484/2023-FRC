@@ -1,10 +1,7 @@
 package frc.robot.subsystems;
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmExtensionConstants;
@@ -19,7 +16,6 @@ public class subArmExtension extends SubsystemBase {
     extensionMotor.setIdleMode(ArmExtensionConstants.Mode);
     extensionMotor.setSmartCurrentLimit(ArmExtensionConstants.PowerLimit);
     extensionMotor.burnFlash();
-    //extensionEncoder.setInverted(true);
   }
 
   @Override
@@ -29,34 +25,11 @@ public class subArmExtension extends SubsystemBase {
     SmartDashboard.putNumber("Arm Ext Output", extensionMotor.getAppliedOutput());
   }
 
-  public void auto(double value){
-    extensionMotor.set(value);
+  public void teleOp(double value, boolean override){
+    if(override) { extensionMotor.set(value); }
+    else { extensionMotor.set(value > 0.05 && extensionEncoder.getPosition() <= ArmExtensionConstants.limitOpen || value < -0.05 && extensionEncoder.getPosition() >= ArmExtensionConstants.limitClosed ? value : 0); }
   }
-
-  public void teleOp(double value){
-    //extensionMotor.set(value);
-    if(value > 0.05 && extensionEncoder.getPosition() <= ArmExtensionConstants.limitOpen || value < -0.05 && extensionEncoder.getPosition() >= ArmExtensionConstants.limitClosed)
-    {
-      extensionMotor.set(value);
-    }
-    else{
-      stop();
-    }
-  }
-
-  public void teleOpOverride(double value){
-    extensionMotor.set(value);
-  }
-
-  public void stop(){
-    extensionMotor.stopMotor();
-  }
-
-  public double getEncoderPosition(){
-    return extensionEncoder.getPosition();
-  }
-
-  public void resetPosition(){
-    extensionEncoder.setPosition(0);
-  }
+  public void stop(){ extensionMotor.stopMotor(); }
+  public double getEncoderPosition(){ return extensionEncoder.getPosition(); }
+  public void resetPosition(){ extensionEncoder.setPosition(0); }
 }
