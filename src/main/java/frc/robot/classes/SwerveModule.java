@@ -13,6 +13,7 @@ import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.revrobotics.RelativeEncoder;
 import frc.robot.Constants.SwerveConstants;
+import frc.robot.Constants.SwerveConstants.FrontLeft;
 
 public class SwerveModule {
   private final String moduleName;
@@ -66,7 +67,7 @@ public class SwerveModule {
     rotationPID = new PIDController(0.01, 0, 0);
     rotationPID.enableContinuousInput(0, 360);
     
-    this.desiredState.angle = new Rotation2d(rotationEncoder.getPosition());
+    this.desiredState.angle = new Rotation2d(rotationEncoder.getAbsolutePosition());//getPosition());
     driveEncoder.setPosition(0);
   }
   public void resetEncoders(){ driveEncoder.setPosition(0); }

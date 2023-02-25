@@ -21,9 +21,9 @@ public class cmdSwerve_TeleOp extends CommandBase {
     this.YSupplier = YSupplier;
     this.rotationSupplier = rotationSupplier;
     this.fieldOrientedFunction = fieldOrientedFunction;
-    this.xLimiter = new SlewRateLimiter(3);
-    this.yLimiter = new SlewRateLimiter(3);
-    this.rotationLimiter = new SlewRateLimiter(4);
+    this.xLimiter = new SlewRateLimiter(3.5);
+    this.yLimiter = new SlewRateLimiter(3.5);
+    this.rotationLimiter = new SlewRateLimiter(4.5);
     addRequirements(swerve);
   }
   

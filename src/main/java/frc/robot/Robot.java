@@ -17,10 +17,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-    SmartDashboard.putString("Arm Angle Command", m_robotContainer.armAngle.getCurrentCommand().getName());
-    SmartDashboard.putString("Arm Extension Command", m_robotContainer.armExtension.getCurrentCommand().getName());
-    SmartDashboard.putString("Claw Command", m_robotContainer.claw.getCurrentCommand().getName());
-    SmartDashboard.putString("Swerve Command", m_robotContainer.swerve.getCurrentCommand().getName());
+    try{SmartDashboard.putString("Arm Angle Command", m_robotContainer.armAngle.getCurrentCommand().getName());} catch(Exception ex){SmartDashboard.putString("Arm Angle Command", "No Command");}
+    try{SmartDashboard.putString("Arm Extension Command", m_robotContainer.armExtension.getCurrentCommand().getName());} catch(Exception ex){SmartDashboard.putString("Arm Extension Command", "No Command");}
+    try{SmartDashboard.putString("Claw Command", m_robotContainer.claw.getCurrentCommand().getName());} catch(Exception ex){SmartDashboard.putString("Claw Command", "No Command");}
+    try{SmartDashboard.putString("Swerve Command", m_robotContainer.swerve.getCurrentCommand().getName());} catch(Exception ex){SmartDashboard.putString("Swerve Command", "No Command");}
   }
 
   @Override

@@ -74,7 +74,7 @@ public final class Constants {
       public static final int RotationCurrentLimit = 20;
       public static final boolean RotationMotorReversed = true;
       public static final int RotationEncoderPort = 7;
-      public static final double RotationAbsoluteEncoderOffset = -42;
+      public static final double RotationAbsoluteEncoderOffset = 320;
       public static final boolean RotationEncoderReversed = true;
     }
 
@@ -88,7 +88,7 @@ public final class Constants {
       public static final int RotationCurrentLimit = 20;
       public static final boolean RotationMotorReversed = true;
       public static final int RotationEncoderPort = 5;
-      public static final double RotationAbsoluteEncoderOffset = -154;
+      public static final double RotationAbsoluteEncoderOffset = 207;
       public static final boolean RotationEncoderReversed = true;
     }
 
@@ -102,7 +102,7 @@ public final class Constants {
       public static final int RotationCurrentLimit = 20;
       public static final boolean RotationMotorReversed = true;
       public static final int RotationEncoderPort = 3;
-      public static final double RotationAbsoluteEncoderOffset = -17;
+      public static final double RotationAbsoluteEncoderOffset = 345;
       public static final boolean RotationEncoderReversed = true;
     }
 
@@ -116,7 +116,7 @@ public final class Constants {
       public static final int RotationCurrentLimit = 20;      
       public static final boolean RotationMotorReversed = true;
       public static final int RotationEncoderPort = 1;
-      public static final double RotationAbsoluteEncoderOffset = -91;
+      public static final double RotationAbsoluteEncoderOffset = 272;
       public static final boolean RotationEncoderReversed = true;
     }
   }
@@ -154,7 +154,7 @@ public final class Constants {
     public static final int Port = 11;
     public static final boolean Reversed = true;
     public static final IdleMode Mode = IdleMode.kBrake;
-    public static final double PowerFactor = 0.3;
+    public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 30;
 
     public static final double openLimit = 0;

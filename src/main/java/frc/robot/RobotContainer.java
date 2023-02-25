@@ -9,6 +9,7 @@ import frc.robot.commands.cmdClaw_TeleOp;
 import frc.robot.commands.cmdItemNeeded_TeleOp;
 import frc.robot.commands.cmdArmAngle_TeleOp;
 import frc.robot.commands.cmdArmExtension_TeleOp;
+import frc.robot.commands.cmdAuto_SetDefault;
 import frc.robot.commands.cmdSwerve_TeleOp;
 import frc.robot.subsystems.subArmAngle;
 import frc.robot.subsystems.subArmExtension;
@@ -80,31 +81,31 @@ public class RobotContainer {
     ));
 
     driverTwo.leftBumper().whileTrue(new cmdClaw_TeleOp(claw, () -> 1, () -> 0, () -> true));
-    driverTwo.leftBumper().whileFalse(new cmdClaw_TeleOp(claw, () -> 0, () -> 0, () -> true));
+    driverTwo.leftBumper().whileFalse(new InstantCommand(() -> claw.stop()));
     driverTwo.rightBumper().whileTrue(new cmdClaw_TeleOp(claw, () -> 0, () -> 1, () -> true));
-    driverTwo.rightBumper().whileFalse(new cmdClaw_TeleOp(claw, () -> 0, () -> 0, () -> true));
+    driverTwo.rightBumper().whileFalse(new InstantCommand(() -> claw.stop()));
     
-    driverTwo.povUp().onTrue(new cmdArmExtension_TeleOp(armExtension, () -> ArmExtensionConstants.PowerFactor, () -> true));
-    driverTwo.povUp().onFalse(new cmdArmExtension_TeleOp(armExtension, () -> 0, () -> true));
-    driverTwo.povDown().onTrue(new cmdArmExtension_TeleOp(armExtension, () -> -ArmExtensionConstants.PowerFactor, () -> true));
-    driverTwo.povDown().onFalse(new cmdArmExtension_TeleOp(armExtension, () -> 0, () -> true));
+    driverTwo.povUp().whileTrue(new cmdArmExtension_TeleOp(armExtension, () -> ArmExtensionConstants.PowerFactor, () -> true));
+    driverTwo.povUp().whileFalse(new InstantCommand(() -> armExtension.stop()));
+    driverTwo.povDown().whileTrue(new cmdArmExtension_TeleOp(armExtension, () -> -ArmExtensionConstants.PowerFactor, () -> true));
+    driverTwo.povDown().whileFalse(new InstantCommand(() -> armExtension.stop()));
 
-    driverTwo.povLeft().onTrue(new cmdArmAngle_TeleOp(armAngle, () -> ArmAngleConstants.PowerFactor, () -> true));
-    driverTwo.povLeft().onFalse(new cmdArmAngle_TeleOp(armAngle, () -> 0, () -> true));
-    driverTwo.povRight().onTrue(new cmdArmAngle_TeleOp(armAngle, () -> -ArmAngleConstants.PowerFactor, () -> true));
-    driverTwo.povRight().onFalse(new cmdArmAngle_TeleOp(armAngle, () -> 0, () -> true));
+    driverTwo.povLeft().whileTrue(new cmdArmAngle_TeleOp(armAngle, () -> ArmAngleConstants.PowerFactor, () -> true));
+    driverTwo.povLeft().whileFalse(new InstantCommand(() -> armAngle.stop()));
+    driverTwo.povRight().whileTrue(new cmdArmAngle_TeleOp(armAngle, () -> -ArmAngleConstants.PowerFactor, () -> true));
+    driverTwo.povRight().whileFalse(new InstantCommand(() -> armAngle.stop()));
     
     driverTwo.back().onTrue(new InstantCommand(() -> claw.resetPosition()));
     driverTwo.start().onTrue(new InstantCommand(() -> armExtension.resetPosition()));
 
     driverTwo.x().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanFeedPosition, ArmExtensionConstants.HumanFeedPosition));
-    driverTwo.x().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.DefaultPosition, ArmExtensionConstants.DefaultPosition));
+    driverTwo.x().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));
     driverTwo.y().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition));
-    driverTwo.y().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.DefaultPosition, ArmExtensionConstants.DefaultPosition));
+    driverTwo.y().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));
     driverTwo.b().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition));
-    driverTwo.b().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.DefaultPosition, ArmExtensionConstants.DefaultPosition));
+    driverTwo.b().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));
     driverTwo.a().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.GroundPosition, ArmExtensionConstants.GroundPosition));
-    driverTwo.a().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.DefaultPosition, ArmExtensionConstants.DefaultPosition));
+    driverTwo.a().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));
   }
 
   public Command getAutonomousCommand() {
