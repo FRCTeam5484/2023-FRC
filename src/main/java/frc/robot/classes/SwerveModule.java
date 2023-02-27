@@ -76,11 +76,21 @@ public class SwerveModule {
   public double GetModuleAngle() { return rotationEncoder.getAbsolutePosition(); }
   public void setDesiredState(SwerveModuleState desiredState) {
     SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()));
+    if(optimizedDesiredState.speedMetersPerSecond < 0.05){
+      stopModule();
+      return;
+    }
     driveMotor.set(optimizedDesiredState.speedMetersPerSecond);
     rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
     this.desiredState = desiredState;
   }
-  public void stopModule(){ setDesiredState(new SwerveModuleState(0.0, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()))); }
+  public void setDesiredStateOverride(SwerveModuleState desiredState) {
+    SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()));
+    driveMotor.set(optimizedDesiredState.speedMetersPerSecond);
+    rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
+    this.desiredState = desiredState;
+  }
+  public void stopModule(){ driveMotor.stopMotor(); rotationMotor.stopMotor(); } //setDesiredState(new SwerveModuleState(0.0, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()))); }
   public double getAngleRaw(){ return rotationEncoder.getAbsolutePosition(); }
   public double getDrivePower(){ return driveMotor.get(); }
   public double getRotationPower() { return rotationMotor.get(); }

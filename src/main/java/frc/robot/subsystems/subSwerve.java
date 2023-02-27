@@ -136,10 +136,10 @@ public class subSwerve extends SubsystemBase {
   }
 
   public void setXMode() {
-    frontLeftModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
-    frontRightModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-    backLeftModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
-    backRightModule.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+    frontLeftModule.setDesiredStateOverride(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
+    frontRightModule.setDesiredStateOverride(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+    backLeftModule.setDesiredStateOverride(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+    backRightModule.setDesiredStateOverride(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
   }
 
   public void setModuleStates(SwerveModuleState[] desiredStates) {
