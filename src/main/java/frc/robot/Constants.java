@@ -19,7 +19,7 @@ public final class Constants {
     public static final class AutoConstants {
       public static final double kMaxSpeedMetersPerSecond = SwerveConstants.MaxSpeedMetersPerSecond / 4;
       public static final double kMaxAngularSpeedRadiansPerSecond = SwerveConstants.MaxAngularSpeedRadiansPerSecond / 10;
-      public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+      public static final double kMaxAccelerationMetersPerSecondSquared = 2;
       public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
       public static final double kPXController = 0.1;
       public static final double kPYController = 0.1;

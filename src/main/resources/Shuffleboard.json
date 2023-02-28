@@ -236,7 +236,7 @@
           "8,0": {
             "size": [
               2,
-              4
+              2
             ],
             "content": {
               "_type": "List Layout",
@@ -340,84 +340,6 @@
               ]
             }
           },
-          "10,0": {
-            "size": [
-              2,
-              3
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "LimeLight",
-              "_glyph": 149,
-              "_showGlyph": false,
-              "Layout/Label position": "LEFT",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Vision bot pose TX",
-                  "_title": "Vision bot pose TX",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Vision bot pose TY",
-                  "_title": "Vision bot pose TY",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Vision bot pose RZ",
-                  "_title": "Vision bot pose RZ",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Vision bot pose Blue TX",
-                  "_title": "Vision bot pose Blue TX",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Vision bot pose Blue TY",
-                  "_title": "Vision bot pose Blue TY",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Vision bot pose Blue RZ",
-                  "_title": "Vision bot pose Blue RZ",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Vision bot pose Red TX",
-                  "_title": "Vision bot pose Red TX",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Vision bot pose Red RZ",
-                  "_title": "Vision bot pose Red RZ",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Vision bot pose Red TY",
-                  "_title": "Vision bot pose Red TY",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
           "4,2": {
             "size": [
               2,
@@ -447,9 +369,9 @@
               ]
             }
           },
-          "6,2": {
+          "10,1": {
             "size": [
-              2,
+              3,
               3
             ],
             "content": {
@@ -488,6 +410,149 @@
                   "_showGlyph": false
                 }
               ]
+            }
+          },
+          "10,0": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto Options",
+              "_title": "SmartDashboard/Auto Options",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "7,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Vision bot pose TX",
+              "_title": "Vision bot pose TX",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "14,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Vision bot pose TY",
+              "_title": "Vision bot pose TY",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "15,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Vision bot pose RZ",
+              "_title": "Vision bot pose RZ",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "16,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Vision bot pose Blue TX",
+              "_title": "Vision bot pose Blue TX",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "8,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Vision bot pose Blue TY",
+              "_title": "Vision bot pose Blue TY",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "14,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Vision bot pose Blue RZ",
+              "_title": "Vision bot pose Blue RZ",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "15,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Vision bot pose Red TX",
+              "_title": "Vision bot pose Red TX",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "16,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Vision bot pose Red RZ",
+              "_title": "Vision bot pose Red RZ",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "6,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Vision bot pose Red TY",
+              "_title": "Vision bot pose Red TY",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "6,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Robot Location",
+              "_title": "Robot Location",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           }
         }
@@ -772,9 +837,9 @@
     }
   ],
   "windowGeometry": {
-    "x": -1921.0,
-    "y": 756.0,
-    "width": 1924.0,
-    "height": 824.0
+    "x": -1928.0,
+    "y": 446.0,
+    "width": 1930.0,
+    "height": 838.0
   }
 }
