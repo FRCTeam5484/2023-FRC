@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
-import java.util.function.Supplier;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.SwerveConstants;
@@ -12,15 +11,13 @@ public class cmdSwerve_TeleOp extends CommandBase {
   private final DoubleSupplier XSupplier;
   private final DoubleSupplier YSupplier;
   private final DoubleSupplier rotationSupplier;
-  private final Supplier<Boolean> fieldOrientedFunction;
   private final SlewRateLimiter xLimiter, yLimiter, rotationLimiter;
   
-  public cmdSwerve_TeleOp(subSwerve swerve, DoubleSupplier XSupplier, DoubleSupplier YSupplier, DoubleSupplier rotationSupplier, Supplier<Boolean> fieldOrientedFunction) {
+  public cmdSwerve_TeleOp(subSwerve swerve, DoubleSupplier XSupplier, DoubleSupplier YSupplier, DoubleSupplier rotationSupplier) {
     this.swerve = swerve;
     this.XSupplier = XSupplier;
     this.YSupplier = YSupplier;
     this.rotationSupplier = rotationSupplier;
-    this.fieldOrientedFunction = fieldOrientedFunction;
     this.xLimiter = new SlewRateLimiter(3.5);
     this.yLimiter = new SlewRateLimiter(3.5);
     this.rotationLimiter = new SlewRateLimiter(4.5);
@@ -40,7 +37,7 @@ public class cmdSwerve_TeleOp extends CommandBase {
     ySpeed = yLimiter.calculate(ySpeed)*SwerveConstants.TeleOp.DriveSpeedFactor;
     rotationSpeed = rotationLimiter.calculate(rotationSpeed)*SwerveConstants.TeleOp.RotationSpeedFactor;
     
-    swerve.drive(xSpeed, ySpeed, rotationSpeed, true);
+    swerve.drive(xSpeed, ySpeed, rotationSpeed);
   }
   
   @Override

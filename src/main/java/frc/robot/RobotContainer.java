@@ -4,6 +4,7 @@ import frc.robot.Constants.ArmAngleConstants;
 import frc.robot.Constants.ArmExtensionConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.ServoConstants;
+import frc.robot.classes.AutonomousCommands;
 import frc.robot.commands.cmdAuto_SetGoal;
 import frc.robot.commands.cmdClaw_TeleOp;
 import frc.robot.commands.cmdItemNeeded_TeleOp;
@@ -21,6 +22,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -36,6 +38,7 @@ public class RobotContainer {
   public final subItemNeeded item = new subItemNeeded();
   private final subLimeLight lime = new subLimeLight();
   SendableChooser<Command> chooser = new SendableChooser<>();
+  private final AutonomousCommands autoOptions = new AutonomousCommands();
 
   public RobotContainer() {
     configureDriverOne();
@@ -44,15 +47,9 @@ public class RobotContainer {
   }
 
   private void addAutoOptions(){
-    try{
-      //chooser.setDefaultOption("Cross Line", swerve.followPathCmd("CrossLine"));
-      //chooser.addOption("Cross and Dock", swerve.followPathCmd("CrossLineLevel"));
-      Shuffleboard.getTab("Autonomous").add(chooser);
-    }
-    catch(NullPointerException ex){
-      chooser.setDefaultOption("NULL Nothing", new InstantCommand());
-      DriverStation.reportError("Auto Chooser NULL - Fix It", null);
-    }
+    chooser.setDefaultOption("Cross Line", autoOptions.CrossLine(swerve));
+    chooser.addOption("Place Cone, Cross Line", autoOptions.PlaceConeCrossLine(swerve, armAngle, armExtension, claw));
+    SmartDashboard.putData("Auto Options", chooser);
   }
 
   private void configureDriverOne() {
@@ -61,8 +58,7 @@ public class RobotContainer {
           swerve,
           () -> MathUtil.applyDeadband(-driverOne.getLeftY(), 0.01),
           () -> MathUtil.applyDeadband(driverOne.getLeftX(), 0.01),
-          () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01),
-          () -> true));
+          () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01)));
     driverOne.a().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.cubeDown));
     driverOne.b().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.cubeUp));
     driverOne.x().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.coneDown));

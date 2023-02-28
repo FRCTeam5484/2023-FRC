@@ -16,16 +16,20 @@ public final class Constants {
       public static final double DriveSpeedFactor = 0.4;
       public static final double RotationSpeedFactor = 0.8;
     }
-    public static final class Auto{
-      public static final double MaxAngularSpeedRadiansPerSecond = Math.PI;
-      public static final double MaxAngularSpeedRadiansPerSecondSquared = Math.PI;
+    public static final class AutoConstants {
+      public static final double kMaxSpeedMetersPerSecond = SwerveConstants.MaxSpeedMetersPerSecond / 4;
+      public static final double kMaxAngularSpeedRadiansPerSecond = SwerveConstants.MaxAngularSpeedRadiansPerSecond / 10;
+      public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+      public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
+      public static final double kPXController = 0.1;
+      public static final double kPYController = 0.1;
+      public static final double kPThetaController = 1;
 
-      public static final double PXController = 1;
-      public static final double PYController = 1;
-      public static final double PThetaController = 1;
-
-      public static final TrapezoidProfile.Constraints ThetaControllerConstraints = new TrapezoidProfile.Constraints(MaxAngularSpeedRadiansPerSecond, MaxAngularSpeedRadiansPerSecondSquared);
-    }
+      public static final TrapezoidProfile.Constraints kThetaControllerConstraints = //
+              new TrapezoidProfile.Constraints(
+                      kMaxAngularSpeedRadiansPerSecond,
+                      kMaxAngularAccelerationRadiansPerSecondSquared);
+  }
     public static final boolean GyroReversed = false;
     public static final double TrackWidth = Units.inchesToMeters(20);
     public static final double WheelBase = Units.inchesToMeters(32);
@@ -38,17 +42,13 @@ public final class Constants {
         new Translation2d(TrackWidth / 2.0, -WheelBase / 2.0) // back right
     );
     public static final double MaxSpeedMetersPerSecond = 4.8;
+    public static final double MaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;
     public static final double DriveMotorFreeSpeedRps = 5676 / 60;
     public static final double WheelCircumferenceMeters = WheelDiameterMeters * Math.PI;
     public static final double DriveMotorReduction = 1/6.86;
     public static final double DriveWheelFreeSpeedRps = (DriveMotorFreeSpeedRps * WheelCircumferenceMeters) / DriveMotorReduction;
     public static final double DriveEncoderPositionFactor = (WheelDiameterMeters * Math.PI) / DriveMotorReduction;
     public static final double DriveEncoderVelocityFactor = ((WheelDiameterMeters * Math.PI) / DriveMotorReduction) / 60.0;
-    public static final double RotationEncoderPositionFactor = (2 * Math.PI);
-    public static final double RotationEncoderVelocityFactor = (2 * Math.PI) / 60.0;
-    public static final double RotationEncoderPositionPIDMinInput = 0;
-    public static final double RotationEncoderPositionPIDMaxInput = RotationEncoderPositionFactor;
-    public static final boolean RotationEncoderReversed = true;
 
     public static final double DriveP = 0.04;
     public static final double DriveI = 0;

@@ -1,17 +1,9 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.classes.SwerveModule;
 import com.kauailabs.navx.frc.AHRS;
-import com.pathplanner.lib.PathConstraints;
-import com.pathplanner.lib.PathPlanner;
-import com.pathplanner.lib.PathPlannerTrajectory;
-import com.pathplanner.lib.commands.PPSwerveControllerCommand;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -126,8 +118,8 @@ public class subSwerve extends SubsystemBase {
       });
   }
 
-  public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
-    var swerveModuleStates = SwerveConstants.SwerveKinematics.toSwerveModuleStates(fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, getRotation2d()) : new ChassisSpeeds(xSpeed, ySpeed, rot));
+  public void drive(double xSpeed, double ySpeed, double rot) {
+    var swerveModuleStates = SwerveConstants.SwerveKinematics.toSwerveModuleStates(ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, getRotation2d()));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, SwerveConstants.MaxSpeedMetersPerSecond);
     frontLeftModule.setDesiredState(swerveModuleStates[0]);
     frontRightModule.setDesiredState(swerveModuleStates[1]);
@@ -167,44 +159,12 @@ public class subSwerve extends SubsystemBase {
   public void zeroHeading() { gyro.reset(); }
   public double getHeading() { return Math.IEEEremainder(gyro.getAngle(), 360); }
   public Rotation2d getRotation2d() { return Rotation2d.fromDegrees(getHeading()); }
-
-  public SequentialCommandGroup followPathCmd(String pathName) {
-    PathPlannerTrajectory trajectory = getPathPlannerTrajectory(pathName);
-    Command ppCommand = getPathPlannerCommand(trajectory);
-    return new SequentialCommandGroup(
-        new InstantCommand(() -> this.resetOdometry(trajectory.getInitialPose())),
-        ppCommand,
-        new InstantCommand(() -> this.stopModules()));
-  }
-
-  public PathPlannerTrajectory getPathPlannerTrajectory(String pathName) {
-    PathConstraints constraints = PathPlanner.getConstraintsFromPath(pathName);
-    PathPlannerTrajectory ppTrajectory = PathPlanner.loadPath(pathName, constraints, false);
-    return ppTrajectory;
-  }
-
-  public Command getPathPlannerCommand(PathPlannerTrajectory trajectory) {
-    //var thetaController = new ProfiledPIDController(SwerveConstants.Auto.PThetaController, 0, 0, SwerveConstants.Auto.ThetaControllerConstraints);
-    var thetaController = new PIDController(SwerveConstants.Auto.PThetaController, 0, 0);
-    thetaController.enableContinuousInput(-Math.PI, Math.PI);
-    
-    PPSwerveControllerCommand command = new PPSwerveControllerCommand(
-      trajectory,
-      this::getPose,
-      SwerveConstants.SwerveKinematics, 
-      new PIDController(SwerveConstants.Auto.PXController, 0, 0),
-      new PIDController(SwerveConstants.Auto.PYController, 0,0),
-      thetaController,
-      this::setModuleStates,
-      this);
-    return command;
-  }
-
   public ChassisSpeeds getChassisSpeeds(){ return SwerveConstants.SwerveKinematics.toChassisSpeeds(frontLeftModule.getState(), frontRightModule.getState(), backLeftModule.getState(), backRightModule.getState());}
 
   @Override
   public void periodic() {
     updateOdometry();
+    SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
     SmartDashboard.putNumber("Robot Speed X", getChassisSpeeds().vxMetersPerSecond);
     SmartDashboard.putNumber("Robot Speed Y", getChassisSpeeds().vyMetersPerSecond);
     SmartDashboard.putNumber("Robot Omega", getChassisSpeeds().omegaRadiansPerSecond);

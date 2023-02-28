@@ -13,7 +13,6 @@ import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.revrobotics.RelativeEncoder;
 import frc.robot.Constants.SwerveConstants;
-import frc.robot.Constants.SwerveConstants.FrontLeft;
 
 public class SwerveModule {
   private final String moduleName;
@@ -76,16 +75,13 @@ public class SwerveModule {
   public double GetModuleAngle() { return rotationEncoder.getAbsolutePosition(); }
   public void setDesiredState(SwerveModuleState desiredState) {
     SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()));
-    if(optimizedDesiredState.speedMetersPerSecond < -0.05 || optimizedDesiredState.speedMetersPerSecond > 0.05){
-      driveMotor.set(optimizedDesiredState.speedMetersPerSecond);
-      rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
-      this.desiredState = desiredState;
-    }
-    else{
+    if(Math.abs(optimizedDesiredState.speedMetersPerSecond) < 0.001){
       stopModule();
       return;
     }
-    
+    driveMotor.set(optimizedDesiredState.speedMetersPerSecond);
+    rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
+    this.desiredState = desiredState;
   }
   public void setDesiredStateOverride(SwerveModuleState desiredState) {
     SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()));
