@@ -167,7 +167,7 @@ public final class Constants {
     
     public static final double coneUp = 0;//
     public static final double coneDown = 60;//
-    public static final double cubeUp = 135;//
+    public static final double cubeUp = 125;//
     public static final double cubeDown = 180;//
   }
   public static final class PneumaticConstants{

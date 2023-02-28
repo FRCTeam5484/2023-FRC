@@ -63,9 +63,9 @@ public class RobotContainer {
           () -> MathUtil.applyDeadband(-driverOne.getLeftY(), 0.01),
           () -> MathUtil.applyDeadband(driverOne.getLeftX(), 0.01),
           () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01)));
-    driverOne.a().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.cubeDown));
+    driverOne.x().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.cubeDown));
     driverOne.b().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.cubeUp));
-    driverOne.x().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.coneDown));
+    driverOne.a().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.coneDown));
     driverOne.y().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.coneUp)); 
     driverOne.leftBumper().whileTrue(new RunCommand(() -> swerve.setXMode()));
   }
