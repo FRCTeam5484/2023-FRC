@@ -76,13 +76,16 @@ public class SwerveModule {
   public double GetModuleAngle() { return rotationEncoder.getAbsolutePosition(); }
   public void setDesiredState(SwerveModuleState desiredState) {
     SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()));
-    if(optimizedDesiredState.speedMetersPerSecond < 0.05){
+    if(optimizedDesiredState.speedMetersPerSecond < -0.05 || optimizedDesiredState.speedMetersPerSecond > 0.05){
+      driveMotor.set(optimizedDesiredState.speedMetersPerSecond);
+      rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
+      this.desiredState = desiredState;
+    }
+    else{
       stopModule();
       return;
     }
-    driveMotor.set(optimizedDesiredState.speedMetersPerSecond);
-    rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
-    this.desiredState = desiredState;
+    
   }
   public void setDesiredStateOverride(SwerveModuleState desiredState) {
     SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(desiredState, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()));
