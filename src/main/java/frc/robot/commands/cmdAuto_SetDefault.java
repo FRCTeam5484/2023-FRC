@@ -43,6 +43,6 @@ public class cmdAuto_SetDefault extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return anglePID.atSetpoint() && extensionPID.atSetpoint() || time.get() > 2 ? true : false;
+    return anglePID.atSetpoint() && extensionPID.atSetpoint() || time.hasElapsed(2) ? true : false;
   }
 }
