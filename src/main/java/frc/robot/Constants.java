@@ -129,7 +129,7 @@ public final class Constants {
     
     public static final double limitPositionHigh = 300;
     public static final double limitPositionLow = 50;
-    public static final double HumanFeedPosition = 244;
+    public static final double HumanFeedPosition = 255;
     public static final double GroundPosition = 52;
     public static final double MidPosition = 243;
     public static final double HighPosition = 243;

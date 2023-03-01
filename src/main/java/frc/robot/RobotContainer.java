@@ -49,7 +49,7 @@ public class RobotContainer {
   }
 
   private void addAutoOptions(){
-    chooser.setDefaultOption("Deadline Crossline", new cmdAutonomous_DeadCode_CrossLine(swerve, 0.35));
+    chooser.setDefaultOption("Deadcode Crossline", new cmdAutonomous_DeadCode_CrossLine(swerve, 0.35));
     chooser.addOption("Deadcode Crossline Docked", new cmdAutonomous_DeadCode_CrossLineDocked(swerve, 0.35));
     chooser.addOption("Cross Line", autoOptions.CrossLine(swerve));
     chooser.addOption("Place Cone, Cross Line", autoOptions.PlaceConeCrossLine(swerve, armAngle, armExtension, claw));

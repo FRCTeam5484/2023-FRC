@@ -290,56 +290,6 @@
               ]
             }
           },
-          "4,0": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "List Layout",
-              "_glyph": 149,
-              "_showGlyph": false,
-              "Layout/Label position": "LEFT",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Robot Speed X",
-                  "_title": "Robot Speed X",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Robot Speed Y",
-                  "_title": "Robot Speed Y",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Robot Omega",
-                  "_title": "Robot Omega",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Heading",
-                  "_title": "Heading",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Rotation Rate",
-                  "_title": "Rotation Rate",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
           "4,2": {
             "size": [
               2,
@@ -553,6 +503,23 @@
               "_title": "Robot Location",
               "_glyph": 148,
               "_showGlyph": false
+            }
+          },
+          "4,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Gyro",
+              "_source0": "network_table:///SmartDashboard/Heading",
+              "_title": "SmartDashboard/Heading",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Visuals/Major tick spacing": 45.0,
+              "Visuals/Starting angle": 180.0,
+              "Visuals/Show tick mark ring": true,
+              "Visuals/Counter clockwise": false
             }
           }
         }
@@ -839,7 +806,7 @@
   "windowGeometry": {
     "x": -1928.0,
     "y": 446.0,
-    "width": 1930.0,
-    "height": 838.0
+    "width": 1946.0,
+    "height": 876.0
   }
 }
