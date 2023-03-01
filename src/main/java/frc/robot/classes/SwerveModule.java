@@ -23,8 +23,6 @@ public class SwerveModule {
   private final CANCoder rotationEncoder;
   private final PIDController rotationPID;
 
-  //private SwerveModuleState desiredState = new SwerveModuleState(0.0, new Rotation2d());
-
   public SwerveModule(String moduleName, int drivePort, IdleMode driveIdle, int driveCurrentLimit, boolean driveReversed, int rotationPort, IdleMode rotationIdle, int rotationCurrentLimit, boolean rotationReversed, int rotationEncoderPort, double rotationEncoderOffset, boolean rotationEncoderReversed) {
     this.moduleName = moduleName;
     rotationEncoder = new CANCoder(rotationEncoderPort);
@@ -61,7 +59,6 @@ public class SwerveModule {
     rotationPID = new PIDController(0.01, 0, 0);
     rotationPID.enableContinuousInput(0, 360);
     
-    //this.desiredState.angle = getRotation2d();
     driveEncoder.setPosition(0);
   }
   public void resetEncoders(){ driveEncoder.setPosition(0); turnEncoder.setPosition(0); }
@@ -76,17 +73,15 @@ public class SwerveModule {
     }
     driveMotor.set(optimizedDesiredState.speedMetersPerSecond);
     rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
-    //this.desiredState = desiredState;
   }
   public void setDesiredStateOverride(SwerveModuleState desiredState) {
     SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(desiredState, getRotation2d());
     driveMotor.set(optimizedDesiredState.speedMetersPerSecond);
     rotationMotor.set(rotationPID.calculate(rotationEncoder.getAbsolutePosition(), optimizedDesiredState.angle.getDegrees()));
-    //this.desiredState = desiredState;
   }
-  public void stopModule(){ driveMotor.stopMotor(); rotationMotor.stopMotor(); } //setDesiredState(new SwerveModuleState(0.0, Rotation2d.fromDegrees(rotationEncoder.getAbsolutePosition()))); }
-  public double getAngleRaw(){ return rotationEncoder.getAbsolutePosition(); }
-  public Rotation2d getRotation2d() { return Rotation2d.fromDegrees(getAngleRaw()); }
+  public void stopModule(){ driveMotor.stopMotor(); rotationMotor.stopMotor(); }
+  public double getAngle(){ return rotationEncoder.getAbsolutePosition(); }
+  public Rotation2d getRotation2d() { return Rotation2d.fromDegrees(getAngle()); }
   public double getDrivePower(){ return driveMotor.get(); }
   public double getRotationPower() { return rotationMotor.get(); }
 }

@@ -8,6 +8,8 @@ import frc.robot.classes.AutonomousCommands;
 import frc.robot.commands.cmdAuto_SetGoal;
 import frc.robot.commands.cmdAutonomous_DeadCode_CrossLine;
 import frc.robot.commands.cmdAutonomous_DeadCode_CrossLineDocked;
+import frc.robot.commands.cmdAutonomous_DeadCode_PlaceConeCrossLine;
+import frc.robot.commands.cmdAutonomous_DeadCode_PlaceConeDocked;
 import frc.robot.commands.cmdClaw_TeleOp;
 import frc.robot.commands.cmdArmAngle_TeleOp;
 import frc.robot.commands.cmdArmExtension_TeleOp;
@@ -51,8 +53,10 @@ public class RobotContainer {
   private void addAutoOptions(){
     chooser.setDefaultOption("Deadcode Crossline", new cmdAutonomous_DeadCode_CrossLine(swerve, 0.35));
     chooser.addOption("Deadcode Crossline Docked", new cmdAutonomous_DeadCode_CrossLineDocked(swerve, 0.35));
-    chooser.addOption("Cross Line", autoOptions.CrossLine(swerve));
-    chooser.addOption("Place Cone, Cross Line", autoOptions.PlaceConeCrossLine(swerve, armAngle, armExtension, claw));
+    chooser.addOption("DeadCode Place Cone, Cross Line", new cmdAutonomous_DeadCode_PlaceConeCrossLine(swerve, armAngle, armExtension, claw));
+    chooser.addOption("DeadCode Place Cone, Docked", new cmdAutonomous_DeadCode_PlaceConeDocked(swerve, armAngle, armExtension, claw));
+    //chooser.addOption("Cross Line", autoOptions.CrossLine(swerve));
+    //chooser.addOption("Place Cone, Cross Line", autoOptions.PlaceConeCrossLine(swerve, armAngle, armExtension, claw));
     SmartDashboard.putData("Auto Options", chooser);
   }
 
