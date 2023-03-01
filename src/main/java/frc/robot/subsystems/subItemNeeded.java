@@ -13,6 +13,7 @@ public class subItemNeeded extends SubsystemBase {
     CubeDown;
   }
   public subItemNeeded() {
+    itemNeededServo = new Servo(ServoConstants.servoPort);
     setCurrentSelection(itemList.ConeUp);
   }
 

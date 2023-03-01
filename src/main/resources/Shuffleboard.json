@@ -11,100 +11,14 @@
         "vgap": 16.0,
         "titleType": 0,
         "tiles": {
-          "0,2": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Back Left",
-              "_glyph": 149,
-              "_showGlyph": false,
-              "Layout/Label position": "LEFT",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Back Left Angle Raw",
-                  "_title": "Angle Raw",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Back Left Drive MPS",
-                  "_title": "Drive M/Sec",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Back Left Drive Power",
-                  "_title": "Drive Power",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Back Left Rotation Power",
-                  "_title": "Rotation Power",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
-          "2,2": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Back Right",
-              "_glyph": 149,
-              "_showGlyph": false,
-              "Layout/Label position": "LEFT",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Back Right Angle Raw",
-                  "_title": "Angle Raw",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Back Right Drive MPS",
-                  "_title": "Drive M/Sec",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Back Right Drive Power",
-                  "_title": "Drive Power",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Back Right Rotation Power",
-                  "_title": "Rotation Power",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
           "0,0": {
             "size": [
               2,
-              2
+              3
             ],
             "content": {
               "_type": "List Layout",
-              "_title": "Front Left",
+              "_title": "Wheel",
               "_glyph": 149,
               "_showGlyph": false,
               "Layout/Label position": "LEFT",
@@ -112,80 +26,65 @@
                 {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Front Left Angle Raw",
-                  "_title": "Angle Raw",
+                  "_title": "FL Angle",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
                 {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Front Left Drive MPS",
-                  "_title": "Drive M/Sec",
+                  "_title": "FL Drive M/Sec",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Front Left Drive Power",
-                  "_title": "Drive Power",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Front Left Rotation Power",
-                  "_title": "Rotation Power",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
-          "2,0": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Front Right",
-              "_glyph": 149,
-              "_showGlyph": false,
-              "Layout/Label position": "LEFT",
-              "_children": [
                 {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Front Right Angle Raw",
-                  "_title": "Angle Raw",
+                  "_title": "FR Angle",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
                 {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Front Right Drive MPS",
-                  "_title": "Drive M/Sec",
+                  "_title": "FR Drive M/Sec",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Front Right Drive Power",
-                  "_title": "Drive Power",
+                  "_source0": "network_table:///SmartDashboard/Back Left Angle Raw",
+                  "_title": "BL Angle",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Front Right Rotation Power",
-                  "_title": "Rotation Power",
+                  "_source0": "network_table:///SmartDashboard/Back Left Drive MPS",
+                  "_title": "BL Drive M/Sec",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Back Right Angle Raw",
+                  "_title": "BR Angle",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Back Right Drive MPS",
+                  "_title": "BR Drive M/Sec",
                   "_glyph": 148,
                   "_showGlyph": false
                 }
               ]
             }
           },
-          "6,0": {
+          "6,1": {
             "size": [
-              2,
+              3,
               2
             ],
             "content": {
@@ -233,7 +132,7 @@
               ]
             }
           },
-          "8,0": {
+          "4,1": {
             "size": [
               2,
               2
@@ -290,10 +189,10 @@
               ]
             }
           },
-          "4,2": {
+          "4,0": {
             "size": [
               2,
-              2
+              1
             ],
             "content": {
               "_type": "List Layout",
@@ -375,7 +274,7 @@
               "_showGlyph": false
             }
           },
-          "7,2": {
+          "8,0": {
             "size": [
               1,
               1
@@ -427,7 +326,7 @@
               "_showGlyph": false
             }
           },
-          "8,2": {
+          "9,1": {
             "size": [
               1,
               1
@@ -479,7 +378,7 @@
               "_showGlyph": false
             }
           },
-          "6,2": {
+          "9,0": {
             "size": [
               1,
               1
@@ -492,7 +391,7 @@
               "_showGlyph": false
             }
           },
-          "6,3": {
+          "2,2": {
             "size": [
               2,
               1
@@ -505,7 +404,7 @@
               "_showGlyph": false
             }
           },
-          "4,0": {
+          "2,0": {
             "size": [
               2,
               2
@@ -520,6 +419,19 @@
               "Visuals/Starting angle": 180.0,
               "Visuals/Show tick mark ring": true,
               "Visuals/Counter clockwise": false
+            }
+          },
+          "6,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Human Player Item",
+              "_title": "Human Player Item",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           }
         }
@@ -805,8 +717,8 @@
   ],
   "windowGeometry": {
     "x": -1928.0,
-    "y": 446.0,
-    "width": 1946.0,
-    "height": 876.0
+    "y": 470.0,
+    "width": 1962.0,
+    "height": 890.0
   }
 }

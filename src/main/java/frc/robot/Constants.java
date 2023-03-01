@@ -131,7 +131,7 @@ public final class Constants {
     public static final double limitClosed = 2;
     public static final double HumanFeedPosition = 17;
     public static final double GroundPosition = 58;
-    public static final double MidPosition = 80;
+    public static final double MidPosition = 100;
     public static final double HighPosition = 154;
     public static final double DefaultPosition = 0;
   }
@@ -139,11 +139,11 @@ public final class Constants {
     public static final int Port = 11;
     public static final boolean Reversed = true;
     public static final IdleMode Mode = IdleMode.kBrake;
-    public static final double PowerFactor = 0.5;
+    public static final double PowerFactor = 0.4;
     public static final int PowerLimit = 30;
 
-    public static final double openLimit = 0;
-    public static final double closeLimit = 34;
+    public static final double openLimit = 30;
+    public static final double closeLimit = 3;
     public static final int Cube = 8;
     public static final int Cone = 2;
   }

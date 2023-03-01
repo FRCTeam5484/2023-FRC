@@ -20,6 +20,7 @@ import frc.robot.subsystems.subArmExtension;
 import frc.robot.subsystems.subClaw;
 import frc.robot.subsystems.subItemNeeded;
 import frc.robot.subsystems.subLimeLight;
+import frc.robot.subsystems.subPneumatic;
 import frc.robot.subsystems.subSwerve;
 import frc.robot.subsystems.subItemNeeded.itemList;
 import edu.wpi.first.math.MathUtil;
@@ -38,9 +39,10 @@ public class RobotContainer {
   public final subSwerve swerve = new subSwerve();
   public final subArmAngle armAngle = new subArmAngle();
   public final subArmExtension armExtension = new subArmExtension();
-  public final subClaw claw = new subClaw();
+  //public final subClaw claw = new subClaw();
   public final subItemNeeded item = new subItemNeeded();
   private final subLimeLight lime = new subLimeLight();
+  public final subPneumatic air = new subPneumatic();
   SendableChooser<Command> chooser = new SendableChooser<>();
   private final AutonomousCommands autoOptions = new AutonomousCommands();
 
@@ -53,8 +55,8 @@ public class RobotContainer {
   private void addAutoOptions(){
     chooser.setDefaultOption("Deadcode Crossline", new cmdAutonomous_DeadCode_CrossLine(swerve, 0.35));
     chooser.addOption("Deadcode Crossline Docked", new cmdAutonomous_DeadCode_CrossLineDocked(swerve, 0.35));
-    chooser.addOption("DeadCode Place Cone, Cross Line", new cmdAutonomous_DeadCode_PlaceConeCrossLine(swerve, armAngle, armExtension, claw));
-    chooser.addOption("DeadCode Place Cone, Docked", new cmdAutonomous_DeadCode_PlaceConeDocked(swerve, armAngle, armExtension, claw));
+    //chooser.addOption("DeadCode Place Cone, Cross Line", new cmdAutonomous_DeadCode_PlaceConeCrossLine(swerve, armAngle, armExtension, claw));
+    //chooser.addOption("DeadCode Place Cone, Docked", new cmdAutonomous_DeadCode_PlaceConeDocked(swerve, armAngle, armExtension, claw));
     //chooser.addOption("Cross Line", autoOptions.CrossLine(swerve));
     //chooser.addOption("Place Cone, Cross Line", autoOptions.PlaceConeCrossLine(swerve, armAngle, armExtension, claw));
     SmartDashboard.putData("Auto Options", chooser);
@@ -77,17 +79,19 @@ public class RobotContainer {
   private void configureDriverTwo() {
     armAngle.setDefaultCommand(new cmdArmAngle_TeleOp(armAngle, () -> MathUtil.applyDeadband(-driverTwo.getLeftY()*ArmAngleConstants.PowerFactor, 0.01), () -> false));
     armExtension.setDefaultCommand(new cmdArmExtension_TeleOp(armExtension, () -> MathUtil.applyDeadband(-driverTwo.getRightY()*ArmExtensionConstants.PowerFactor, 0.01), () -> false));
-    claw.setDefaultCommand(new cmdClaw_TeleOp(
+    /* claw.setDefaultCommand(new cmdClaw_TeleOp(
       claw, 
-      () -> MathUtil.applyDeadband(driverTwo.getLeftTriggerAxis(), 0.1), 
-      () -> MathUtil.applyDeadband(driverTwo.getRightTriggerAxis(), 0.1),
+      () -> MathUtil.applyDeadband(driverTwo.getRightTriggerAxis(), 0.1), 
+      () -> MathUtil.applyDeadband(driverTwo.getLeftTriggerAxis(), 0.1),
       () -> false
     ));
 
-    driverTwo.leftBumper().whileTrue(new cmdClaw_TeleOp(claw, () -> 1, () -> 0, () -> true));
+    driverTwo.leftBumper().whileTrue(new cmdClaw_TeleOp(claw, () -> 0, () -> 1, () -> true));
     driverTwo.leftBumper().whileFalse(new InstantCommand(() -> claw.stop()));
-    driverTwo.rightBumper().whileTrue(new cmdClaw_TeleOp(claw, () -> 0, () -> 1, () -> true));
-    driverTwo.rightBumper().whileFalse(new InstantCommand(() -> claw.stop()));
+    driverTwo.rightBumper().whileTrue(new cmdClaw_TeleOp(claw, () -> 1, () -> 0, () -> true));
+    driverTwo.rightBumper().whileFalse(new InstantCommand(() -> claw.stop())); */
+
+    driverTwo.rightBumper().onTrue(new InstantCommand(() -> air.toggle()));
     
     driverTwo.povUp().whileTrue(new cmdArmExtension_TeleOp(armExtension, () -> ArmExtensionConstants.PowerFactor, () -> true));
     driverTwo.povUp().whileFalse(new InstantCommand(() -> armExtension.stop()));
@@ -99,7 +103,7 @@ public class RobotContainer {
     driverTwo.povRight().whileTrue(new cmdArmAngle_TeleOp(armAngle, () -> -ArmAngleConstants.PowerFactor, () -> true));
     driverTwo.povRight().whileFalse(new InstantCommand(() -> armAngle.stop()));
     
-    driverTwo.back().onTrue(new InstantCommand(() -> claw.resetPosition()));
+    //driverTwo.back().onTrue(new InstantCommand(() -> claw.resetPosition()));
     driverTwo.start().onTrue(new InstantCommand(() -> armExtension.resetPosition()));
 
     driverTwo.x().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanFeedPosition, ArmExtensionConstants.HumanFeedPosition));

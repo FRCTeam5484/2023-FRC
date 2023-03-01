@@ -19,7 +19,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     try{SmartDashboard.putString("Arm Angle Command", m_robotContainer.armAngle.getCurrentCommand().getName());} catch(Exception ex){SmartDashboard.putString("Arm Angle Command", "No Command");}
     try{SmartDashboard.putString("Arm Extension Command", m_robotContainer.armExtension.getCurrentCommand().getName());} catch(Exception ex){SmartDashboard.putString("Arm Extension Command", "No Command");}
-    try{SmartDashboard.putString("Claw Command", m_robotContainer.claw.getCurrentCommand().getName());} catch(Exception ex){SmartDashboard.putString("Claw Command", "No Command");}
+    //try{SmartDashboard.putString("Claw Command", m_robotContainer.claw.getCurrentCommand().getName());} catch(Exception ex){SmartDashboard.putString("Claw Command", "No Command");}
     try{SmartDashboard.putString("Swerve Command", m_robotContainer.swerve.getCurrentCommand().getName());} catch(Exception ex){SmartDashboard.putString("Swerve Command", "No Command");}
   }
 

@@ -25,12 +25,14 @@ public class subClaw extends SubsystemBase {
   }
 
   public void openClaw(boolean override){ 
-    if(override){ clawMotor.set(-ClawConstants.PowerFactor); }
-    else{ clawMotor.set(clawEncoder.getPosition() <= ClawConstants.openLimit ? -ClawConstants.PowerFactor : 0); }
+    //System.out.println("Open: Encoder:" + clawEncoder.getPosition() + " Power:" + ClawConstants.PowerFactor);
+    if(override){ clawMotor.set(ClawConstants.PowerFactor); }
+    else{ clawMotor.set(clawEncoder.getPosition() <= ClawConstants.openLimit ? ClawConstants.PowerFactor : 0); }
   }
   public void closeClaw(boolean override){ 
-    if(override){ clawMotor.set(ClawConstants.PowerFactor); }
-    else{ clawMotor.set(clawEncoder.getPosition() >= ClawConstants.closeLimit ? ClawConstants.PowerFactor : 0); } 
+    //System.out.println("Close: Encoder:" + clawEncoder.getPosition() + " Power:" + -ClawConstants.PowerFactor);
+    if(override){ clawMotor.set(-ClawConstants.PowerFactor); }
+    else{ clawMotor.set(clawEncoder.getPosition() >= ClawConstants.closeLimit ? -ClawConstants.PowerFactor : 0); } 
   }
   public void stop(){ clawMotor.stopMotor(); }
   public void resetPosition(){ clawEncoder.setPosition(0); }
