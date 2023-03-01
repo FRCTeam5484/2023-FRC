@@ -18,7 +18,7 @@ public final class Constants {
     }
     public static final class AutoConstants {
       public static final double kMaxSpeedMetersPerSecond = SwerveConstants.MaxSpeedMetersPerSecond / 4;
-      public static final double kMaxAngularSpeedRadiansPerSecond = SwerveConstants.MaxAngularSpeedRadiansPerSecond / 10;
+      public static final double kMaxAngularSpeedRadiansPerSecond = (2 * 2 * Math.PI) / 10;
       public static final double kMaxAccelerationMetersPerSecondSquared = 2;
       public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
       public static final double kPXController = 0.1;
@@ -33,37 +33,22 @@ public final class Constants {
     public static final boolean GyroReversed = false;
     public static final double TrackWidth = Units.inchesToMeters(20);
     public static final double WheelBase = Units.inchesToMeters(32);
-    public static final double WheelDiameterMeters = 0.10033;
+    public static final double WheelDiameterMeters = Units.inchesToMeters(4);
     public static final double VoltCompensation = 12.6;
+    public static final double MaxSpeedMetersPerSecond = 4.8;
+    public static final double DriveMotorFreeSpeedRps = 5676 / 60;
+    public static final double DriveMotorReduction = 1/6.86;
+    public static final double DriveEncoderPositionFactor = (WheelDiameterMeters * Math.PI) / DriveMotorReduction;
+    public static final double DriveEncoderVelocityFactor = ((WheelDiameterMeters * Math.PI) / DriveMotorReduction) / 60.0;
+    public static final double TurningEncoderPositionFactor = (2 * Math.PI);
+    public static final double TurningEncoderVelocityFactor = (2 * Math.PI) / 60.0;
     public static final SwerveDriveKinematics SwerveKinematics = new SwerveDriveKinematics(
         new Translation2d(-TrackWidth / 2.0, WheelBase / 2.0), // front left
         new Translation2d(-TrackWidth / 2.0, -WheelBase / 2.0), // front right
         new Translation2d(TrackWidth / 2.0, WheelBase / 2.0), // back left
         new Translation2d(TrackWidth / 2.0, -WheelBase / 2.0) // back right
     );
-    public static final double MaxSpeedMetersPerSecond = 4.8;
-    public static final double MaxAngularSpeedRadiansPerSecond = 2 * 2 * Math.PI;
-    public static final double DriveMotorFreeSpeedRps = 5676 / 60;
-    public static final double WheelCircumferenceMeters = WheelDiameterMeters * Math.PI;
-    public static final double DriveMotorReduction = 1/6.86;
-    public static final double DriveWheelFreeSpeedRps = (DriveMotorFreeSpeedRps * WheelCircumferenceMeters) / DriveMotorReduction;
-    public static final double DriveEncoderPositionFactor = (WheelDiameterMeters * Math.PI) / DriveMotorReduction;
-    public static final double DriveEncoderVelocityFactor = ((WheelDiameterMeters * Math.PI) / DriveMotorReduction) / 60.0;
 
-    public static final double DriveP = 0.04;
-    public static final double DriveI = 0;
-    public static final double DriveD = 0;
-    public static final double DriveFF = 1 / DriveWheelFreeSpeedRps;
-    public static final double DriveMinOutput = -1;
-    public static final double DriveMaxOutput = 1;
-
-    public static final double RotationP = 1;
-    public static final double RotationI = 0;
-    public static final double RotationD = 0;
-    public static final double RotationFF = 0;
-    public static final double RotationMinOutput = -1;
-    public static final double RotationMaxOutput = 1;
-       
     public static final class FrontLeft{
       public static final int DriveMotorPort = 4;
       public static final IdleMode DriveIdleMode = IdleMode.kBrake;

@@ -9,7 +9,6 @@ import frc.robot.commands.cmdAuto_SetGoal;
 import frc.robot.commands.cmdAutonomous_DeadCode_CrossLine;
 import frc.robot.commands.cmdAutonomous_DeadCode_CrossLineDocked;
 import frc.robot.commands.cmdClaw_TeleOp;
-import frc.robot.commands.cmdItemNeeded_TeleOp;
 import frc.robot.commands.cmdArmAngle_TeleOp;
 import frc.robot.commands.cmdArmExtension_TeleOp;
 import frc.robot.commands.cmdAuto_SetDefault;
@@ -20,6 +19,7 @@ import frc.robot.subsystems.subClaw;
 import frc.robot.subsystems.subItemNeeded;
 import frc.robot.subsystems.subLimeLight;
 import frc.robot.subsystems.subSwerve;
+import frc.robot.subsystems.subItemNeeded.itemList;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -63,10 +63,10 @@ public class RobotContainer {
           () -> MathUtil.applyDeadband(-driverOne.getLeftY(), 0.01),
           () -> MathUtil.applyDeadband(driverOne.getLeftX(), 0.01),
           () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01)));
-    driverOne.x().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.cubeDown));
-    driverOne.b().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.cubeUp));
-    driverOne.a().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.coneDown));
-    driverOne.y().onTrue(new cmdItemNeeded_TeleOp(item, ServoConstants.coneUp)); 
+    driverOne.x().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeDown)));
+    driverOne.b().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeUp)));
+    driverOne.a().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.ConeDown)));
+    driverOne.y().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.ConeUp)));
     driverOne.leftBumper().whileTrue(new RunCommand(() -> swerve.setXMode()));
   }
 
