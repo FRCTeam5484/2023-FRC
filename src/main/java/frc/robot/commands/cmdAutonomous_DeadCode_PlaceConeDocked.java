@@ -16,7 +16,7 @@ public class cmdAutonomous_DeadCode_PlaceConeDocked extends SequentialCommandGro
       new InstantCommand(() -> air.toggle(), air),
       new cmdAuto_SetDefault(angle, extension),
       new InstantCommand(() -> air.toggle(), air),
-      new cmdAutonomous_DeadCode_CrossLineDocked(swerve, 0.3)
+      new cmdAutonomous_DeadCode_CrossLineDocked(swerve, 0.35)
     );
   }
 }
