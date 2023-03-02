@@ -38,7 +38,7 @@ public class RobotContainer {
   public final subArmExtension armExtension = new subArmExtension();
   //public final subClaw claw = new subClaw();
   public final subItemNeeded item = new subItemNeeded();
-  private final subLimeLight lime = new subLimeLight();
+  //private final subLimeLight lime = new subLimeLight();
   public final subPneumatic air = new subPneumatic();
   SendableChooser<Command> chooser = new SendableChooser<>();
   private final AutonomousCommands autoOptions = new AutonomousCommands();

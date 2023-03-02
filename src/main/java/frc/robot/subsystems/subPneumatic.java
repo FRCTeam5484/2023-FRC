@@ -13,7 +13,7 @@ public class subPneumatic extends SubsystemBase {
   public subPneumatic() {
     SmartDashboard.setDefaultBoolean("Enable Compressor", false);
     SmartDashboard.setDefaultBoolean("Disable Compressor", false);
-    ph.enableCompressorAnalog(100,120);
+    ph.enableCompressorAnalog(80,120);
     close();
   }
 
@@ -25,7 +25,7 @@ public class subPneumatic extends SubsystemBase {
 
     if (SmartDashboard.getBoolean("Enable Compressor", false)) {
       SmartDashboard.putBoolean("Enable Compressor", false);
-      ph.enableCompressorAnalog(100,120);
+      ph.enableCompressorAnalog(80,120);
     }
     if (SmartDashboard.getBoolean("Disable Compressor", false)) {
       SmartDashboard.putBoolean("Disable Compressor", false);

@@ -84,7 +84,7 @@
           },
           "6,1": {
             "size": [
-              3,
+              2,
               2
             ],
             "content": {
@@ -132,7 +132,7 @@
               ]
             }
           },
-          "4,1": {
+          "4,2": {
             "size": [
               2,
               2
@@ -142,7 +142,7 @@
               "_title": "Arm",
               "_glyph": 149,
               "_showGlyph": false,
-              "Layout/Label position": "LEFT",
+              "Layout/Label position": "TOP",
               "_children": [
                 {
                   "_type": "Text View",
@@ -164,64 +164,14 @@
                   "_title": "Angle Encoder",
                   "_glyph": 148,
                   "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Arm Ext Power",
-                  "_title": "Extension Power",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Arm Ext Output",
-                  "_title": "Extension Output",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Arm Ext Encoder",
-                  "_title": "Extension Encoder",
-                  "_glyph": 148,
-                  "_showGlyph": false
                 }
               ]
             }
           },
-          "4,0": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Claw",
-              "_glyph": 149,
-              "_showGlyph": false,
-              "Layout/Label position": "LEFT",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Claw Encoder",
-                  "_title": "Encoder",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Claw Power",
-                  "_title": "Power",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
-          "10,1": {
+          "8,1": {
             "size": [
               3,
-              3
+              2
             ],
             "content": {
               "_type": "List Layout",
@@ -250,18 +200,11 @@
                   "_title": "Extension Command",
                   "_glyph": 148,
                   "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Claw Command",
-                  "_title": "Claw Command",
-                  "_glyph": 148,
-                  "_showGlyph": false
                 }
               ]
             }
           },
-          "10,0": {
+          "8,0": {
             "size": [
               3,
               1
@@ -270,123 +213,6 @@
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/Auto Options",
               "_title": "SmartDashboard/Auto Options",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "8,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Vision bot pose TX",
-              "_title": "Vision bot pose TX",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "14,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Vision bot pose TY",
-              "_title": "Vision bot pose TY",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "15,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Vision bot pose RZ",
-              "_title": "Vision bot pose RZ",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "16,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Vision bot pose Blue TX",
-              "_title": "Vision bot pose Blue TX",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "9,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Vision bot pose Blue TY",
-              "_title": "Vision bot pose Blue TY",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "14,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Vision bot pose Blue RZ",
-              "_title": "Vision bot pose Blue RZ",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "15,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Vision bot pose Red TX",
-              "_title": "Vision bot pose Red TX",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "16,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Vision bot pose Red RZ",
-              "_title": "Vision bot pose Red RZ",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "9,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Vision bot pose Red TY",
-              "_title": "Vision bot pose Red TY",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -412,7 +238,7 @@
             "content": {
               "_type": "Gyro",
               "_source0": "network_table:///SmartDashboard/Heading",
-              "_title": "SmartDashboard/Heading",
+              "_title": "Heading",
               "_glyph": 148,
               "_showGlyph": false,
               "Visuals/Major tick spacing": 45.0,
@@ -432,6 +258,42 @@
               "_title": "Human Player Item",
               "_glyph": 148,
               "_showGlyph": false
+            }
+          },
+          "4,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "Extension",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "TOP",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Arm Ext Power",
+                  "_title": "Extension Power",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Arm Ext Output",
+                  "_title": "Extension Output",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Arm Ext Encoder",
+                  "_title": "Extension Encoder",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              ]
             }
           }
         }
@@ -716,9 +578,9 @@
     }
   ],
   "windowGeometry": {
-    "x": -5.0,
-    "y": 228.0,
-    "width": 2034.0,
-    "height": 853.0
+    "x": 110.0,
+    "y": 519.0,
+    "width": 1974.0,
+    "height": 947.0
   }
 }
