@@ -11,7 +11,7 @@ import frc.robot.subsystems.subArmExtension;
 public class cmdAuto_SetDefault extends CommandBase {
   subArmAngle angle;
   subArmExtension extension;
-  PIDController anglePID = new PIDController(0.02, 0, 0);
+  PIDController anglePID = new PIDController(0.005, 0, 0);
   PIDController extensionPID = new PIDController(0.03, 0, 0);
   Timer time;
   public cmdAuto_SetDefault(subArmAngle angle, subArmExtension extension) {

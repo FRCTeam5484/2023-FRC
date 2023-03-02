@@ -21,10 +21,10 @@ public class subItemNeeded extends SubsystemBase {
   public void periodic() {  }
   public void setCurrentSelection(itemList selected){ 
     switch(selected){
-      case ConeUp : itemNeededServo.setAngle(ServoConstants.coneUp);
-      case ConeDown : itemNeededServo.setAngle(ServoConstants.coneDown);
-      case CubeUp : itemNeededServo.setAngle(ServoConstants.cubeUp);
-      case CubeDown : itemNeededServo.setAngle(ServoConstants.cubeDown);
+      case ConeUp : itemNeededServo.setAngle(ServoConstants.coneUp); break;
+      case ConeDown : itemNeededServo.setAngle(ServoConstants.coneDown); break;
+      case CubeUp : itemNeededServo.setAngle(ServoConstants.cubeUp); break;
+      case CubeDown : itemNeededServo.setAngle(ServoConstants.cubeDown); break;
     }
     SmartDashboard.putString("Human Player Item", selected.toString());
   }
