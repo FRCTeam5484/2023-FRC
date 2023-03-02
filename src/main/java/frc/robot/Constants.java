@@ -59,7 +59,7 @@ public final class Constants {
       public static final int RotationCurrentLimit = 20;
       public static final boolean RotationMotorReversed = true;
       public static final int RotationEncoderPort = 7;
-      public static final double RotationAbsoluteEncoderOffset = 320;
+      public static final double RotationAbsoluteEncoderOffset = 317.197;
       public static final boolean RotationEncoderReversed = true;
     }
 
@@ -73,12 +73,12 @@ public final class Constants {
       public static final int RotationCurrentLimit = 20;
       public static final boolean RotationMotorReversed = true;
       public static final int RotationEncoderPort = 5;
-      public static final double RotationAbsoluteEncoderOffset = 207;
+      public static final double RotationAbsoluteEncoderOffset = 204.873;
       public static final boolean RotationEncoderReversed = true;
     }
 
     public static final class BackLeft{
-      public static final int DriveMotorPort = 8;
+      public static final int DriveMotorPort = 5;
       public static final IdleMode DriveIdleMode = IdleMode.kBrake;
       public static final int DriveCurrentLimit = 50;
       public static final boolean DriveMotorReversed = false;
@@ -87,7 +87,7 @@ public final class Constants {
       public static final int RotationCurrentLimit = 20;
       public static final boolean RotationMotorReversed = true;
       public static final int RotationEncoderPort = 3;
-      public static final double RotationAbsoluteEncoderOffset = 345;
+      public static final double RotationAbsoluteEncoderOffset = 341.367;
       public static final boolean RotationEncoderReversed = true;
     }
 
@@ -96,12 +96,12 @@ public final class Constants {
       public static final IdleMode DriveIdleMode = IdleMode.kBrake;
       public static final int DriveCurrentLimit = 50;
       public static final boolean DriveMotorReversed = false;
-      public static final int RotationMotorPort = 5;      
+      public static final int RotationMotorPort = 8;      
       public static final IdleMode RotationIdleMode = IdleMode.kBrake;      
       public static final int RotationCurrentLimit = 20;      
       public static final boolean RotationMotorReversed = true;
       public static final int RotationEncoderPort = 1;
-      public static final double RotationAbsoluteEncoderOffset = 272;
+      public static final double RotationAbsoluteEncoderOffset = 271.582;
       public static final boolean RotationEncoderReversed = true;
     }
   }
@@ -112,13 +112,13 @@ public final class Constants {
     public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 60;
     
-    public static final double limitPositionHigh = 300;
-    public static final double limitPositionLow = 50;
-    public static final double HumanFeedPosition = 235;
-    public static final double GroundPosition = 52;
-    public static final double MidPosition = 243;
-    public static final double HighPosition = 243;
-    public static final double DefaultPosition = 175;
+    public static final double limitPositionHigh = 270;
+    public static final double limitPositionLow = 27;
+    public static final double HumanFeedPosition = 211;
+    public static final double GroundPosition = 35;
+    public static final double MidPosition = 219;
+    public static final double HighPosition = 219;
+    public static final double DefaultPosition = 151;
   }
   public static final class ArmExtensionConstants {
     public static final int Port = 10;
