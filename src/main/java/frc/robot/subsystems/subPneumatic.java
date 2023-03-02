@@ -21,7 +21,7 @@ public class subPneumatic extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Pressure", ph.getPressure(0));
     SmartDashboard.putBoolean("Compressor Running", ph.getCompressor());
-    SmartDashboard.putBoolean("Solenoid Status", intakeSolenoid.get());
+    //SmartDashboard.putBoolean("Solenoid Status", intakeSolenoid.get());
 
     if (SmartDashboard.getBoolean("Enable Compressor", false)) {
       SmartDashboard.putBoolean("Enable Compressor", false);

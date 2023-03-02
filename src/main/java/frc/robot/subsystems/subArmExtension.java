@@ -21,8 +21,8 @@ public class subArmExtension extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Arm Ext Encoder", getEncoderPosition());
-    SmartDashboard.putNumber("Arm Ext Power", extensionMotor.get());
-    SmartDashboard.putNumber("Arm Ext Output", extensionMotor.getAppliedOutput());
+    //SmartDashboard.putNumber("Arm Ext Power", extensionMotor.get());
+    //SmartDashboard.putNumber("Arm Ext Output", extensionMotor.getAppliedOutput());
   }
 
   public void teleOp(double value, boolean override){

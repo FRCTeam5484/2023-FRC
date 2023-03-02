@@ -20,8 +20,8 @@ public class subArmAngle extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Arm Ang Power", angleMotor.get());
-    SmartDashboard.putNumber("Arm Ang Output", angleMotor.getAppliedOutput());
+    //SmartDashboard.putNumber("Arm Ang Power", angleMotor.get());
+    //SmartDashboard.putNumber("Arm Ang Output", angleMotor.getAppliedOutput());
     SmartDashboard.putNumber("Arm Absolute", getEncoderPosition());
   }
 
