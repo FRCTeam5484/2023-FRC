@@ -11,6 +11,7 @@ import frc.robot.commands.cmdAutonomous_DeadCode_PlaceConeCrossLine;
 import frc.robot.commands.cmdAutonomous_DeadCode_PlaceConeDocked;
 import frc.robot.commands.cmdArmAngle_TeleOp;
 import frc.robot.commands.cmdArmExtension_TeleOp;
+import frc.robot.commands.cmdAuto_GripCone;
 import frc.robot.commands.cmdAuto_SetDefault;
 import frc.robot.commands.cmdSwerve_TeleOp;
 import frc.robot.subsystems.subArmAngle;
@@ -88,6 +89,7 @@ public class RobotContainer {
     driverTwo.rightBumper().whileTrue(new cmdClaw_TeleOp(claw, () -> 1, () -> 0, () -> true));
     driverTwo.rightBumper().whileFalse(new InstantCommand(() -> claw.stop())); */
 
+    driverTwo.leftBumper().onTrue(new cmdAuto_GripCone(armAngle, air));
     driverTwo.rightBumper().onTrue(new InstantCommand(() -> air.toggle()));
     
     driverTwo.povUp().whileTrue(new cmdArmExtension_TeleOp(armExtension, () -> ArmExtensionConstants.PowerFactor, () -> true));
