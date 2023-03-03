@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.ArmAngleConstants;
 import frc.robot.Constants.ArmExtensionConstants;
 import frc.robot.subsystems.subArmAngle;
@@ -14,6 +15,7 @@ public class cmdAutonomous_DeadCode_PlaceConeDocked extends SequentialCommandGro
     addCommands(
       new cmdAuto_SetGoal(angle, extension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition).withTimeout(3),      
       new InstantCommand(() -> air.toggle(), air),
+      new WaitCommand(1),
       new cmdAuto_SetDefault(angle, extension),
       new InstantCommand(() -> air.toggle(), air),
       new cmdAutonomous_DeadCode_CrossLineDocked(swerve, 0.35)

@@ -118,7 +118,7 @@ public final class Constants {
     public static final double GroundPosition = 40;
     public static final double MidPosition = 219;
     public static final double HighPosition = 219;
-    public static final double DefaultPosition = 151;
+    public static final double DefaultPosition = 114;
   }
   public static final class ArmExtensionConstants {
     public static final int Port = 10;

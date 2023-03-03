@@ -27,6 +27,9 @@ public class cmdAutonomous_DeadCode_CrossLineDocked extends CommandBase {
       swerve.drive(speed, 0, 0);
     }
     else if (!time.hasElapsed(4.8)){
+      swerve.drive(0, 0, 0);
+    }
+    else if (!time.hasElapsed(6.5)){
       swerve.drive(-speed, 0, 0);
     }
     else{
@@ -42,6 +45,6 @@ public class cmdAutonomous_DeadCode_CrossLineDocked extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return time.hasElapsed(7);
+    return time.hasElapsed(8);
   }
 }
