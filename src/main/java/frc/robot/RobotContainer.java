@@ -59,14 +59,15 @@ public class RobotContainer {
     //chooser.addOption("Place Cone, Cross Line", autoOptions.PlaceConeCrossLine(swerve, armAngle, armExtension, claw));
     SmartDashboard.putData("Auto Options", chooser);
   }
-
+  
   private void configureDriverOne() {
     swerve.setDefaultCommand(
       new cmdSwerve_TeleOp(
           swerve,
           () -> MathUtil.applyDeadband(-driverOne.getLeftY(), 0.01),
           () -> MathUtil.applyDeadband(driverOne.getLeftX(), 0.01),
-          () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01)));
+          () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01),
+          () -> driverOne.rightBumper().getAsBoolean()));
     driverOne.x().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeDown)));
     driverOne.b().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeUp)));
     driverOne.a().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.ConeDown)));
