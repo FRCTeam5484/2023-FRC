@@ -1,14 +1,16 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PneumaticConstants;
 
 public class subPneumatic extends SubsystemBase {
   private PneumaticHub ph = new PneumaticHub(PneumaticConstants.PneumaticHubId);
-  private Solenoid intakeSolenoid = ph.makeSolenoid(PneumaticConstants.IntakeSolenoid);
+  private DoubleSolenoid intakeSolenoid = ph.makeDoubleSolenoid(PneumaticConstants.IntakeSolenoidFirstId, PneumaticConstants.IntakeSolenoidSecondId);
 
   public subPneumatic() {
     SmartDashboard.setDefaultBoolean("Enable Compressor", false);
@@ -34,6 +36,7 @@ public class subPneumatic extends SubsystemBase {
   }
 
   public void toggle(){intakeSolenoid.toggle();}
-  public void open(){ intakeSolenoid.set(true);}
-  public void close(){ intakeSolenoid.set(false);}
+  public void open(){ intakeSolenoid.set(Value.kForward);}
+  public void close(){ intakeSolenoid.set(Value.kReverse);}
+  public void stop(){ intakeSolenoid.set(Value.kOff);}
 }

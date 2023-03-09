@@ -158,6 +158,8 @@ public class subSwerve extends SubsystemBase {
 
   public void zeroHeading() { gyro.reset(); }
   public double getHeading() { return Math.IEEEremainder(gyro.getAngle(), 360); }
+  public double getRoll() { return gyro.getRoll(); }
+  public double getPitch() { return gyro.getPitch(); }
   public Rotation2d getRotation2d() { return Rotation2d.fromDegrees(getHeading()); }
   public ChassisSpeeds getChassisSpeeds(){ return SwerveConstants.SwerveKinematics.toChassisSpeeds(frontLeftModule.getState(), frontRightModule.getState(), backLeftModule.getState(), backRightModule.getState());}
 
