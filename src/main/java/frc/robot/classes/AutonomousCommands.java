@@ -11,7 +11,6 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.ArmAngleConstants;
@@ -23,7 +22,6 @@ import frc.robot.subsystems.subArmAngle;
 import frc.robot.subsystems.subArmExtension;
 import frc.robot.subsystems.subClaw;
 import frc.robot.subsystems.subSwerve;
-import frc.robot.commands.cmdAuto_SetGoal;
 
 public class AutonomousCommands {
     public Command CrossLine(subSwerve swerve){

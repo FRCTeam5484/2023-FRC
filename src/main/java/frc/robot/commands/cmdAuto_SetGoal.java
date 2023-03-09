@@ -10,7 +10,7 @@ public class cmdAuto_SetGoal extends CommandBase {
   double angleGoal;
   double extensionGoal;
   PIDController anglePID = new PIDController(0.01, 0, 0);
-  PIDController extensionPID = new PIDController(0.01, 0, 0);
+  PIDController extensionPID = new PIDController(0.02, 0, 0);
 
   public cmdAuto_SetGoal(subArmAngle angle, subArmExtension extension, double angleGoal, double extensionGoal) {
     this.angle = angle;

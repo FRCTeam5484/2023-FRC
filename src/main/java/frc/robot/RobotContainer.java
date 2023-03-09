@@ -1,27 +1,8 @@
 package frc.robot;
 
-import frc.robot.Constants.ArmAngleConstants;
-import frc.robot.Constants.ArmExtensionConstants;
-import frc.robot.Constants.OperatorConstants;
-import frc.robot.classes.AutonomousCommands;
-import frc.robot.commands.cmdAuto_SetGoal;
-import frc.robot.commands.cmdAutonomous_DeadCode_CrossLine;
-import frc.robot.commands.cmdAutonomous_DeadCode_CrossLineDocked;
-import frc.robot.commands.cmdAutonomous_DeadCode_PlaceConeCrossLine;
-import frc.robot.commands.cmdAutonomous_DeadCode_PlaceConeDocked;
-import frc.robot.commands.cmdArmAngle_TeleOp;
-import frc.robot.commands.cmdArmExtension_TeleOp;
-import frc.robot.commands.cmdAuto_GripCone;
-import frc.robot.commands.cmdAuto_Level;
-import frc.robot.commands.cmdAuto_SetDefault;
-import frc.robot.commands.cmdSwerve_TeleOp;
-import frc.robot.subsystems.subArmAngle;
-import frc.robot.subsystems.subArmExtension;
-import frc.robot.subsystems.subClaw;
-import frc.robot.subsystems.subItemNeeded;
-import frc.robot.subsystems.subLimeLight;
-import frc.robot.subsystems.subPneumatic;
-import frc.robot.subsystems.subSwerve;
+import frc.robot.Constants.*;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 import frc.robot.subsystems.subItemNeeded.itemList;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -38,12 +19,10 @@ public class RobotContainer {
   public final subSwerve swerve = new subSwerve();
   public final subArmAngle armAngle = new subArmAngle();
   public final subArmExtension armExtension = new subArmExtension();
-  //public final subClaw claw = new subClaw();
   public final subItemNeeded item = new subItemNeeded();
-  //private final subLimeLight lime = new subLimeLight();
   public final subPneumatic air = new subPneumatic();
   SendableChooser<Command> chooser = new SendableChooser<>();
-  private final AutonomousCommands autoOptions = new AutonomousCommands();
+  //private final AutonomousCommands autoOptions = new AutonomousCommands();
 
   public RobotContainer() {
     configureDriverOne();

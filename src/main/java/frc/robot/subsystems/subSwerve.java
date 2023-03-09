@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class subSwerve extends SubsystemBase {
 
   private final SwerveModule frontLeftModule = new SwerveModule(
-    "Front Left", 
     SwerveConstants.FrontLeft.DriveMotorPort, 
     SwerveConstants.FrontLeft.DriveIdleMode, 
     SwerveConstants.FrontLeft.DriveCurrentLimit, 
@@ -31,7 +30,6 @@ public class subSwerve extends SubsystemBase {
     SwerveConstants.FrontLeft.RotationEncoderReversed);
 
   private final SwerveModule frontRightModule = new SwerveModule(
-    "Front Right", 
     SwerveConstants.FrontRight.DriveMotorPort, 
     SwerveConstants.FrontRight.DriveIdleMode, 
     SwerveConstants.FrontRight.DriveCurrentLimit, 
@@ -45,7 +43,6 @@ public class subSwerve extends SubsystemBase {
     SwerveConstants.FrontRight.RotationEncoderReversed);
 
   private final SwerveModule backLeftModule = new SwerveModule(
-    "Back Left", 
     SwerveConstants.BackLeft.DriveMotorPort, 
     SwerveConstants.BackLeft.DriveIdleMode, 
     SwerveConstants.BackLeft.DriveCurrentLimit, 
@@ -59,7 +56,6 @@ public class subSwerve extends SubsystemBase {
     SwerveConstants.BackLeft.RotationEncoderReversed);
 
   private final SwerveModule backRightModule = new SwerveModule(
-    "Back Right", 
     SwerveConstants.BackRight.DriveMotorPort, 
     SwerveConstants.BackRight.DriveIdleMode, 
     SwerveConstants.BackRight.DriveCurrentLimit, 
@@ -170,19 +166,19 @@ public class subSwerve extends SubsystemBase {
     //SmartDashboard.putNumber("Robot Speed X", getChassisSpeeds().vxMetersPerSecond);
     //SmartDashboard.putNumber("Robot Speed Y", getChassisSpeeds().vyMetersPerSecond);
     //SmartDashboard.putNumber("Robot Omega", getChassisSpeeds().omegaRadiansPerSecond);
-    SmartDashboard.putNumber("Front Left Angle Raw", frontLeftModule.getAngle());
+    //SmartDashboard.putNumber("Front Left Angle Raw", frontLeftModule.getAngle());
     //SmartDashboard.putNumber("Front Left Drive MPS", frontLeftModule.getState().speedMetersPerSecond);
     //SmartDashboard.putNumber("Front Left Drive Power", frontLeftModule.getDrivePower());
     //SmartDashboard.putNumber("Front Left Rotation Power", frontLeftModule.getRotationPower());
-    SmartDashboard.putNumber("Front Right Angle Raw", frontRightModule.getAngle());
+    //SmartDashboard.putNumber("Front Right Angle Raw", frontRightModule.getAngle());
     //SmartDashboard.putNumber("Front Right Drive MPS", frontRightModule.getState().speedMetersPerSecond);
     //SmartDashboard.putNumber("Front Right Drive Power", frontRightModule.getDrivePower());
     //SmartDashboard.putNumber("Front Right Rotation Power", frontRightModule.getRotationPower());
-    SmartDashboard.putNumber("Back Left Angle Raw", backLeftModule.getAngle());
+    //SmartDashboard.putNumber("Back Left Angle Raw", backLeftModule.getAngle());
     //SmartDashboard.putNumber("Back Left Drive MPS", backLeftModule.getState().speedMetersPerSecond);
     //SmartDashboard.putNumber("Back Left Drive Power", backLeftModule.getDrivePower());
     //SmartDashboard.putNumber("Back Left Rotation Power", backLeftModule.getRotationPower());
-    SmartDashboard.putNumber("Back Right Angle Raw", backRightModule.getAngle());
+    //SmartDashboard.putNumber("Back Right Angle Raw", backRightModule.getAngle());
     //SmartDashboard.putNumber("Back Right Drive MPS", backRightModule.getState().speedMetersPerSecond);
     //SmartDashboard.putNumber("Back Right Drive Power", backRightModule.getDrivePower());
     //SmartDashboard.putNumber("Back Right Rotation Power", backRightModule.getRotationPower());

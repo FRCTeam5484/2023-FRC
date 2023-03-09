@@ -6,7 +6,6 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoder;
@@ -15,7 +14,6 @@ import com.revrobotics.RelativeEncoder;
 import frc.robot.Constants.SwerveConstants;
 
 public class SwerveModule {
-  private final String moduleName;
   private final CANSparkMax driveMotor;
   private final CANSparkMax rotationMotor;
   private final RelativeEncoder driveEncoder;
@@ -23,8 +21,7 @@ public class SwerveModule {
   private final CANCoder rotationEncoder;
   private final PIDController rotationPID;
 
-  public SwerveModule(String moduleName, int drivePort, IdleMode driveIdle, int driveCurrentLimit, boolean driveReversed, int rotationPort, IdleMode rotationIdle, int rotationCurrentLimit, boolean rotationReversed, int rotationEncoderPort, double rotationEncoderOffset, boolean rotationEncoderReversed) {
-    this.moduleName = moduleName;
+  public SwerveModule(int drivePort, IdleMode driveIdle, int driveCurrentLimit, boolean driveReversed, int rotationPort, IdleMode rotationIdle, int rotationCurrentLimit, boolean rotationReversed, int rotationEncoderPort, double rotationEncoderOffset, boolean rotationEncoderReversed) {
     rotationEncoder = new CANCoder(rotationEncoderPort);
         CANCoderConfiguration canCoderConfiguration = new CANCoderConfiguration();
         canCoderConfiguration.magnetOffsetDegrees = rotationEncoderOffset;
