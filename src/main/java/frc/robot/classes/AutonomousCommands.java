@@ -11,6 +11,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.ArmAngleConstants;
@@ -20,7 +21,6 @@ import frc.robot.Constants.SwerveConstants.AutoConstants;
 import frc.robot.commands.cmdAuto_SetGoal;
 import frc.robot.subsystems.subArmAngle;
 import frc.robot.subsystems.subArmExtension;
-import frc.robot.subsystems.subClaw;
 import frc.robot.subsystems.subSwerve;
 
 public class AutonomousCommands {
@@ -58,8 +58,8 @@ public class AutonomousCommands {
 
         return swerveControllerCommand.andThen(() -> swerve.drive(0, 0, 0));
     }
-    public Command PlaceConeCrossLine(subSwerve swerve, subArmAngle angle, subArmExtension extension, subClaw claw){
-        TrajectoryConfig config =
+    public Command PlaceConeCrossLine(subSwerve swerve, subArmAngle angle, subArmExtension extension){
+        /* TrajectoryConfig config =
         new TrajectoryConfig(
                 AutoConstants.kMaxSpeedMetersPerSecond,
                 AutoConstants.kMaxAccelerationMetersPerSecondSquared)
@@ -91,6 +91,7 @@ public class AutonomousCommands {
         swerve.resetOdometry(exampleTrajectory.getInitialPose());
         Command cmdSetArm = new cmdAuto_SetGoal(angle, extension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition);
         Command cmdSetArmUp = new cmdAuto_SetGoal(angle, extension, ArmAngleConstants.DefaultPosition, ArmExtensionConstants.DefaultPosition);
-        return cmdSetArm.andThen(new WaitCommand(2)).andThen(() -> claw.openClaw(false)).andThen(new WaitCommand(1)).andThen(cmdSetArmUp).alongWith(swerveControllerCommand).andThen(() -> swerve.drive(0, 0, 0));
+        return cmdSetArm.andThen(new WaitCommand(2)).andThen(() -> claw.openClaw(false)).andThen(new WaitCommand(1)).andThen(cmdSetArmUp).alongWith(swerveControllerCommand).andThen(() -> swerve.drive(0, 0, 0)); */
+        return new InstantCommand();
     }
 }
