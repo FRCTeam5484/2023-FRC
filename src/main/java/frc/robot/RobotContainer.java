@@ -47,14 +47,15 @@ public class RobotContainer {
           () -> MathUtil.applyDeadband(-driverOne.getLeftY(), 0.01),
           () -> MathUtil.applyDeadband(driverOne.getLeftX(), 0.01),
           () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01),
-          () -> driverOne.rightBumper().getAsBoolean()));
+          () -> driverOne.rightTrigger().getAsBoolean(),
+          () -> driverOne.leftTrigger().getAsBoolean()));
     driverOne.x().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeDown)));
     driverOne.b().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeUp)));
     driverOne.a().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.ConeDown)));
     driverOne.y().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.ConeUp)));
     driverOne.leftBumper().whileTrue(new RunCommand(() -> swerve.setXMode()));
 
-    driverOne.rightTrigger().onTrue(new cmdAuto_Level(swerve));
+    //driverOne.rightTrigger().onTrue(new cmdAuto_Level(swerve));
   }
 
   private void configureDriverTwo() {
@@ -72,8 +73,8 @@ public class RobotContainer {
     driverTwo.rightBumper().whileTrue(new cmdClaw_TeleOp(claw, () -> 1, () -> 0, () -> true));
     driverTwo.rightBumper().whileFalse(new InstantCommand(() -> claw.stop())); */
 
-    driverTwo.leftBumper().onTrue(new cmdAuto_GripCone(armAngle, air));
-    driverTwo.rightBumper().onTrue(new InstantCommand(() -> air.toggle()));
+    driverTwo.leftBumper().onTrue(new InstantCommand(() -> air.open()));
+    driverTwo.rightBumper().onTrue(new InstantCommand(() -> air.close()));
     
     driverTwo.povUp().whileTrue(new cmdArmExtension_TeleOp(armExtension, () -> ArmExtensionConstants.PowerFactor, () -> true));
     driverTwo.povUp().whileFalse(new InstantCommand(() -> armExtension.stop()));
@@ -85,8 +86,8 @@ public class RobotContainer {
     driverTwo.povRight().whileTrue(new cmdArmAngle_TeleOp(armAngle, () -> -ArmAngleConstants.PowerFactor, () -> true));
     driverTwo.povRight().whileFalse(new InstantCommand(() -> armAngle.stop()));
     
-    driverTwo.back().onTrue(new cmdAuto_SetDefault(armAngle, armExtension));
-    driverTwo.start().onTrue(new InstantCommand(() -> armExtension.resetPosition()));
+    driverTwo.back().onTrue(new InstantCommand(() -> armExtension.resetPosition()));
+    driverTwo.start().onTrue(new cmdAuto_OpenPartly(air));
 
     driverTwo.x().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanFeedPosition, ArmExtensionConstants.HumanFeedPosition));
     driverTwo.x().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));

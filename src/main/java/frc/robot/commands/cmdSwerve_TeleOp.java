@@ -13,14 +13,16 @@ public class cmdSwerve_TeleOp extends CommandBase {
   private final DoubleSupplier YSupplier;
   private final DoubleSupplier rotationSupplier;
   private final BooleanSupplier boost;
+  private final BooleanSupplier slow;
   private final SlewRateLimiter xLimiter, yLimiter, rotationLimiter;
   
-  public cmdSwerve_TeleOp(subSwerve swerve, DoubleSupplier XSupplier, DoubleSupplier YSupplier, DoubleSupplier rotationSupplier, BooleanSupplier boost) {
+  public cmdSwerve_TeleOp(subSwerve swerve, DoubleSupplier XSupplier, DoubleSupplier YSupplier, DoubleSupplier rotationSupplier, BooleanSupplier boost, BooleanSupplier slow) {
     this.swerve = swerve;
     this.XSupplier = XSupplier;
     this.YSupplier = YSupplier;
     this.rotationSupplier = rotationSupplier;
     this.boost = boost;
+    this.slow = slow;
     this.xLimiter = new SlewRateLimiter(3.5);
     this.yLimiter = new SlewRateLimiter(3.5);
     this.rotationLimiter = new SlewRateLimiter(4.5);
@@ -39,6 +41,11 @@ public class cmdSwerve_TeleOp extends CommandBase {
     if(boost.getAsBoolean()){
       xSpeed = xLimiter.calculate(xSpeed)*(SwerveConstants.TeleOp.DriveSpeedFactor+0.3);
       ySpeed = yLimiter.calculate(ySpeed)*(SwerveConstants.TeleOp.DriveSpeedFactor+0.3);
+      rotationSpeed = rotationLimiter.calculate(rotationSpeed)*SwerveConstants.TeleOp.RotationSpeedFactor;
+    }
+    else if (slow.getAsBoolean()){
+      xSpeed = xLimiter.calculate(xSpeed)*(SwerveConstants.TeleOp.DriveSpeedFactor-0.3);
+      ySpeed = yLimiter.calculate(ySpeed)*(SwerveConstants.TeleOp.DriveSpeedFactor-0.3);
       rotationSpeed = rotationLimiter.calculate(rotationSpeed)*SwerveConstants.TeleOp.RotationSpeedFactor;
     }
     else {

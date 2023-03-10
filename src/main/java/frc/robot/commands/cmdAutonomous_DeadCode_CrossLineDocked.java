@@ -23,17 +23,17 @@ public class cmdAutonomous_DeadCode_CrossLineDocked extends CommandBase {
 
   @Override
   public void execute() {
-    if(!time.hasElapsed(3)){
+    if(time.get() < 3){
       swerve.drive(speed, 0, 0);
     }
-    else if (!time.hasElapsed(5)){
+    else if (time.get() < 3.5){
       swerve.drive(0, 0, 0);
     }
-    else if (!time.hasElapsed(6.5)){
+    else if (time.get() < 5){
       swerve.drive(-speed, 0, 0);
     }
     else{
-      swerve.setXMode();
+      swerve.drive(0, 0, 0);
     }
   }
 
@@ -45,6 +45,6 @@ public class cmdAutonomous_DeadCode_CrossLineDocked extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return time.hasElapsed(8);
+    return time.hasElapsed(5.5);
   }
 }

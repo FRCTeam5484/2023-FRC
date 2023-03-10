@@ -117,9 +117,9 @@ public final class Constants {
     public static final double HumanFeedPosition = 211;
     public static final double GroundPosition = 40;
     public static final double MidPosition = 219;
-    public static final double MidPlacement = 230;
+    public static final double MidPlacement = 240;
     public static final double HighPosition = 219;
-    public static final double HighPlacement = 230;
+    public static final double HighPlacement = 240;
     public static final double DefaultPosition = 114;
   }
   public static final class ArmExtensionConstants {
@@ -159,8 +159,8 @@ public final class Constants {
   }
   public static final class PneumaticConstants{
     public final static int PneumaticHubId = 1;
-      public final static int IntakeSolenoidFirstId = 0;
-      public final static int IntakeSolenoidSecondId = 1;
+      public final static int IntakeSolenoidFirstId = 1;
+      public final static int IntakeSolenoidSecondId = 0;
       // Pressure
       public final static double MinimumPressure = 100.0;
       public final static double MaximumPressure = 120.0;

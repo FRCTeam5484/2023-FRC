@@ -163,6 +163,7 @@ public class subSwerve extends SubsystemBase {
   public void periodic() {
     updateOdometry();
     SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
+    SmartDashboard.putNumber("Robot Roll", getRoll());
     //SmartDashboard.putNumber("Robot Speed X", getChassisSpeeds().vxMetersPerSecond);
     //SmartDashboard.putNumber("Robot Speed Y", getChassisSpeeds().vyMetersPerSecond);
     //SmartDashboard.putNumber("Robot Omega", getChassisSpeeds().omegaRadiansPerSecond);
