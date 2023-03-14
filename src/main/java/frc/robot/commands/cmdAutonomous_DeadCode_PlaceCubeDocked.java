@@ -14,7 +14,7 @@ import frc.robot.subsystems.subSwerve;
 public class cmdAutonomous_DeadCode_PlaceCubeDocked extends SequentialCommandGroup {
   public cmdAutonomous_DeadCode_PlaceCubeDocked(subSwerve swerve, subArmAngle angle, subArmExtension extension, subPneumatic air) {
     addCommands(
-      new cmdAuto_SetGoal(angle, extension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition).withTimeout(2),
+      new cmdAuto_SetGoal(angle, extension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition).withTimeout(2.5),
       //new cmdAuto_SetGoal(angle, extension, ArmAngleConstants.HighPlacement, ArmExtensionConstants.MidPosition).withTimeout(1),      
       new InstantCommand(() -> air.open(), air),
       new WaitCommand(0.25),
