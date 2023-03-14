@@ -7,7 +7,7 @@ import frc.robot.subsystems.subSwerve;
 
 public class cmdAuto_Level extends CommandBase {
   subSwerve swerve;
-  PIDController levelPID = new PIDController(0.01, 0, 0);
+  PIDController levelPID = new PIDController(0.008, 0, 0);
   Timer time;
   public cmdAuto_Level(subSwerve swerve) {
     this.swerve = swerve;

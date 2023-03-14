@@ -64,8 +64,8 @@ public class RobotContainer {
     armAngle.setDefaultCommand(new cmdArmAngle_TeleOp(armAngle, () -> MathUtil.applyDeadband(-driverTwo.getLeftY()*ArmAngleConstants.PowerFactor, 0.01), () -> false));
     armExtension.setDefaultCommand(new cmdArmExtension_TeleOp(armExtension, () -> MathUtil.applyDeadband(-driverTwo.getRightY()*ArmExtensionConstants.PowerFactor, 0.01), () -> false));
 
-    driverTwo.leftBumper().onTrue(new InstantCommand(() -> air.open()));
-    driverTwo.rightBumper().onTrue(new InstantCommand(() -> air.close()));
+    driverTwo.leftBumper().onTrue(new cmdAuto_OpenPartly(air));
+    driverTwo.rightBumper().onTrue(new InstantCommand(() -> air.toggle()));
     
     driverTwo.povUp().whileTrue(new cmdArmExtension_TeleOp(armExtension, () -> ArmExtensionConstants.PowerFactor, () -> true));
     driverTwo.povUp().whileFalse(new InstantCommand(() -> armExtension.stop()));
@@ -83,7 +83,7 @@ public class RobotContainer {
     driverTwo.x().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanFeedPosition, ArmExtensionConstants.HumanFeedPosition));
     driverTwo.x().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));
     driverTwo.y().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition));
-    driverTwo.y().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPlacement, ArmExtensionConstants.MidPosition));
+    driverTwo.y().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition));
     driverTwo.b().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition));
     driverTwo.b().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPlacement, ArmExtensionConstants.MidPosition));
     driverTwo.a().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.GroundPosition, ArmExtensionConstants.GroundPosition));

@@ -36,7 +36,7 @@ public class subPneumatic extends SubsystemBase {
 
   public void toggle(){
     if(intakeSolenoid.get() == Value.kOff){
-      open();
+      close();
     } else {
       intakeSolenoid.toggle();
     }
