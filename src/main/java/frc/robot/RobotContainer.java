@@ -34,6 +34,7 @@ public class RobotContainer {
     chooser.setDefaultOption("Crossline", new cmdAutonomous_DeadCode_CrossLine(swerve, 0.35));
     chooser.addOption("Crossline Docked", new cmdAutonomous_DeadCode_CrossLineDocked(swerve, 0.35));
     chooser.addOption("Place Cone, Cross Line", new cmdAutonomous_DeadCode_PlaceConeCrossLine(swerve, armAngle, armExtension, air));
+    chooser.addOption("Place Cube, Cross Line", new cmdAutonomous_DeadCode_PlaceCubeCrossLine(swerve, armAngle, armExtension, air));
     chooser.addOption("Place Cone, Cross Line, Grab Cube", new cmdAutonomous_DeadCode_PlaceConeCrossLineGrabCube(swerve, armAngle, armExtension, air));
     chooser.addOption("Place Cone, Docked", new cmdAutonomous_DeadCode_PlaceConeDocked(swerve, armAngle, armExtension, air));
     chooser.addOption("Place Cube, Docked", new cmdAutonomous_DeadCode_PlaceCubeDocked(swerve, armAngle, armExtension, air));
