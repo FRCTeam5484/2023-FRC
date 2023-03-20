@@ -55,9 +55,6 @@ public class cmdSwerve_TeleOp extends CommandBase {
       ySpeed = yLimiter.calculate(ySpeed)*SwerveConstants.TeleOp.DriveSpeedFactor;
       rotationSpeed = rotationLimiter.calculate(rotationSpeed)*SwerveConstants.TeleOp.RotationSpeedFactor;
     }
-
-    
-    
     swerve.drive(xSpeed, ySpeed, rotationSpeed, bypassAntiTip.getAsBoolean());
   }
   

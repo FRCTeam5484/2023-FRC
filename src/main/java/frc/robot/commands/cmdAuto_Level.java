@@ -38,6 +38,6 @@ public class cmdAuto_Level extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return levelPID.atSetpoint() && time.hasElapsed(5) ? true : false;
+    return levelPID.atSetpoint() && time.hasElapsed(7) ? true : false;
   }
 }

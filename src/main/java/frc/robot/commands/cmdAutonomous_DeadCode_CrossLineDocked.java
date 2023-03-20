@@ -23,13 +23,13 @@ public class cmdAutonomous_DeadCode_CrossLineDocked extends CommandBase {
 
   @Override
   public void execute() {
-    if(time.get() < 3){
+    if(time.get() < 4){
       swerve.drive(speed, 0, 0, false);
     }
-    else if (time.get() < 3.5){
+    else if (time.get() < 4.5){
       swerve.drive(0, 0, 0, false);
     }
-    else if (time.get() < 5){
+    else if (time.get() < 6){
       swerve.drive(-speed, 0, 0, false);
     }
     else{
@@ -45,6 +45,6 @@ public class cmdAutonomous_DeadCode_CrossLineDocked extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return time.hasElapsed(5.5);
+    return time.hasElapsed(6);
   }
 }
