@@ -51,7 +51,8 @@ public class RobotContainer {
           () -> MathUtil.applyDeadband(driverOne.getLeftX(), 0.01),
           () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01),
           () -> driverOne.rightTrigger().getAsBoolean(),
-          () -> driverOne.leftTrigger().getAsBoolean()));
+          () -> driverOne.leftTrigger().getAsBoolean(),
+          () -> driverOne.rightBumper().getAsBoolean()));
     driverOne.x().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeDown)));
     driverOne.b().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeUp)));
     driverOne.a().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.ConeDown)));

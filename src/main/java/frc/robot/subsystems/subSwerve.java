@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.classes.SwerveModule;
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -70,8 +72,13 @@ public class subSwerve extends SubsystemBase {
   
   private final AHRS gyro;
   public SwerveDriveOdometry odometry;
+  private PIDController antiTipPID = new PIDController(0.01, 0, 0);
   
   public subSwerve() {
+    antiTipPID.reset();
+    antiTipPID.enableContinuousInput(-90, 90);
+    antiTipPID.setTolerance(2);
+
     gyro = new AHRS(SPI.Port.kMXP);
     odometry = new SwerveDriveOdometry(
       SwerveConstants.SwerveKinematics,
@@ -114,7 +121,8 @@ public class subSwerve extends SubsystemBase {
       });
   }
 
-  public void drive(double xSpeed, double ySpeed, double rot) {
+  public void drive(double xSpeed, double ySpeed, double rot, boolean bypassAntiTip) {
+    ySpeed = !bypassAntiTip && Math.abs(getPitch()) > 5 ? antiTipPID.calculate(getPitch(), 0) : ySpeed;
     var swerveModuleStates = SwerveConstants.SwerveKinematics.toSwerveModuleStates(ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, getRotation2d()));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, SwerveConstants.MaxSpeedMetersPerSecond);
     frontLeftModule.setDesiredState(swerveModuleStates[0]);

@@ -56,7 +56,7 @@ public class AutonomousCommands {
 
         swerve.resetOdometry(exampleTrajectory.getInitialPose());
 
-        return swerveControllerCommand.andThen(() -> swerve.drive(0, 0, 0));
+        return swerveControllerCommand.andThen(() -> swerve.drive(0, 0, 0, false));
     }
     public Command PlaceConeCrossLine(subSwerve swerve, subArmAngle angle, subArmExtension extension){
         /* TrajectoryConfig config =

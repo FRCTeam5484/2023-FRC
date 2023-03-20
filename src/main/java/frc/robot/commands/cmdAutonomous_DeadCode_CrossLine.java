@@ -23,7 +23,7 @@ public class cmdAutonomous_DeadCode_CrossLine extends CommandBase {
 
   @Override
   public void execute() {
-    swerve.drive(speed, 0, 0);
+    swerve.drive(speed, 0, 0, false);
   }
 
   @Override

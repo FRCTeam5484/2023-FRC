@@ -27,7 +27,7 @@ public class cmdAuto_Level extends CommandBase {
 
   @Override
   public void execute() {
-    swerve.drive(levelPID.calculate(swerve.getRoll(), 0), 0, 0);
+    swerve.drive(levelPID.calculate(swerve.getRoll(), 0), 0, 0, true);
   }
 
   @Override
