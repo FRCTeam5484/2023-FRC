@@ -122,7 +122,7 @@ public class subSwerve extends SubsystemBase {
   }
 
   public void drive(double xSpeed, double ySpeed, double rot, boolean bypassAntiTip) {
-    ySpeed = !bypassAntiTip && Math.abs(getPitch()) > 5 ? antiTipPID.calculate(getPitch(), 0) : ySpeed;
+    ySpeed = !bypassAntiTip && Math.abs(getPitch()) > 10 ? -antiTipPID.calculate(getPitch(), 0) : ySpeed;
     var swerveModuleStates = SwerveConstants.SwerveKinematics.toSwerveModuleStates(ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, getRotation2d()));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, SwerveConstants.MaxSpeedMetersPerSecond);
     frontLeftModule.setDesiredState(swerveModuleStates[0]);
@@ -163,7 +163,7 @@ public class subSwerve extends SubsystemBase {
   public void zeroHeading() { gyro.reset(); }
   public double getHeading() { return Math.IEEEremainder(gyro.getAngle(), 360); }
   public double getRoll() { return gyro.getRoll(); }
-  public double getPitch() { return gyro.getPitch(); }
+  public double getPitch() { return -gyro.getPitch(); }
   public Rotation2d getRotation2d() { return Rotation2d.fromDegrees(getHeading()); }
   public ChassisSpeeds getChassisSpeeds(){ return SwerveConstants.SwerveKinematics.toChassisSpeeds(frontLeftModule.getState(), frontRightModule.getState(), backLeftModule.getState(), backRightModule.getState());}
 
@@ -172,6 +172,7 @@ public class subSwerve extends SubsystemBase {
     updateOdometry();
     SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
     SmartDashboard.putNumber("Robot Roll", getRoll());
+    SmartDashboard.putNumber("Robot Pitch", getPitch());
     //SmartDashboard.putNumber("Robot Speed X", getChassisSpeeds().vxMetersPerSecond);
     //SmartDashboard.putNumber("Robot Speed Y", getChassisSpeeds().vyMetersPerSecond);
     //SmartDashboard.putNumber("Robot Omega", getChassisSpeeds().omegaRadiansPerSecond);
