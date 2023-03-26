@@ -51,13 +51,13 @@ public class RobotContainer {
           () -> MathUtil.applyDeadband(driverOne.getLeftX(), 0.01),
           () -> MathUtil.applyDeadband(-driverOne.getRightX(), 0.01),
           () -> driverOne.rightTrigger().getAsBoolean(),
-          () -> driverOne.leftTrigger().getAsBoolean(),
-          () -> driverOne.rightBumper().getAsBoolean()));
+          () -> driverOne.leftTrigger().getAsBoolean()));
     driverOne.x().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeDown)));
     driverOne.b().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.CubeUp)));
     driverOne.a().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.ConeDown)));
     driverOne.y().onTrue(new InstantCommand(() -> item.setCurrentSelection(itemList.ConeUp)));
     driverOne.leftBumper().whileTrue(new RunCommand(() -> swerve.setXMode()));
+    driverOne.rightBumper().onTrue(new InstantCommand(() -> swerve.toggleBypass()));
 
     //driverOne.rightTrigger().onTrue(new cmdAuto_Level(swerve));
   }

@@ -12,17 +12,15 @@ public class cmdSwerve_TeleOp extends CommandBase {
   private final DoubleSupplier XSupplier;
   private final DoubleSupplier YSupplier;
   private final DoubleSupplier rotationSupplier;
-  private final BooleanSupplier bypassAntiTip;
   private final BooleanSupplier boost;
   private final BooleanSupplier slow;
   private final SlewRateLimiter xLimiter, yLimiter, rotationLimiter;
   
-  public cmdSwerve_TeleOp(subSwerve swerve, DoubleSupplier XSupplier, DoubleSupplier YSupplier, DoubleSupplier rotationSupplier, BooleanSupplier boost, BooleanSupplier slow, BooleanSupplier bypassAntiTip) {
+  public cmdSwerve_TeleOp(subSwerve swerve, DoubleSupplier XSupplier, DoubleSupplier YSupplier, DoubleSupplier rotationSupplier, BooleanSupplier boost, BooleanSupplier slow) {
     this.swerve = swerve;
     this.XSupplier = XSupplier;
     this.YSupplier = YSupplier;
     this.rotationSupplier = rotationSupplier;
-    this.bypassAntiTip = bypassAntiTip;
     this.boost = boost;
     this.slow = slow;
     this.xLimiter = new SlewRateLimiter(3.5);
@@ -55,7 +53,7 @@ public class cmdSwerve_TeleOp extends CommandBase {
       ySpeed = yLimiter.calculate(ySpeed)*SwerveConstants.TeleOp.DriveSpeedFactor;
       rotationSpeed = rotationLimiter.calculate(rotationSpeed)*SwerveConstants.TeleOp.RotationSpeedFactor;
     }
-    swerve.drive(xSpeed, ySpeed, rotationSpeed, bypassAntiTip.getAsBoolean());
+    swerve.drive(xSpeed, ySpeed, rotationSpeed);
   }
   
   @Override

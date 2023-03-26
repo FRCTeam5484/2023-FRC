@@ -3,6 +3,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.classes.SwerveModule;
+
+import java.util.function.BooleanSupplier;
+
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -73,6 +76,7 @@ public class subSwerve extends SubsystemBase {
   private final AHRS gyro;
   public SwerveDriveOdometry odometry;
   private PIDController antiTipPID = new PIDController(0.01, 0, 0);
+  public boolean BypassAntiTip = false;
   
   public subSwerve() {
     antiTipPID.reset();
@@ -121,8 +125,17 @@ public class subSwerve extends SubsystemBase {
       });
   }
 
-  public void drive(double xSpeed, double ySpeed, double rot, boolean bypassAntiTip) {
-    ySpeed = !bypassAntiTip && Math.abs(getPitch()) > 10 ? -antiTipPID.calculate(getPitch(), 0) : ySpeed;
+  public void toggleBypass(){
+    if(BypassAntiTip){
+      BypassAntiTip = false;
+    }
+    else{
+      BypassAntiTip = true;
+    }
+  }
+
+  public void drive(double xSpeed, double ySpeed, double rot) {
+    ySpeed = !BypassAntiTip && Math.abs(getPitch()) > 10 ? -antiTipPID.calculate(getPitch(), 0) : ySpeed;
     var swerveModuleStates = SwerveConstants.SwerveKinematics.toSwerveModuleStates(ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, getRotation2d()));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, SwerveConstants.MaxSpeedMetersPerSecond);
     frontLeftModule.setDesiredState(swerveModuleStates[0]);
@@ -170,9 +183,11 @@ public class subSwerve extends SubsystemBase {
   @Override
   public void periodic() {
     updateOdometry();
+    SmartDashboard.putNumber("Heading", getHeading());
     SmartDashboard.putString("Robot Location", getPose().getTranslation().toString());
     SmartDashboard.putNumber("Robot Roll", getRoll());
     SmartDashboard.putNumber("Robot Pitch", getPitch());
+    SmartDashboard.putBoolean("Anti-Tip Bypass", BypassAntiTip);
     //SmartDashboard.putNumber("Robot Speed X", getChassisSpeeds().vxMetersPerSecond);
     //SmartDashboard.putNumber("Robot Speed Y", getChassisSpeeds().vyMetersPerSecond);
     //SmartDashboard.putNumber("Robot Omega", getChassisSpeeds().omegaRadiansPerSecond);
@@ -192,6 +207,5 @@ public class subSwerve extends SubsystemBase {
     //SmartDashboard.putNumber("Back Right Drive MPS", backRightModule.getState().speedMetersPerSecond);
     //SmartDashboard.putNumber("Back Right Drive Power", backRightModule.getDrivePower());
     //SmartDashboard.putNumber("Back Right Rotation Power", backRightModule.getRotationPower());
-    SmartDashboard.putNumber("Heading", getHeading());
   }
 }
