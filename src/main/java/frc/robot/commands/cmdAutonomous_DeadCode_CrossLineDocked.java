@@ -24,16 +24,16 @@ public class cmdAutonomous_DeadCode_CrossLineDocked extends CommandBase {
   @Override
   public void execute() {
     if(time.get() < 3.5){
-      swerve.drive(speed, 0, 0, false);
+      swerve.drive(speed, 0, 0);
     }
     else if (time.get() < 4){
-      swerve.drive(0, 0, 0, false);
+      swerve.drive(0, 0, 0);
     }
     else if (time.get() < 5.5){
-      swerve.drive(-speed, 0, 0, false);
+      swerve.drive(-speed, 0, 0);
     }
     else{
-      swerve.drive(0, 0, 0, false);
+      swerve.drive(0, 0, 0);
     }
   }
 
