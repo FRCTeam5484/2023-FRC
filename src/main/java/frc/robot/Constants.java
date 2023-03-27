@@ -136,7 +136,7 @@ public final class Constants {
     public static final double HumanSlidePosition = 30;
     public static final double GroundPosition = 58;
     public static final double MidPosition = 105;
-    public static final double HighPosition = 154;
+    public static final double HighPosition = 180;
     public static final double DefaultPosition = 0;
   }
   public static final class ClawConstants {
