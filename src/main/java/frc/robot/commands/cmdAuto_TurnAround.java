@@ -28,7 +28,7 @@ public class cmdAuto_TurnAround extends CommandBase {
 
   @Override
   public void execute() {
-    swerve.drive(0, 0, -headingPID.calculate(swerve.getHeading(), headingGoal), true);
+    swerve.drive(0, 0, -headingPID.calculate(swerve.getHeading(), headingGoal));
   }
 
   // Called once the command ends or is interrupted.
