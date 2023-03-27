@@ -11,92 +11,6 @@
         "vgap": 16.0,
         "titleType": 0,
         "tiles": {
-          "6,1": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Pneumatics",
-              "_glyph": 3,
-              "_showGlyph": false,
-              "Layout/Label position": "LEFT",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Pressure",
-                  "_title": "Pressure",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Toggle Button",
-                  "_source0": "network_table:///SmartDashboard/Enable Compressor",
-                  "_title": "/SmartDashboard/Enable Compressor",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Compressor Running",
-                  "_title": "Running",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Toggle Button",
-                  "_source0": "network_table:///SmartDashboard/Disable Compressor",
-                  "_title": "/SmartDashboard/Disable Compressor",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Solenoid Status",
-                  "_title": "Claw",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
-          "4,2": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Arm",
-              "_glyph": 149,
-              "_showGlyph": false,
-              "Layout/Label position": "TOP",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Arm Ang Power",
-                  "_title": "Angle Power",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Arm Ang Output",
-                  "_title": "Angle Output",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Arm Absolute",
-                  "_title": "Angle Encoder",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
           "8,1": {
             "size": [
               3,
@@ -133,9 +47,9 @@
               ]
             }
           },
-          "8,0": {
+          "6,0": {
             "size": [
-              3,
+              5,
               1
             ],
             "content": {
@@ -146,112 +60,163 @@
               "_showGlyph": false
             }
           },
-          "2,2": {
+          "11,0": {
             "size": [
               2,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Robot Location",
-              "_title": "Robot Location",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "2,0": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "Gyro",
-              "_source0": "network_table:///SmartDashboard/Heading",
-              "_title": "Heading",
-              "_glyph": 148,
-              "_showGlyph": false,
-              "Visuals/Major tick spacing": 45.0,
-              "Visuals/Starting angle": 180.0,
-              "Visuals/Show tick mark ring": true,
-              "Visuals/Counter clockwise": false
-            }
-          },
-          "6,0": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Human Player Item",
-              "_title": "Human Player Item",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "4,0": {
-            "size": [
-              2,
-              2
+              5
             ],
             "content": {
               "_type": "List Layout",
-              "_title": "Extension",
+              "_title": "Robot Orientation",
               "_glyph": 149,
               "_showGlyph": false,
               "Layout/Label position": "TOP",
               "_children": [
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Arm Ext Power",
-                  "_title": "Extension Power",
+                  "_source0": "network_table:///SmartDashboard/Robot Location",
+                  "_title": "Robot Location",
                   "_glyph": 148,
                   "_showGlyph": false
                 },
                 {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Arm Ext Output",
-                  "_title": "Extension Output",
+                  "_type": "Simple Dial",
+                  "_source0": "network_table:///SmartDashboard/Robot Roll",
+                  "_title": "Robot Roll",
                   "_glyph": 148,
-                  "_showGlyph": false
+                  "_showGlyph": false,
+                  "Range/Min": -25.0,
+                  "Range/Max": 25.0,
+                  "Visuals/Show value": true
                 },
+                {
+                  "_type": "Simple Dial",
+                  "_source0": "network_table:///SmartDashboard/Robot Pitch",
+                  "_title": "Robot Pitch",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Range/Min": -25.0,
+                  "Range/Max": 25.0,
+                  "Visuals/Show value": true
+                },
+                {
+                  "_type": "Gyro",
+                  "_source0": "network_table:///SmartDashboard/Heading",
+                  "_title": "Heading",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Visuals/Major tick spacing": 45.0,
+                  "Visuals/Starting angle": 180.0,
+                  "Visuals/Show tick mark ring": true,
+                  "Visuals/Counter clockwise": false
+                }
+              ]
+            }
+          },
+          "6,1": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "Properties",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "LEFT",
+              "_children": [
                 {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Arm Ext Encoder",
                   "_title": "Extension Encoder",
                   "_glyph": 148,
                   "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Arm Absolute",
+                  "_title": "Angle Encoder",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/Anti-Tip Bypass",
+                  "_title": "Anti-Tip Bypass",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Human Player Item",
+                  "_title": "Human Player Item",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Pressure",
+                  "_title": "Pressure",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Compressor Running",
+                  "_title": "Running",
+                  "_glyph": 148,
+                  "_showGlyph": false
                 }
               ]
             }
           },
-          "11,0": {
+          "8,3": {
             "size": [
-              2,
-              2
+              3,
+              1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Robot Roll",
-              "_title": "Robot Roll",
+              "_type": "Toggle Button",
+              "_source0": "network_table:///SmartDashboard/Enable Compressor",
+              "_title": "/SmartDashboard/Enable Compressor",
               "_glyph": 148,
               "_showGlyph": false
             }
           },
-          "11,2": {
+          "8,4": {
             "size": [
-              2,
-              2
+              3,
+              1
             ],
             "content": {
-              "_type": "Simple Dial",
-              "_source0": "network_table:///SmartDashboard/Robot Pitch",
-              "_title": "Robot Pitch",
+              "_type": "Toggle Button",
+              "_source0": "network_table:///SmartDashboard/Disable Compressor",
+              "_title": "/SmartDashboard/Disable Compressor",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,0": {
+            "size": [
+              6,
+              5
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://USB Camera 0",
+              "_title": "USB Camera 0",
               "_glyph": 148,
               "_showGlyph": false,
-              "Range/Min": -25.0,
-              "Range/Max": 25.0,
-              "Visuals/Show value": true
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": -1,
+              "imageWidth": -1,
+              "imageHeight": -1
             }
           }
         }
@@ -536,9 +501,9 @@
     }
   ],
   "windowGeometry": {
-    "x": 25.0,
-    "y": 266.0,
-    "width": 1974.0,
-    "height": 947.0
+    "x": -1.0,
+    "y": 227.0,
+    "width": 2051.0,
+    "height": 986.0
   }
 }
