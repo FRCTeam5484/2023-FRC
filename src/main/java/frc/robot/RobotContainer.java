@@ -66,8 +66,8 @@ public class RobotContainer {
     armAngle.setDefaultCommand(new cmdArmAngle_TeleOp(armAngle, () -> MathUtil.applyDeadband(-driverTwo.getLeftY()*ArmAngleConstants.PowerFactor, 0.01), () -> false));
     armExtension.setDefaultCommand(new cmdArmExtension_TeleOp(armExtension, () -> MathUtil.applyDeadband(-driverTwo.getRightY()*ArmExtensionConstants.PowerFactor, 0.01), () -> false));
 
-    driverTwo.leftBumper().onTrue(new cmdAuto_OpenPartly(air));
     driverTwo.rightBumper().onTrue(new InstantCommand(() -> air.toggle()));
+    driverTwo.leftBumper().onTrue(new cmdAuto_SetDefault(armAngle, armExtension));
     
     driverTwo.povUp().whileTrue(new cmdArmExtension_TeleOp(armExtension, () -> ArmExtensionConstants.PowerFactor, () -> true));
     driverTwo.povUp().whileFalse(new InstantCommand(() -> armExtension.stop()));
@@ -80,14 +80,13 @@ public class RobotContainer {
     driverTwo.povRight().whileFalse(new InstantCommand(() -> armAngle.stop()));
     
     driverTwo.back().onTrue(new InstantCommand(() -> armExtension.resetPosition()));
-    driverTwo.start().onTrue(new cmdAuto_OpenPartly(air));
 
     driverTwo.x().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanFeedPosition, ArmExtensionConstants.HumanFeedPosition));
     driverTwo.x().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));
     driverTwo.y().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HighPosition, ArmExtensionConstants.HighPosition));
-    driverTwo.y().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));
+    driverTwo.y().whileFalse(new cmdAuto_SetGoalWithTimeout(armAngle, armExtension, ArmAngleConstants.HighPlacement, ArmExtensionConstants.HighPosition, 1));
     driverTwo.b().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition));
-    driverTwo.b().whileFalse(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPlacement, ArmExtensionConstants.MidPosition));
+    driverTwo.b().whileFalse(new cmdAuto_SetGoalWithTimeout(armAngle, armExtension, ArmAngleConstants.MidPlacement, ArmExtensionConstants.MidPosition, 1));
     driverTwo.a().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanSlidePosition, ArmExtensionConstants.HumanSlidePosition));
     driverTwo.a().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));
   }

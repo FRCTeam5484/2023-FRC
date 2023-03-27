@@ -174,13 +174,13 @@
           },
           "8,3": {
             "size": [
-              3,
+              2,
               1
             ],
             "content": {
               "_type": "Toggle Button",
               "_source0": "network_table:///SmartDashboard/Enable Compressor",
-              "_title": "/SmartDashboard/Enable Compressor",
+              "_title": "Enable Compressor",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -217,6 +217,21 @@
               "fps": -1,
               "imageWidth": -1,
               "imageHeight": -1
+            }
+          },
+          "10,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Solenoid Status",
+              "_title": "Solenoid Status",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
             }
           }
         }

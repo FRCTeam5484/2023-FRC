@@ -114,13 +114,13 @@ public final class Constants {
     
     public static final double limitPositionHigh = 270;
     public static final double limitPositionLow = 40;
-    public static final double HumanFeedPosition = 211;
+    public static final double HumanFeedPosition = 220;
     public static final double HumanSlidePosition = 228;
     public static final double GroundPosition = 40;
-    public static final double MidPosition = 219;
-    public static final double MidPlacement = 240;
-    public static final double HighPosition = 219;
-    public static final double HighPlacement = 240;
+    public static final double MidPosition = 207;
+    public static final double MidPlacement = 220;
+    public static final double HighPosition = 207;
+    public static final double HighPlacement = 220;
     public static final double DefaultPosition = 114;
   }
   public static final class ArmExtensionConstants {
@@ -130,13 +130,13 @@ public final class Constants {
     public static final double PowerFactor = 1;
     public static final int PowerLimit = 60;
 
-    public static final double limitOpen = 165;
+    public static final double limitOpen = 141;
     public static final double limitClosed = 2;
-    public static final double HumanFeedPosition = 25;
+    public static final double HumanFeedPosition = 20;
     public static final double HumanSlidePosition = 30;
     public static final double GroundPosition = 58;
-    public static final double MidPosition = 105;
-    public static final double HighPosition = 180;
+    public static final double MidPosition = 67;
+    public static final double HighPosition = 141;
     public static final double DefaultPosition = 0;
   }
   public static final class ClawConstants {
@@ -161,8 +161,7 @@ public final class Constants {
   }
   public static final class PneumaticConstants{
     public final static int PneumaticHubId = 1;
-      public final static int IntakeSolenoidFirstId = 1;
-      public final static int IntakeSolenoidSecondId = 0;
+      public final static int IntakeSolenoidId = 0;
       // Pressure
       public final static double MinimumPressure = 100.0;
       public final static double MaximumPressure = 120.0;

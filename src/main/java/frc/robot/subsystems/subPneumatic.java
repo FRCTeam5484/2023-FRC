@@ -1,15 +1,13 @@
 package frc.robot.subsystems;
-
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticHub;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PneumaticConstants;
 
 public class subPneumatic extends SubsystemBase {
   private PneumaticHub ph = new PneumaticHub(PneumaticConstants.PneumaticHubId);
-  private DoubleSolenoid intakeSolenoid = ph.makeDoubleSolenoid(PneumaticConstants.IntakeSolenoidFirstId, PneumaticConstants.IntakeSolenoidSecondId);
+  private Solenoid intakeSolenoid = ph.makeSolenoid(PneumaticConstants.IntakeSolenoidId);
 
   public subPneumatic() {
     SmartDashboard.setDefaultBoolean("Enable Compressor", false);
@@ -22,7 +20,7 @@ public class subPneumatic extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Pressure", ph.getPressure(0));
     SmartDashboard.putBoolean("Compressor Running", ph.getCompressor());
-    //SmartDashboard.putBoolean("Solenoid Status", intakeSolenoid.get());
+    SmartDashboard.putBoolean("Solenoid Status", intakeSolenoid.get());
 
     if (SmartDashboard.getBoolean("Enable Compressor", false)) {
       SmartDashboard.putBoolean("Enable Compressor", false);
@@ -35,13 +33,8 @@ public class subPneumatic extends SubsystemBase {
   }
 
   public void toggle(){
-    if(intakeSolenoid.get() == Value.kOff){
-      close();
-    } else {
-      intakeSolenoid.toggle();
-    }
+    intakeSolenoid.toggle();
   }
-  public void open(){ intakeSolenoid.set(Value.kForward);}
-  public void close(){ intakeSolenoid.set(Value.kReverse);}
-  public void stop(){ intakeSolenoid.set(Value.kOff);}
+  public void open(){ intakeSolenoid.set(true); }
+  public void close(){ intakeSolenoid.set(false); }
 }
