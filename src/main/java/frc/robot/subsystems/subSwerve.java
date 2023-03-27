@@ -71,7 +71,7 @@ public class subSwerve extends SubsystemBase {
   
   private final AHRS gyro;
   public SwerveDriveOdometry odometry;
-  private PIDController antiTipPID = new PIDController(0.01, 0, 0);
+  private PIDController antiTipPID = new PIDController(0.02, 0, 0);
   public boolean BypassAntiTip = false;
   
   public subSwerve() {
