@@ -117,10 +117,10 @@ public final class Constants {
     public static final double HumanFeedPosition = 220;
     public static final double HumanSlidePosition = 228;
     public static final double GroundPosition = 40;
-    public static final double MidPosition = 207;
-    public static final double MidPlacement = 220;
-    public static final double HighPosition = 207;
-    public static final double HighPlacement = 220;
+    public static final double MidPosition = 222;
+    public static final double MidPlacement = 230;
+    public static final double HighPosition = 222;
+    public static final double HighPlacement = 230;
     public static final double DefaultPosition = 114;
   }
   public static final class ArmExtensionConstants {
@@ -135,7 +135,7 @@ public final class Constants {
     public static final double HumanFeedPosition = 20;
     public static final double HumanSlidePosition = 30;
     public static final double GroundPosition = 58;
-    public static final double MidPosition = 67;
+    public static final double MidPosition = 73;
     public static final double HighPosition = 141;
     public static final double DefaultPosition = 0;
   }
