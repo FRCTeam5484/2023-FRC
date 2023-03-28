@@ -112,16 +112,16 @@ public final class Constants {
     public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 60;
     
-    public static final double limitPositionHigh = 270;
-    public static final double limitPositionLow = 40;
-    public static final double HumanFeedPosition = 220;
+    public static final double limitPositionHigh = 320;
+    public static final double limitPositionLow = 110;
+    public static final double HumanFeedPosition = 275;
     public static final double HumanSlidePosition = 228;
     public static final double GroundPosition = 40;
-    public static final double MidPosition = 222;
-    public static final double MidPlacement = 230;
-    public static final double HighPosition = 222;
-    public static final double HighPlacement = 230;
-    public static final double DefaultPosition = 114;
+    public static final double MidPosition = 283;
+    public static final double MidPlacement = 300;
+    public static final double HighPosition = 283;
+    public static final double HighPlacement = 300;
+    public static final double DefaultPosition = 168;
   }
   public static final class ArmExtensionConstants {
     public static final int Port = 10;
