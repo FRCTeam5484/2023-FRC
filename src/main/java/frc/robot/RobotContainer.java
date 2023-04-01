@@ -87,7 +87,7 @@ public class RobotContainer {
     driverTwo.y().whileFalse(new cmdAuto_SetGoalWithTimeout(armAngle, armExtension, ArmAngleConstants.HighPlacement, ArmExtensionConstants.HighPosition, 1));
     driverTwo.b().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.MidPosition, ArmExtensionConstants.MidPosition));
     driverTwo.b().whileFalse(new cmdAuto_SetGoalWithTimeout(armAngle, armExtension, ArmAngleConstants.MidPlacement, ArmExtensionConstants.MidPosition, 1));
-    driverTwo.a().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.HumanSlidePosition, ArmExtensionConstants.HumanSlidePosition));
+    driverTwo.a().whileTrue(new cmdAuto_SetGoal(armAngle, armExtension, ArmAngleConstants.GroundPosition, ArmExtensionConstants.GroundPosition));
     driverTwo.a().whileFalse(new cmdAuto_SetDefault(armAngle, armExtension));
   }
 

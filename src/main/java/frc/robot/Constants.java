@@ -116,7 +116,7 @@ public final class Constants {
     public static final double limitPositionLow = 110;
     public static final double HumanFeedPosition = 275;
     public static final double HumanSlidePosition = 228;
-    public static final double GroundPosition = 40;
+    public static final double GroundPosition = 339;
     public static final double MidPosition = 283;
     public static final double MidPlacement = 300;
     public static final double HighPosition = 283;
@@ -134,7 +134,7 @@ public final class Constants {
     public static final double limitClosed = 2;
     public static final double HumanFeedPosition = 20;
     public static final double HumanSlidePosition = 30;
-    public static final double GroundPosition = 58;
+    public static final double GroundPosition = 45;
     public static final double MidPosition = 73;
     public static final double HighPosition = 141;
     public static final double DefaultPosition = 0;

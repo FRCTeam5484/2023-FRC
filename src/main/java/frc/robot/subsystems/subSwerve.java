@@ -131,7 +131,7 @@ public class subSwerve extends SubsystemBase {
   }
 
   public void drive(double xSpeed, double ySpeed, double rot) {
-    ySpeed = !BypassAntiTip && Math.abs(getPitch()) > 10 ? -antiTipPID.calculate(getPitch(), 0) : ySpeed;
+    //ySpeed = !BypassAntiTip && Math.abs(getPitch()) > 10 ? -antiTipPID.calculate(getPitch(), 0) : ySpeed;
     var swerveModuleStates = SwerveConstants.SwerveKinematics.toSwerveModuleStates(ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, getRotation2d()));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, SwerveConstants.MaxSpeedMetersPerSecond);
     frontLeftModule.setDesiredState(swerveModuleStates[0]);
