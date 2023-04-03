@@ -29,7 +29,7 @@ public class cmdAutonomous_DeadCode_CrossLineDocked extends CommandBase {
     else if (time.get() < 4){
       swerve.drive(0, 0, 0);
     }
-    else if (time.get() < 5.5){
+    else if (time.get() < 6){
       swerve.drive(-speed, 0, 0);
     }
     else{
