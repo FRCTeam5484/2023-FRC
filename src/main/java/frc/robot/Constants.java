@@ -119,8 +119,8 @@ public final class Constants {
     public static final double GroundPosition = 339;
     public static final double MidPosition = 283;
     public static final double MidPlacement = 300;
-    public static final double HighPosition = 283;
-    public static final double HighPlacement = 300;
+    public static final double HighPosition = 270;
+    public static final double HighPlacement = 290;
     public static final double DefaultPosition = 168;
   }
   public static final class ArmExtensionConstants {
@@ -136,7 +136,7 @@ public final class Constants {
     public static final double HumanSlidePosition = 30;
     public static final double GroundPosition = 45;
     public static final double MidPosition = 73;
-    public static final double HighPosition = 141;
+    public static final double HighPosition = 132;
     public static final double DefaultPosition = 0;
   }
   public static final class ClawConstants {
