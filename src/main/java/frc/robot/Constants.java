@@ -112,9 +112,9 @@ public final class Constants {
     public static final double PowerFactor = 0.5;
     public static final int PowerLimit = 60;
     
-    public static final double limitPositionHigh = 320;
-    public static final double limitPositionLow = 110;
-    public static final double HumanFeedPosition = 275;
+    public static final double limitPositionHigh = 338;
+    public static final double limitPositionLow = 102;
+    public static final double HumanFeedPosition = 285;
     public static final double HumanSlidePosition = 228;
     public static final double GroundPosition = 339;
     public static final double MidPosition = 283;
